@@ -1,0 +1,31 @@
+.panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.firstRow {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.card {
+    width: 200px !important;
+}
+.navbar, .container {
+    background-color: orange !important;
+}
+.container {
+    max-width: none;
+    color: black;
+    text-decoration: none;
+    width: 100% !important;
+}
+.navbar-nav {
+    position: fixed;
+    right: 20px;
+}
+.nav-icon {
+    display: flex;
+    align-items: center;
+    margin-inline:10px;
+}
