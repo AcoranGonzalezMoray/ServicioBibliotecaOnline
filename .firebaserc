@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "serviciobibliotecaonline": {
+      "hosting": {
+        "ServicioBibliotecaOnline": [
+          "serviciobibliotecaonline"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "serviciobibliotecaonline"
+  }
+}

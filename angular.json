@@ -103,6 +103,16 @@
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "ServicioBibliotecaOnline:build:production",
+            "firebaseProject": "serviciobibliotecaonline",
+            "firebaseHostingSite": "serviciobibliotecaonline"
+          }
         }
       }
     }
