@@ -32,7 +32,7 @@ import { AppInicioComponent } from './app-inicio/app-inicio.component';
     BrowserAnimationsModule,
     MatSlideToggleModule,
     RouterModule.forRoot([
-      {path: 'INICIO', component: AppComponent },
+      {path: 'INICIO', component: AppInicioComponent },
       {path: 'DASHBOARDADMIN', component: AppAdminprofileComponent},
       {path: 'DASHBOARDUSER', component: AppUserprofileComponent},
     ]),
