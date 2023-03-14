@@ -1,0 +1,9 @@
+.panel {
+    margin-top: 20px;
+}
+.firstRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}

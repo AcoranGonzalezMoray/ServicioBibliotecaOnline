@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Otras Importaciones
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -12,6 +11,9 @@ import { CardComponent } from './card/card.component';
 import { AsideComponent } from './aside/aside.component';
 import { AppUserprofileComponent } from './app-userprofile/app-userprofile.component';
 import { AppAdminprofileComponent } from './app-adminprofile/app-adminprofile.component';
+import { RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
+import { AppInicioComponent } from './app-inicio/app-inicio.component';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,19 @@ import { AppAdminprofileComponent } from './app-adminprofile/app-adminprofile.co
     CardComponent,
     AsideComponent,
     AppUserprofileComponent,
-    AppAdminprofileComponent
+    AppAdminprofileComponent,
+    AppInicioComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    RouterModule.forRoot([
+      {path: 'INICIO', component: AppComponent },
+      {path: 'DASHBOARDADMIN', component: AppAdminprofileComponent},
+      {path: 'DASHBOARDUSER', component: AppUserprofileComponent},
+    ]),
   ],
   providers: [],
   bootstrap: [AppComponent]
