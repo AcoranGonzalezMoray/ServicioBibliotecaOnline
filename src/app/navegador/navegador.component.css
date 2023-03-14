@@ -1,0 +1,17 @@
+.navbar{
+    background-color: orange !important;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9;
+}
+
+.navbar-nav {
+    position: fixed;
+    right: 20px;
+}
+.nav-icon {
+    display: flex;
+    align-items: center;
+    margin-inline:10px;
+}
