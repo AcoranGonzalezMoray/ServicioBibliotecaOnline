@@ -14,6 +14,7 @@ import { AppAdminprofileComponent } from './app-adminprofile/app-adminprofile.co
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppInicioComponent } from './app-inicio/app-inicio.component';
+import { AppBookdescriptionComponent } from './app-bookdescription/app-bookdescription.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AppInicioComponent } from './app-inicio/app-inicio.component';
     AsideComponent,
     AppUserprofileComponent,
     AppAdminprofileComponent,
-    AppInicioComponent
+    AppInicioComponent,
+    AppBookdescriptionComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,7 @@ import { AppInicioComponent } from './app-inicio/app-inicio.component';
       {path: 'INICIO', component: AppInicioComponent },
       {path: 'DASHBOARDADMIN', component: AppAdminprofileComponent},
       {path: 'DASHBOARDUSER', component: AppUserprofileComponent},
+      {path: 'BOOKDESCRIPTION', component: AppBookdescriptionComponent},
     ]),
   ],
   providers: [],
