@@ -1,0 +1,44 @@
+.panel {
+    margin-top: 40px;
+}
+
+.firstRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.iconousuario {
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: -70px;
+    z-index: 2;
+    background-color: white;
+}
+
+.usuario_info h2{
+    margin-left: 140px;
+    margin-bottom: 0%;
+}
+
+.usuario_info .linea-horizontal {
+  height: 1px;
+  width: 100%;
+  background-color: black;
+  z-index: 1;
+  margin-bottom: 4px;
+}
+
+.usuario_info .btn {
+    background-color: #dfd8df;
+    margin-inline: 1px;
+    width: 7em;
+    font-size: 10px;
+    
+}
+
+.usuario_info .botonesSeguidores{
+    margin-left: 140px;
+    margin-bottom: 1em;
+}
