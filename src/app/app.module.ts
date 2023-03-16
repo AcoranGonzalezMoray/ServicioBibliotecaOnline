@@ -15,7 +15,11 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppInicioComponent } from './app-inicio/app-inicio.component';
 import { AppBookdescriptionComponent } from './app-bookdescription/app-bookdescription.component';
-
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +43,10 @@ import { AppBookdescriptionComponent } from './app-bookdescription/app-bookdescr
       {path: 'DASHBOARDUSER', component: AppUserprofileComponent},
       {path: 'BOOKDESCRIPTION', component: AppBookdescriptionComponent},
     ]),
+    //provideFirebaseApp(() => initializeApp(environment.firebase)),
+    AngularFireModule.initializeApp(environment.firebase),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [],
   bootstrap: [AppComponent]
