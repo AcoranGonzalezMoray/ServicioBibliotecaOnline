@@ -15,11 +15,16 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppInicioComponent } from './app-inicio/app-inicio.component';
 import { AppBookdescriptionComponent } from './app-bookdescription/app-bookdescription.component';
+
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
+import { AppSinginComponent } from './app-singin/app-singin.component';
+import { AppSingupComponent } from './app-singup/app-singup.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +36,8 @@ import { AngularFireModule } from '@angular/fire/compat';
     AppAdminprofileComponent,
     AppInicioComponent,
     AppBookdescriptionComponent,
+    AppSinginComponent,
+    AppSingupComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +49,8 @@ import { AngularFireModule } from '@angular/fire/compat';
       {path: 'DASHBOARDADMIN', component: AppAdminprofileComponent},
       {path: 'DASHBOARDUSER', component: AppUserprofileComponent},
       {path: 'BOOKDESCRIPTION', component: AppBookdescriptionComponent},
+      {path: 'SIGNIN', component: AppSinginComponent},
+      {path: 'SIGNUP', component: AppSingupComponent}
     ]),
     //provideFirebaseApp(() => initializeApp(environment.firebase)),
     AngularFireModule.initializeApp(environment.firebase),
