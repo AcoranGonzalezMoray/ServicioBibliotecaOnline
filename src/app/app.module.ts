@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppInicioComponent } from './app-inicio/app-inicio.component';
 import { AppBookdescriptionComponent } from './app-bookdescription/app-bookdescription.component';
-
+import { AuthService } from './services/auth.service';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
@@ -45,7 +45,7 @@ import { AppSingupComponent } from './app-singup/app-singup.component';
     BrowserAnimationsModule,
     MatSlideToggleModule,
     RouterModule.forRoot([
-      {path: 'INICIO', component: AppInicioComponent },
+      {path: '', component: AppInicioComponent },
       {path: 'DASHBOARDADMIN', component: AppAdminprofileComponent},
       {path: 'DASHBOARDUSER', component: AppUserprofileComponent},
       {path: 'BOOKDESCRIPTION', component: AppBookdescriptionComponent},
@@ -57,7 +57,7 @@ import { AppSingupComponent } from './app-singup/app-singup.component';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

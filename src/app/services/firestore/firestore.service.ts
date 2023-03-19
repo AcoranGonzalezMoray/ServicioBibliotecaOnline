@@ -12,15 +12,15 @@ export class FirestoreService {
   public createBook(data: {Autor: string, Descripcion: string,IMG: string,Number: string, Votos:number}) {
     return this.firestore.collection('LIBROS').add(data);
   }
-  //Obtiene un gato
+  //Obtiene un libro
   public getBook(documentId: string) {
     return this.firestore.collection('LIBROS').doc(documentId).snapshotChanges();
   }
-  //Obtiene todos los gatos
+  //Obtiene todos los libro
   public getBooks() {
     return this.firestore.collection('LIBROS').snapshotChanges();
   }
-  //Actualiza un gato
+  //Actualiza un libro
   public updateBook(documentId: string, data: any) {
     return this.firestore.collection('LIBROS').doc(documentId).set(data);
   }

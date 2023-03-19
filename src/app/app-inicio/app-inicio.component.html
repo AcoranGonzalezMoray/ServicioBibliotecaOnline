@@ -1,5 +1,23 @@
 <app-navegador></app-navegador>
 <section class="panel">
+
+  <div class="banner">
+    <div class="text-banner"></div>
+    <div class="banner__contents">
+
+        <h1 class="banner__title">Money Heist</h1>
+      <div class="banner__buttons">
+        <button class="banner__button">Leer</button>
+        <button class="banner__button">Mi Lista</button>
+      </div>
+      <h1 class="banner__description">
+        To carry out the biggest heist in history, a mysterious man called The Professor recruits
+        a band of eight robbers who have a single characteristic: n...
+      </h1>
+    </div>
+    <div class="banner--fadeBottom"></div>
+  </div>
+
   <div class="tools">
     <button type="button" class="btn btn-primary position-relative">
       Profile
@@ -32,21 +50,37 @@
       </span>
     </button>
   </div>
-  <article class="firstRow">
-    <h2>TOP Populares</h2>
-    <app-card></app-card>
-  </article>
-  <hr class="dropdown-divider">
-  <article class="firstRow">
-    <h2>Novedades</h2>
-    <app-card></app-card>
-  </article>
-  <hr class="dropdown-divider">
-  <article class="firstRow">
-    <h2>Más Leidos</h2>
-    <app-card></app-card>
-  </article>
-  <hr class="dropdown-divider">
+
+  <div class="CAROUSEL-SACTION" >
+    <div id={{cat[1]}} class="carousel slide" *ngFor="let cat of categories">
+      <h1>{{cat[0]}}</h1>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <article class="firstRow">
+            <div *ngFor="let book of books;let i = index" >
+              <app-card *ngIf="i<6"   [Nombre]="book.Nombre" [Descripcion]="book.Descripcion" [Autor]="book.Autor" [IMG]="book.IMG" ></app-card>
+            </div>
+          </article>
+        </div>
+        <div class="carousel-item">
+          <article class="firstRow">
+            <div *ngFor="let book of books;let i = index" >
+              <app-card *ngIf="i<6"    [Nombre]="book.Nombre" [Descripcion]="book.Descripcion" [Autor]="book.Autor" [IMG]="book.IMG" ></app-card>
+            </div>
+          </article>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#'+cat[1]" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#'+cat[1]" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+ 
 </section>
 
 <app-footer></app-footer>
