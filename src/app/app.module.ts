@@ -23,6 +23,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AppSinginComponent } from './app-singin/app-singin.component';
 import { AppSingupComponent } from './app-singup/app-singup.component';
+import { AppPricingTableComponent } from './app-pricing-table/app-pricing-table.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { AppSingupComponent } from './app-singup/app-singup.component';
     AppBookdescriptionComponent,
     AppSinginComponent,
     AppSingupComponent,
+    AppPricingTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { AppSingupComponent } from './app-singup/app-singup.component';
       {path: 'DASHBOARDUSER', component: AppUserprofileComponent},
       {path: 'BOOKDESCRIPTION', component: AppBookdescriptionComponent},
       {path: 'SIGNIN', component: AppSinginComponent},
-      {path: 'SIGNUP', component: AppSingupComponent}
+      {path: 'SIGNUP', component: AppSingupComponent},
+      {path: 'PLAN', component: AppPricingTableComponent }
     ]),
     //provideFirebaseApp(() => initializeApp(environment.firebase)),
     AngularFireModule.initializeApp(environment.firebase),

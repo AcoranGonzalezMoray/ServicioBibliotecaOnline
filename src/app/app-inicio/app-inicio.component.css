@@ -1,7 +1,7 @@
 /*Cuerpo*/
 section {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #111;
+    background-color: #140f07;
     padding-bottom: 20px;
 }
 .panel {
@@ -19,10 +19,13 @@ section {
     flex-direction: row;
 }
 .btn-primary{
-    background-color: orange !important;
-    border-color: orange !important;
+    background-color: #0a5199 !important;
+    border-color: #0a5199!important;
 }
 /*Carousel*/
+.flex-carousel{
+  display: flex;
+}
 .firstRow {
     display: flex;
     justify-content: center;
@@ -34,12 +37,14 @@ section {
     margin: 25px;
     width: 20%; 
 }
-
+.carousel-control-next,.carousel-control-prev{
+  position: relative;
+}
 .carousel-control-next-icon,.carousel-control-prev-icon{
-    background-color: orange !important;
+    background-color: #0a5199 !important;
 }
 h1 {
-    color: orange;
+    color: #0a5199;
     display: block;
     font-size: 1.5em;
     margin-block-start: 0.83em;
@@ -82,7 +87,7 @@ h1 {
     font-size: 3rem;
     font-weight: 800;
     padding-bottom: 0.3rem;
-    color: orange;
+    color: #0a5199;
   }
   
   .banner__description {
@@ -93,7 +98,7 @@ h1 {
     font-size: 0.8rem;
     max-width: 360px;
     height: 180px;
-    color: orange;
+    color: #0a5199;
   }
   
   .banner__button {
@@ -109,17 +114,18 @@ h1 {
     margin-right: 1rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    background-color: rgba(236, 108, 23, 0.5);
+    background-color: rgba(13, 17, 230, 0.5);
   }
   
   .banner__button:hover {
     color: #000;
-    background-color: orange;
+    background-color: #0a5199;
     transition: all 0.2s;
   }
   
   .banner--fadeBottom {
     margin-top: 145px;
     height: 7.4rem;
-    background-image: linear-gradient(180deg, transparent, rgba(37, 37, 37, 0.61), #111);
+    background-image: linear-gradient(180deg, transparent, rgba(37, 37, 37, 0.61), #140f07);
   }
+
