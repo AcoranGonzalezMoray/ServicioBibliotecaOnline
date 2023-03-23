@@ -1,9 +1,11 @@
+@import "/src/assets/variables.css";
+
 /*Cuerpo*/
 section {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #140f07;
+    background-color:  #140f07;
     padding-bottom: 20px;
-}
+} 
 .panel {
     /*no margin*/
 }
