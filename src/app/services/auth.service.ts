@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   userData: any; 
+  DisplayName:any;
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -49,17 +50,20 @@ export class AuthService {
       });
   }
 
-  SignUp(email: string,password:string,displayName: string) {
+  SignUp(email: string,password:string,displayName: string, plan:string, url:string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
        //this.SendVerificationMail();
+        this.DisplayName = displayName;
         this.SetUserData(result.user);
         console.log(result.user);
         sessionStorage.setItem('user', JSON.stringify(result.user));
-        this.router.navigate(['/']);
+        //this.router.navigate(['/']);
+        var Url = url+"?prefilled_email="+email
+        location.href=Url
       })
       .catch((error) => {
         window.alert(error.message);
@@ -121,9 +125,10 @@ export class AuthService {
     const userData: User = {
       uid: user.uid,
       email: user.email,
-      displayName: user.displayName,
+      displayName:this.DisplayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
+      plan: "Loading"
     };
     return userRef.set(userData, {
       merge: true,

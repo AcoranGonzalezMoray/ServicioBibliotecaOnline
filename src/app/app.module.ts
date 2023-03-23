@@ -24,6 +24,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AppSinginComponent } from './app-singin/app-singin.component';
 import { AppSingupComponent } from './app-singup/app-singup.component';
 import { AppPricingTableComponent } from './app-pricing-table/app-pricing-table.component';
+import { AppPaymentConfirmationComponent } from './app-payment-confirmation/app-payment-confirmation.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { AppPricingTableComponent } from './app-pricing-table/app-pricing-table.
     AppSinginComponent,
     AppSingupComponent,
     AppPricingTableComponent,
+    AppPaymentConfirmationComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,8 +54,9 @@ import { AppPricingTableComponent } from './app-pricing-table/app-pricing-table.
       {path: 'DASHBOARDUSER', component: AppUserprofileComponent},
       {path: 'BOOKDESCRIPTION', component: AppBookdescriptionComponent},
       {path: 'SIGNIN', component: AppSinginComponent},
-      {path: 'SIGNUP', component: AppSingupComponent},
-      {path: 'PLAN', component: AppPricingTableComponent }
+      {path: 'SIGNUP/:plan/:url', component: AppSingupComponent},
+      {path: 'PLAN', component: AppPricingTableComponent },
+      {path: 'PAYMENTCONFIRMATION', component: AppPaymentConfirmationComponent}
     ]),
     //provideFirebaseApp(() => initializeApp(environment.firebase)),
     AngularFireModule.initializeApp(environment.firebase),

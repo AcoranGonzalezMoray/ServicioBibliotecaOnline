@@ -3,12 +3,12 @@
   <div class="register-login-form">
     <article class="shadow-lg">
     <img src="">
-    <h2>Registrate</h2>
+    <h2>Suscribirte con {{plan}}</h2>
     <input required class = "shadow-lg" type="text" placeholder="Nombre de Usuario" #userNm>
     <input required pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" #userEmail  class="shadow-lg"  type="email" placeholder="Correo electrónico">
     <input required  minlength="6" maxlength="9" class="shadow-lg"  type="password" placeholder="Contraseña">
     <input required  minlength="6" maxlength="9" class="shadow-lg"  type="password" placeholder="Confirme su Contraseña" #userPwd>
-    <button class="ov-btn-grow-ellipse" (click)="authService.SignUp(userEmail.value, userPwd.value, userNm.value)">Regístrate</button>
+    <button class="ov-btn-grow-ellipse" (click)="authService.SignUp(userEmail.value, userPwd.value, userNm.value,plan, url)">Regístrate</button>
     <br>
     <br>
     <a href="#"> ¿Has olvidado la contraseña? </a>
