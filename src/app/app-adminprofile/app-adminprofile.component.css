@@ -65,7 +65,7 @@
 /* Elementos del dashboard*/
 .elementDashboard {
   align-items: center;
-  background-color: #fff;
+  background-color: var(--bkg-color);
   border: 1px solid #ccc;
   display: grid;
   grid-template-columns: 4em, repeat(3, 1fr);
