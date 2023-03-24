@@ -37,7 +37,7 @@ export class AuthService {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.SetUserData(result.user);
+        //this.SetUserData(result.user);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
             sessionStorage.setItem('user', JSON.stringify(user));
