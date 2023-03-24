@@ -70,6 +70,7 @@ section {
     white-space: nowrap;
     box-sizing: border-box;
     display: flex;
+    height: 550px !important;
   }
   .carousel__slide {
     position: relative;
@@ -104,7 +105,7 @@ section {
     right: 0;
     bottom: 0;
     width:   350px;
-    height: 100%;
+    height: 550px !important;
   }
   .carousel__slide img {
     display: block;
@@ -117,10 +118,11 @@ section {
     flex: 0 0 auto;
     width: 25%;
     min-width: 150px;
+    color: white;
   }
   .carousel__slide .credit {
     margin-top: 1rem;
-    color: rgba(0, 0, 0, 0.5);
+    color: white;
     display: block;
   }
   .carousel__slide.scrollable {

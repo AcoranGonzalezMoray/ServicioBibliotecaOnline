@@ -22,12 +22,12 @@ body{}
 .dark-div{
   position: absolute;
   width: 100%;
-  height: 929px;
+  height: 100vh;
   opacity: 0.8;
   background-color: black;
   z-index: 1;
 }
-section{height: 100vh;background-image: url('https://pixabay.com/get/g535b76f0dce988513b88fa344ca1555db9b6aaad62021de40abea51630414fac2d23fe5653421f159106ac5d2c8e3b79.jpg') !important;background-size: contain;;background-position: center;}
+section{height: 100vh;background-image: url('https://i1.wp.com/www.24symbols.com/24stories/wp-content/uploads/2019/12/BestOf2019_es.png?fit=1492%2C875&ssl=1') !important;background-size: contain;;background-position: center;}
 #generic_price_table{
   background-color: #f0eded;
 }

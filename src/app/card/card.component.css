@@ -2,3 +2,8 @@
     max-height: 250px;
     margin-inline: 20px;
 }
+
+.card img {
+    width: 150px;
+    height: 250px;
+}

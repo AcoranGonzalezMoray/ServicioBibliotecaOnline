@@ -7,8 +7,12 @@ import { Component,OnInit } from '@angular/core';
 })
 export class BannerComponent implements  OnInit {
   public data:any;
+  public books:any;
   constructor(){ }
   ngOnInit() { 
+    this.books = sessionStorage.getItem("books");
+    this.books = JSON.parse(this.books)
+    this.books = this.books
   }
 
   banner(d:string,title:string, des:string):void{

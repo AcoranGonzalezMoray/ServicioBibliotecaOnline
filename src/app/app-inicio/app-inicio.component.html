@@ -33,6 +33,7 @@
       </span>
     </button>
   </div>
+
   <div class="CAROUSEL-SACTION" >
     <div id={{cat[1]}} class="carousel slide" *ngFor="let cat of categories;let x = index">
       <app-carousel-open *ngIf="x==2" ></app-carousel-open>
@@ -47,14 +48,14 @@
           <div class="carousel-item active">
             <article class="firstRow">
               <div *ngFor="let book of books;let i = index" >
-                <app-card *ngIf="i<5"   [Nombre]="book.Nombre" [Descripcion]="book.Descripcion" [Autor]="book.Autor" [IMG]="book.IMG" ></app-card>
+                <app-card *ngIf="i<5"   [Nombre]="book.title" [Descripcion]="book.sinopsis" [Autor]="book.Autor" [IMG]="book.imageURL" ></app-card>
               </div>
             </article>
           </div>
           <div class="carousel-item">
             <article class="firstRow">
               <div *ngFor="let book of books;let i = index" >
-                <app-card *ngIf="i<5"    [Nombre]="book.Nombre" [Descripcion]="book.Descripcion" [Autor]="book.Autor" [IMG]="book.IMG" ></app-card>
+                <app-card *ngIf="i<5"    [Nombre]="book.title" [Descripcion]="book.sinopsis" [Autor]="book.autor" [IMG]="book.imageURL" ></app-card>
               </div>
             </article>
           </div>

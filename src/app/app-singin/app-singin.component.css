@@ -73,8 +73,8 @@ input {
   width: 250px;
   margin-top: 1rem;
   background: #fff; /* color de fondo */
-  color: #d7a741; /* color de fuente */
-  border: 2px solid orange; /* tamaño y color de borde */
+  color: var(--btn-bg-color);; /* color de fuente */
+  border: 2px solid var(--btn-bg-color); /* tamaño y color de borde */
   padding: 0.2rem 1rem;
   border-radius: 5px; /* redondear bordes */
   position: relative;
@@ -89,7 +89,7 @@ input {
 
 .ov-btn-grow-ellipse::after {
   content: "";
-  background: orange; /* color de fondo hover */
+  background: var(--btn-bg-color); /* color de fondo hover */
   position: absolute;
   z-index: -1;
   padding: 0.2rem 1rem;
