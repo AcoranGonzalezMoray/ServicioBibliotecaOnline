@@ -6,7 +6,7 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900);
 body{}
 #generic_price_table[_ngcontent-pss-c74] .generic_content[_ngcontent-pss-c74] .generic_head_price[_ngcontent-pss-c74] {
-  background-color: #08ceff !important;
+  background-color: var(--bk-pricing) !important;
 }
 .container{
   position: relative;
@@ -38,7 +38,7 @@ section{height: 100vh;background-image: url('https://pixabay.com/get/g535b76f0dc
 }
 
 #generic_price_table .generic_content .generic_head_price{
-  background-color: #08ceff;
+  background-color: var(--bk-pricing) ;
 }
 
 #generic_price_table .generic_content .generic_head_price .generic_head_content .head_bg{
@@ -74,17 +74,17 @@ section{height: 100vh;background-image: url('https://pixabay.com/get/g535b76f0dc
 }
 #generic_price_table .generic_content .generic_feature_list ul li:hover{
   background-color: #E4E4E4;
-  border-left: 5px solid #0a5199;
+  border-left: 5px solid var(--bk-pricing-hover);
 }
 
 #generic_price_table .generic_content .generic_price_btn a{
-  border: 1px solid #0a5199; 
-    color: #0a5199;
+  border: 1px solid var(--bk-pricing-hover); 
+    color: var(--bk-pricing-hover);
 } 
 
 #generic_price_table .generic_content.active .generic_head_price .generic_head_content .head_bg,
 #generic_price_table .generic_content:hover .generic_head_price .generic_head_content .head_bg{
-  border-color: #0a5199 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #0a5199;
+  border-color: var(--bk-pricing-hover) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) var(--bk-pricing-hover);
   color: #fff;
 }
 
@@ -95,7 +95,7 @@ section{height: 100vh;background-image: url('https://pixabay.com/get/g535b76f0dc
 
 #generic_price_table .generic_content:hover .generic_price_btn a,
 #generic_price_table .generic_content.active .generic_price_btn a{
-  background-color: #0a5199;
+  background-color: var(--bk-pricing-hover);
   color: #fff;
 } 
 #generic_price_table{

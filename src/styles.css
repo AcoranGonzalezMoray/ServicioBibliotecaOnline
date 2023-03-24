@@ -11,6 +11,8 @@ body {
 --bk-shadow: #2cb67d;
 --bk-radius-banner: #e5e5e5;
 --bk-seccion: #242629;
+--bk-pricing: #2cb67d;
+--bk-pricing-hover: #7f5af0;
   }
 body.dark-theme {
 --text-color: #fffffe;
@@ -21,4 +23,6 @@ body.dark-theme {
 --bk-shadow: #2cb67d;
 --bk-radius-banner: #000000;
 --bk-seccion:#242629;
+--bk-pricing: #2cb67d;
+--bk-pricing-hover: #7f5af0;
 }
