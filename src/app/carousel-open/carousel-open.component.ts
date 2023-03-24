@@ -11,7 +11,6 @@ export class CarouselOpenComponent implements OnInit {
   ngOnInit(): void {
     this.books = sessionStorage.getItem("books");
     this.books = JSON.parse(this.books)
-    this.books = this.books
   }
   
 }

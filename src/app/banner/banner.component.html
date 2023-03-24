@@ -22,16 +22,13 @@
         <div class="carousel-item active">
           <article class="banner-carousel">
             <img *ngFor="let item of books.slice(0,4);let i = index" (click)="banner(a.src,item.title, item.sinopsis)" #a src={{item.imageURL}} class="d-block w-100" alt="...">
-           
           </article>
         </div>
         <div class="carousel-item">
           <article class="banner-carousel">
-            <img src="https://cdn.pixabay.com/photo/2017/10/25/16/54/african-lion-2888519_1280.jpg" class="d-block w-100" alt="...">
-            <img src="https://cdn.pixabay.com/photo/2017/10/25/16/54/african-lion-2888519_1280.jpg" class="d-block w-100" alt="...">
-            <img src="https://cdn.pixabay.com/photo/2017/10/25/16/54/african-lion-2888519_1280.jpg" class="d-block w-100" alt="...">
-            <img src="https://cdn.pixabay.com/photo/2017/10/25/16/54/african-lion-2888519_1280.jpg" class="d-block w-100" alt="...">
+            <img *ngFor="let item of books.slice(4,8);let i = index" (click)="banner(b.src,item.title, item.sinopsis)" #b src={{item.imageURL}} class="d-block w-100" alt="...">
           </article>
+         
         </div>
       </div>
       <button class="carousel-control-next banner-next" type="button" data-bs-target="#CE" data-bs-slide="next">
