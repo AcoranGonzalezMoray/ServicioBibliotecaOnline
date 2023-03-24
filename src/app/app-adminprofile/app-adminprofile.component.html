@@ -2,12 +2,49 @@
 <section id="main">
 
     <app-aside></app-aside>
-    
+
     <div class="adminContent">
         <div class="topButtons">
-            <button class="btn1" id="añadirBtn">AÑADIR</button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn1 btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                id="añadirBtn">
+                AÑADIR
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input placeholder="titulo" #title>
+                            <input placeholder="sinopsis" #sinopsis>
+                            <input placeholder="autor" #author>
+                            <input placeholder="fecha de publicacion" #publicationDate>
+                            <input placeholder="fecha de subida" #uploadDate>
+                            <input placeholder="editorial" #editorial>
+                            <input placeholder="ISBN" #isbn>
+                            <input placeholder="genero" #genre>                            
+                            <input placeholder="URL" #url>
+                            <input placeholder="URL de la imagen" #imageURL>
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" (click)="addBook(title.value, sinopsis.value, author.value, 
+              publicationDate.value, uploadDate.value, editorial.value, isbn.value, genre.value, url.value, imageURL.value)"
+                                data-bs-dismiss="modal">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <button class="btn1" id="eliminarBtn">ELIMINAR SELECCIONADOS</button>
         </div>
+
 
         <div class="headerDashboard grid">
             <h2 class="el">ACCIÓN</h2>
@@ -57,6 +94,8 @@
 
 
     </div>
+
+
 
 </section>
 <app-footer id="adminFooter"></app-footer>
