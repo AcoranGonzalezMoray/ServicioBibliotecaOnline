@@ -1,4 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+--text-color: #000000;
+--paragraph: #000000;
+--bkg-color: #ffffff;
+--btn-txt-color: #fffffe;
+--btn-bg-color: #7f5af0;
+--bk-shadow: #2cb67d;
+--bk-radius-banner: #e5e5e5;
+--bk-seccion: #242629;
+  }
+body.dark-theme {
+--text-color: #fffffe;
+--paragraph: #94a1b2;
+--bkg-color: #16161a;
+--btn-txt-color: #fffffe;
+--btn-bg-color: #7f5af0;
+--bk-shadow: #2cb67d;
+--bk-radius-banner: #000000;
+--bk-seccion:#242629;
+}

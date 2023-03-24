@@ -1,13 +1,15 @@
-@import "/src/assets/variables.css";
 
 /*Cuerpo*/
+.CT {
+    margin-left: 55px;
+}
 section {
     font-family: Arial, Helvetica, sans-serif;
-    background-color:  #140f07;
+    background-color:  var(--bkg-color)  ;
     padding-bottom: 20px;
 } 
 .panel {
-    /*no margin*/
+    margin-top: 46px;
 }
 
 /*Barra Herramientas*/
@@ -21,8 +23,8 @@ section {
     flex-direction: row;
 }
 .btn-primary{
-    background-color: #0a5199 !important;
-    border-color: #0a5199!important;
+    background-color: var(--btn-bg-color)  !important;
+    border-color: var(--btn-bg-color) !important;
 }
 /*Carousel*/
 .flex-carousel{
@@ -43,10 +45,10 @@ section {
   position: relative;
 }
 .carousel-control-next-icon,.carousel-control-prev-icon{
-    background-color: #0a5199 !important;
+    background-color: var(--btn-bg-color) !important;
 }
 h1 {
-    color: #0a5199;
+    color: var(--text-color);
     display: block;
     font-size: 1.5em;
     margin-block-start: 0.83em;
@@ -57,77 +59,5 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* banner */
-.text-banner {
-  opacity: 0.8;
-  width: 394px;
-  height: 244px;
-  background-position: center center;
-  background: radial-gradient(circle, black,rgb(29, 28, 28),rgb(37, 35, 35), rgba(255, 255, 255, 0));
-  position: absolute;
-  z-index: 0;
-  margin-left: 10px !important;
-  margin-top: 149px;
-}
-.banner {
-    
-    background-image: url('https://i1.wp.com/www.24symbols.com/24stories/wp-content/uploads/2019/12/BestOf2019_es.png?fit=1492%2C875&ssl=1');
-    background-size: cover;
-    background-position: center center;
-    object-fit: contain;
-    height: 448px;
-  }
-  
-  .banner__contents {
-    margin-left: 30px;
-    padding-top: 140px;
-    height: 190px;
-  }
-  
-  .banner__title {
-    position: relative;
-    font-size: 3rem;
-    font-weight: 800;
-    padding-bottom: 0.3rem;
-    color: #0a5199;
-  }
-  
-  .banner__description {
-    position: relative;
-    width: 45rem;
-    line-height: 1.3;
-    padding-top: 1rem;
-    font-size: 0.8rem;
-    max-width: 360px;
-    height: 180px;
-    color: #0a5199;
-  }
-  
-  .banner__button {
-    position: relative;
-    cursor: pointer;
-    color: #fff;
-    outline: none;
-    border: none;
-    font-weight: 700;
-    border-radius: 0.2vw;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    margin-right: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    background-color: rgba(13, 17, 230, 0.5);
-  }
-  
-  .banner__button:hover {
-    color: #000;
-    background-color: #0a5199;
-    transition: all 0.2s;
-  }
-  
-  .banner--fadeBottom {
-    margin-top: 145px;
-    height: 7.4rem;
-    background-image: linear-gradient(180deg, transparent, rgba(37, 37, 37, 0.61), #140f07);
-  }
+
 

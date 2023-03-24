@@ -26,6 +26,7 @@ import { AppSingupComponent } from './app-singup/app-singup.component';
 import { AppPricingTableComponent } from './app-pricing-table/app-pricing-table.component';
 import { AppPaymentConfirmationComponent } from './app-payment-confirmation/app-payment-confirmation.component';
 import { CarouselOpenComponent } from './carousel-open/carousel-open.component';
+import { BannerComponent } from './banner/banner.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { CarouselOpenComponent } from './carousel-open/carousel-open.component';
     AppPricingTableComponent,
     AppPaymentConfirmationComponent,
     CarouselOpenComponent,
+    BannerComponent,
   ],
   imports: [
     BrowserModule,

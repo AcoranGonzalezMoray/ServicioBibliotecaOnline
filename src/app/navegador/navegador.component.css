@@ -5,15 +5,15 @@
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
 
-    background-color: rgba(255, 166, 0, 0) !important;
+    background-color: var(--bkg-color) !important;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 9;
-    color: #0a5199;
+    color: var(--btn-bg-color);
 }
 .navbar .navbar-brand, .navbar a{
-    color: #0a5199;
+    color: var(--btn-bg-color);
 }
 .navbar-nav {
     position: fixed;
@@ -37,7 +37,7 @@
     -ms-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-    background-color: #0a5199!important;
+    background-color: var(--btn-bg-color)!important;
 }
 .navbar-brand_{
     color: white !important;

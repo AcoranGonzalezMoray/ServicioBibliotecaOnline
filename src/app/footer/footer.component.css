@@ -1,5 +1,5 @@
 .container {
-    background-color: #0a5199!important;
+    background-color: var(--btn-bg-color)!important;
     max-width: none;
     color: black;
     text-decoration: none;
@@ -9,4 +9,9 @@
 .py-5{
     padding-top: 1em !important;
     padding-bottom: 0% !important; 
+    color: #000;
+}
+.text-muted {
+    --bs-text-opacity: 1;
+    color: #ffffff!important;
 }
