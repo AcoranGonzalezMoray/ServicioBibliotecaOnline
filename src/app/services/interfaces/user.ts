@@ -5,4 +5,8 @@ export interface User {
     photoURL: string;
     emailVerified: boolean;
     plan: string,
+    favoriteBooksList: string[],
+    followers: string[],
+    following: string[],
+    readingHistory: [],
 }

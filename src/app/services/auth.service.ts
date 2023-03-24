@@ -128,7 +128,11 @@ export class AuthService {
       displayName:this.DisplayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
-      plan: "Loading"
+      plan: "Loading",
+      favoriteBooksList: [],
+      followers: [],
+      following: [],
+      readingHistory: []
     };
     return userRef.set(userData, {
       merge: true,
