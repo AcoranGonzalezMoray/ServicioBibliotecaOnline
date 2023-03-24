@@ -11,5 +11,6 @@ export interface Book {
     genre: string,
     url: string,
     read: string[],
-    imageURL: string
+    imageURL: string,
+    pages: number
 }

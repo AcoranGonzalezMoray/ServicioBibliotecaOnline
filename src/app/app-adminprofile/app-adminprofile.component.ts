@@ -19,11 +19,13 @@ export class AppAdminprofileComponent {
     isbn: string,
     genre: string,
     url: string,
-    imageURL: string) {
+    imageURL: string,
+    pages:string) {
     const numberisbn = parseInt(isbn)
+    const numberpages = parseInt(pages)
     const book: Book = {
       title: title, sinopsis: sinopsis, author: author, publicationDate: publicationDate, uploadDate: uploadDate, 
-      editorial: editorial, isbn: numberisbn, reviews: [], comments: [], genre: genre, url: url, read: [], imageURL: imageURL
+      editorial: editorial, isbn: numberisbn, reviews: [], comments: [], genre: genre, url: url, read: [], imageURL: imageURL,pages: numberpages
     }
     
     this.firestoreService.createBook(book)

@@ -31,12 +31,12 @@
                             <input placeholder="genero" #genre>                            
                             <input placeholder="URL" #url>
                             <input placeholder="URL de la imagen" #imageURL>
-                            ...
+                            <input placeholder="Paginas" #pages>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary" (click)="addBook(title.value, sinopsis.value, author.value, 
-              publicationDate.value, uploadDate.value, editorial.value, isbn.value, genre.value, url.value, imageURL.value)"
+              publicationDate.value, uploadDate.value, editorial.value, isbn.value, genre.value, url.value, imageURL.value, pages.value)"
                                 data-bs-dismiss="modal">Save changes</button>
                         </div>
                     </div>
