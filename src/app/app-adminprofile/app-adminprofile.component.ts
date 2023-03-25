@@ -11,10 +11,13 @@ import { FirestoreService } from '../services/firestore/firestore.service';
 })
 export class AppAdminprofileComponent implements OnInit {
 
+  public books:any;
 
   constructor(public firestoreService: FirestoreService) { }
   ngOnInit(): void {
-
+    this.books = sessionStorage.getItem("books");
+    this.books = JSON.parse(this.books);
+    console.log(this.books);
   }
   addBook(title: string,
     sinopsis: string,
@@ -34,7 +37,7 @@ export class AppAdminprofileComponent implements OnInit {
       editorial: editorial, isbn: numberisbn, reviews: [], comments: [], genre: genre, url: url, read: [], imageURL: imageURL, pages: numberpages
     }
 
-    //this.firestoreService.createBook(book)
+    this.firestoreService.createBook(book)
     this.clearModal()
   }
 
