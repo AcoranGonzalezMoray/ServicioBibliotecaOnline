@@ -17,6 +17,10 @@ export class FirestoreService {
   public getBook(documentId: string) {
     return this.firestore.collection('LIBROS').doc(documentId).snapshotChanges();
   }
+  //Elimina un libro
+  public deleteBook(documentId: string) {
+    return this.firestore.collection('LIBROS').doc(documentId).delete();
+  }
   //Obtiene todos los libros
   public getBooks() {
     return this.firestore.collection('LIBROS').snapshotChanges();
