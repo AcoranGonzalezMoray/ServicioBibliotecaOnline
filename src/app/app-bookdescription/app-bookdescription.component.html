@@ -7,7 +7,7 @@
                 alt="El pianista del gueto de Varsovia">
         </div>
         <div class="buttons" id="buttons">
-            <button class="btn">Leer</button>
+            <button class="btn" (click)="leer()" >Leer</button>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
                 <path
@@ -41,5 +41,39 @@
             <p id="book_sinopsis"><span>Sinopsis: </span>{{book?.sinopsis}}</p>
         </div>
     </div>
+    <div *ngIf="id != undefined" >
+        <div style="
+            position: absolute;
+            background-color: white;
+            height: 100vh;
+            left: 0;
+            width: 46px;
+            display: flex;
+            top: 46px;
+            z-index: 100;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        ">
+            <svg (click)="close()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16">
+            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-check-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </div>
+        <iframe [src]="urlID" width="100%" height="100vh" style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;"></iframe>
+    </div>
+
 </section>
+
 <app-footer></app-footer>
