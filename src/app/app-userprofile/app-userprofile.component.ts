@@ -12,4 +12,8 @@ export class AppUserprofileComponent implements OnInit {
     this.User =JSON.parse(this.User);
     this.User = this.User.providerData[0];
   }
+
+  algo(){
+    console.log("AAAAAAAAAAAAAA");
+  }
 }

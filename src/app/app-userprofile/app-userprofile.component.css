@@ -33,14 +33,24 @@
 .usuario_info .btn {
     background-color: #dfd8df;
     margin-inline: 1px;
-    width: 7em;
-    font-size: 10px;
-    
+    font-size: 15px;
+}
+
+.usuario_info .seccionBotones{
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.usuario_info .botonesSeleccion{
+    margin-left: 140px;
 }
 
 .usuario_info .botonesSeguidores{
-    margin-left: 140px;
+    margin-right: 20px;
 }
+
+
 
 .tituloCarrusel h2{
     display: inline-block;

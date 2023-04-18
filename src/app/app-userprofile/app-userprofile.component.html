@@ -7,12 +7,19 @@
         </svg>
         <h2>{{User.email}}</h2>
         <div class="linea-horizontal"></div>
-        <div class="botonesSeguidores">
-            <button class="btn" >Seguidores</button>
-            <button class="btn">Seguidos</button>
+        <div class="seccionBotones">
+          <div class="botonesSeleccion">
+            <button class="btn" (click)="algo()">DatosPersonales</button>
+            <button class="btn" (click)="algo()">Colecciones</button>
+          </div>
+          <div class="botonesSeguidores">
+            <button class="btn" (click)="algo()">Seguidores</button>
+            <button class="btn" (click)="algo()">Seguidos</button>
+          </div>
         </div>
     </div>
     <!-- Favoritos -->
+    <!--
     <div class="tituloCarrusel">
       <h2>Favoritos</h2> 
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
@@ -55,7 +62,9 @@
           <span class="visually-hidden">Next</span>
         </button>
     </div>
+    -->
     <!-- Reseñas -->
+    <!--
     <div class="tituloCarrusel">
       <h2>Reseñas</h2> 
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-dots" viewBox="0 0 16 16">
@@ -99,7 +108,9 @@
           <span class="visually-hidden">Next</span>
         </button>
     </div>
+    -->
     <!-- Podcasts -->
+    <!--
     <div class="tituloCarrusel">
       <h2>Podcasts</h2> 
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-headphones" viewBox="0 0 16 16">
@@ -142,7 +153,9 @@
           <span class="visually-hidden">Next</span>
         </button>
     </div>
+    -->
     <!-- AudioLibros -->
+    <!--
     <div class="tituloCarrusel">
       <h2>AudioLibros</h2> 
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up-fill" viewBox="0 0 16 16">
@@ -187,5 +200,6 @@
           <span class="visually-hidden">Next</span>
         </button>
     </div>
+    -->
 </section>
 <app-footer></app-footer>
