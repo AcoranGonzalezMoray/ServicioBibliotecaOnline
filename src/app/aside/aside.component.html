@@ -6,24 +6,17 @@
     <span class="fs-4">Sidebar</span>
   </a>
   <hr>
-  <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item">
-      <a href="#" class="nav-link active" aria-current="page">
-        <svg class="bi me-2" width="16" height="16">
-          <use xlink:href="#home"></use>
-        </svg>
-        Libros
-      </a>
-    </li>
-    <li>
-      <a href="#" class="nav-link text-white">
-        <svg class="bi me-2" width="16" height="16">
-          <use xlink:href="#speedometer2"></use>
-        </svg>
+    
+  <div class="btn-group-vertical">
+      <button class="btn btn-primary btn-lg btn-block" (click)="enviar(false)">
+        LIBROS
+      </button>
+      <button class="btn btn-primary btn-lg btn-block" (click)="enviar(true)">
         USUARIOS
-      </a>
-    </li>
-  </ul>
+      </button>
+  </div>
+  
+
   <hr>
   <div class="input-group mb-3">
     <span class="input-group-text" id="inputGroup-sizing-default">Buscar</span>

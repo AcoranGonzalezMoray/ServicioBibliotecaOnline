@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-aside',
@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./aside.component.css']
 })
 export class AsideComponent {
+
+  @Output() usersClicked = new EventEmitter<boolean>();
+
+  enviar(state:boolean) {
+    this.usersClicked.emit(state);
+  }
+
 
 }

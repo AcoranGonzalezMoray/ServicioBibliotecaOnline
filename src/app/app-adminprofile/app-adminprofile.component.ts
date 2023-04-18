@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Book } from '../services/interfaces/book';
 import { FirestoreService } from '../services/firestore/firestore.service';
 
@@ -11,9 +11,15 @@ import { FirestoreService } from '../services/firestore/firestore.service';
 })
 export class AppAdminprofileComponent implements OnInit {
 
+  usersClicked: boolean;
+
   public books:any;
 
-  constructor(public firestoreService: FirestoreService) { }
+  constructor(public firestoreService: FirestoreService) { 
+    
+    this.usersClicked = false;
+  }
+
   ngOnInit(): void {
     this.books = sessionStorage.getItem("books");
     this.books = JSON.parse(this.books);
@@ -50,6 +56,11 @@ export class AppAdminprofileComponent implements OnInit {
       inputs[i].value = ''
     }
 
+  }
+
+  changestate(state:boolean){
+    this.usersClicked = state;
+    console.log(this.usersClicked);
   }
 
 }
