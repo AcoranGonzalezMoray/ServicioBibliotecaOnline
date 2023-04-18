@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="3665666774684315121" datatype="html">
+        <source>INICIO</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navegador/navegador.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7749490062832106212" datatype="html">
+        <source>AUDIOLIBROS</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navegador/navegador.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1518803138752018784" datatype="html">
+        <source>PODCAST</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navegador/navegador.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4493761844303199325" datatype="html">
+        <source>FILTROS</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navegador/navegador.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5901803137426162802" datatype="html">
+        <source>Mi Perfil</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navegador/navegador.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3163050643900437418" datatype="html">
+        <source>Cerrar Sesion</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navegador/navegador.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
