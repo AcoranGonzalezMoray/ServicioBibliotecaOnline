@@ -18,6 +18,7 @@
 .navbar-nav {
     position: fixed;
     right: 20px;
+    background-color: black;
 }
 .nav-icon {
     display: flex;
