@@ -4,16 +4,16 @@
   <div class="register-login-form">
     <article class="shadow-lg">
     <img src="">
-    <h2>Inicia Sesión</h2>
+    <h2 i18n>Inicia Sesión</h2>
     <input required pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$"  class="shadow-lg"  type="email" placeholder="Correo electrónico" #userName>
     <input required  minlength="6" maxlength="9" class="shadow-lg"  type="password" placeholder="Contraseña" #userPassword>
-    <button type="submit" value="Submit" class="ov-btn-grow-ellipse" (click)="authService.SignIn(userName.value, userPassword.value)" >Iniciar Sesion</button>
+    <button type="submit" value="Submit" class="ov-btn-grow-ellipse" (click)="authService.SignIn(userName.value, userPassword.value)" i18n>Iniciar Sesion</button>
     <br>
     <br>
-    <a href="#"> ¿Has olvidado la contraseña? </a>
+    <a href="#" i18n> ¿Has olvidado la contraseña? </a>
     </article>
     <div class="register-login-box shadow-lg">
-    <p>¿No tienes una cuenta? <a routerLink="/PLAN">Regístrate</a></p>
+    <p i18n>¿No tienes una cuenta? <a routerLink="/PLAN">Regístrate</a></p>
     </div>
     </div>
 </div>
