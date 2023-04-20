@@ -27,7 +27,8 @@ import { AppPricingTableComponent } from './app-pricing-table/app-pricing-table.
 import { AppPaymentConfirmationComponent } from './app-payment-confirmation/app-payment-confirmation.component';
 import { CarouselOpenComponent } from './carousel-open/carousel-open.component';
 import { BannerComponent } from './banner/banner.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { TranslocoRootModule } from './transloco-root.module';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,8 @@ import { BannerComponent } from './banner/banner.component';
     AngularFireModule.initializeApp(environment.firebase),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    HttpClientModule,
+    TranslocoRootModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

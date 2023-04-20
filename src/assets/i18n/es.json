@@ -1,0 +1,14 @@
+{
+    "nav": {
+        "home": "INICIO",
+        "audiobooks": "AUDIOLIBROS",
+        "podcast": "PODCAST",
+        "filters": "FILTROS",
+        "profile": "Mi perfil",
+        "logout": "Cerrar sesión"
+    },
+    "language": {
+        "en": "Inglés",
+        "es": "Español"
+    }
+}

@@ -4,12 +4,6 @@
   "newProjectRoot": "projects",
   "projects": {
     "ServicioBibliotecaOnline": {
-      "i18n": {
-        "sourceLocale": "es",
-        "locales": {
-          "en": "src/locale/messages.en.xlf"
-        }
-      },
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -19,8 +13,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "localize": true,
-            "aot": true,
             "outputPath": "dist/servicio-biblioteca-online",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -44,16 +36,6 @@
             ]
           },
           "configurations": {
-            "es": {
-              "outputPath": "dist/servicio-biblioteca-online/es",
-              "i18nMissingTranslation": "error",
-              "localize": ["es"]
-            },
-            "en": {
-              "outputPath": "dist/servicio-biblioteca-online/en",
-              "i18nMissingTranslation": "error",
-              "localize": ["en"]
-            },
             "production": {
               "budgets": [
                 {
@@ -88,12 +70,6 @@
             },
             "development": {
               "browserTarget": "ServicioBibliotecaOnline:build:development"
-            },
-            "es": {
-              "browserTarget": "ServicioBibliotecaOnline:build:es"
-            },
-            "en": {
-              "browserTarget": "ServicioBibliotecaOnline:build:en"
             }
           },
           "defaultConfiguration": "development"

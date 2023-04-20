@@ -6,14 +6,12 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "start:es": "ng serve --configuration=es",
-    "start:en": "ng serve --configuration=en"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^15.2.0",
-    "@angular/cdk": "^15.2.2",
+    "@angular/cdk": "^15.2.8",
     "@angular/common": "^15.2.0",
     "@angular/compiler": "^15.2.0",
     "@angular/core": "^15.2.0",
@@ -23,6 +21,7 @@
     "@angular/platform-browser": "^15.2.0",
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
+    "@ngneat/transloco": "^4.2.2",
     "@popperjs/core": "^2.11.6",
     "@stripe/stripe-js": "^1.50.0",
     "bootstrap": "^5.2.3",

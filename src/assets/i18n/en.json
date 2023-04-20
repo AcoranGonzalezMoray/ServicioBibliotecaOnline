@@ -1,0 +1,14 @@
+{
+    "nav": {
+        "home": "HOME",
+        "audiobooks": "AUDIOBOOKS",
+        "podcast": "PODCAST",
+        "filters": "FILTERS",
+        "profile": "My Profile",
+        "logout": "Log Out"
+    },
+    "language": {
+        "en": "English",
+        "es": "Spanish"
+    }
+}
