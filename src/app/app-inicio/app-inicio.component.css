@@ -47,7 +47,7 @@ section {
 .carousel-control-next-icon,.carousel-control-prev-icon{
     background-color: var(--btn-bg-color) !important;
 }
-h1 {
+h1,h4 {
     color: var(--text-color);
     display: block;
     font-size: 1.5em;

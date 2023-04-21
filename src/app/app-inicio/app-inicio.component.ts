@@ -1,18 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../services/firestore/firestore.service';
 import { AuthService } from '../services/auth.service';
+
+interface Genre {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-app-inicio',
   templateUrl: './app-inicio.component.html',
   styleUrls: ['./app-inicio.component.css']
 })
+
+
+
 export class AppInicioComponent implements OnInit{
   public books:any[] = [];
   public categories:any[] = [];
+  
+  filter = false
+
+  foods: Genre[] = [
+    {value: 'steak-0', viewValue: 'Infantil'},
+    {value: 'pizza-1', viewValue: 'DE 12 AÑOS EN ADELANTE'},
+    {value: 'tacos-2', viewValue: 'Clásicos Universales'},
+    {value: 'steak-0', viewValue: 'Cuento'},
+    {value: 'pizza-1', viewValue: 'Poesía y Teatro'},
+    {value: 'tacos-2', viewValue: 'Diarios'},
+  ];
+
   constructor(
     private firestoreService: FirestoreService,
     public authService: AuthService
   ) {}
+
   embeddingDriveImg(data:string){
     return "https://drive.google.com/uc?export=view&id="+data
   }

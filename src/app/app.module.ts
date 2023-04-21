@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Otras Importaciones
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule} from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { NavegadorComponent } from './navegador/navegador.component';
 import { FooterComponent } from './footer/footer.component';
 import { CardComponent } from './card/card.component';
@@ -16,7 +19,7 @@ import { AppComponent } from './app.component';
 import { AppInicioComponent } from './app-inicio/app-inicio.component';
 import { AppBookdescriptionComponent } from './app-bookdescription/app-bookdescription.component';
 import { AuthService } from './services/auth.service';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+//import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
@@ -27,6 +30,7 @@ import { AppPricingTableComponent } from './app-pricing-table/app-pricing-table.
 import { AppPaymentConfirmationComponent } from './app-payment-confirmation/app-payment-confirmation.component';
 import { CarouselOpenComponent } from './carousel-open/carousel-open.component';
 import { BannerComponent } from './banner/banner.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
@@ -46,10 +50,14 @@ import { BannerComponent } from './banner/banner.component';
     AppPaymentConfirmationComponent,
     CarouselOpenComponent,
     BannerComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
+    MatFormFieldModule ,
+    MatSelectModule ,
     AppRoutingModule,
+    MatInputModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
     RouterModule.forRoot([
