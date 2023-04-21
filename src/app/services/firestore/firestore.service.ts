@@ -29,4 +29,11 @@ export class FirestoreService {
   public updateBook(documentId: string, book: Book) {
     return this.firestore.collection('LIBROS').doc(documentId).set(book);
   }
+
+
+    //Obtiene todos los usuarios
+    public getUsers() {
+      return this.firestore.collection('USUARIOS').snapshotChanges();
+    }
+  
 }

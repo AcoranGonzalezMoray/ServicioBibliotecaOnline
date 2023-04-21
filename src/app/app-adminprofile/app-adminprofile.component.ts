@@ -2,8 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Book } from '../services/interfaces/book';
 import { FirestoreService } from '../services/firestore/firestore.service';
 
-
-
 @Component({
   selector: 'app-app-adminprofile',
   templateUrl: './app-adminprofile.component.html',
@@ -11,20 +9,41 @@ import { FirestoreService } from '../services/firestore/firestore.service';
 })
 export class AppAdminprofileComponent implements OnInit {
 
-  usersClicked: boolean;
-
+  booksClicked: boolean;
   public books:any;
+  public users:any;
 
   constructor(public firestoreService: FirestoreService) { 
-    
-    this.usersClicked = false;
+    this.booksClicked = true;
   }
 
   ngOnInit(): void {
     this.books = sessionStorage.getItem("books");
     this.books = JSON.parse(this.books);
     console.log(this.books);
+    
+    //Obtenemos Coleccion Usuarios
+    this.firestoreService.getUsers().subscribe((catsSnapshot) => {
+      this.users = [];
+      catsSnapshot.forEach((catData: any) => {
+        this.users.push({
+          uid: catData.payload.doc.uid,
+          email: catData.payload.doc.data().email,
+          displayName: catData.payload.doc.data().displayName,
+          photoURL: catData.payload.doc.data().photoURL,
+          emailVerified: catData.payload.doc.data().emailVerified,
+          plan: catData.payload.doc.data().plan,
+          favoriteBooksList: catData.payload.doc.data().favoriteBooksList,
+          followers: catData.payload.doc.data().followers,
+          following: catData.payload.doc.data().following,
+          readingHistory: [],
+        });
+        sessionStorage.setItem('users',JSON.stringify(this.users))
+      })
+    });
+    console.log(this.users);
   }
+  
   addBook(title: string,
     sinopsis: string,
     author: string,
@@ -59,8 +78,8 @@ export class AppAdminprofileComponent implements OnInit {
   }
 
   changestate(state:boolean){
-    this.usersClicked = state;
-    console.log(this.usersClicked);
+    this.booksClicked = state;
+    console.log(this.booksClicked);
   }
 
 }
