@@ -1,50 +1,52 @@
 <app-navegador></app-navegador>
-<section class="book_description_container">
-    <div class="left_content" id="left_content">
-        <div class="book_image_content">
-            <img id="book_image"
-                src={{book?.imageURL}}
-                alt="El pianista del gueto de Varsovia">
+<article class="description_container  ">
+    <section class="book_description_container">
+        <div class="left_content" id="left_content">
+            <div class="book_image_content">
+                <img id="book_image"
+                    src={{book?.imageURL}}
+                    alt="El pianista del gueto de Varsovia">
+            </div>
+            <div class="buttons" id="buttons">
+                <button style="background-color:var(--btn-bg-color)" (click)="leer()" >Leer</button>
+                <svg style="color:var(--btn-bg-color)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                </svg>
+                <svg  style="color:var(--btn-bg-color)"xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill"
+                    viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                </svg>
+                <svg  style="color:var(--btn-bg-color)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
+                </svg>
+            </div>
         </div>
-        <div class="buttons" id="buttons">
-            <button class="btn" (click)="leer()" >Leer</button>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
-                <path
-                    d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill"
-                viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-bookmark-fill" viewBox="0 0 16 16">
-                <path
-                    d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
-            </svg>
+        <div class="right_content" id="right_content">
+            <div class="book_details">
+    
+                <h1 id="book_title">{{book?.title}}</h1>
+    
+                <p id="book_author"><span>Autor:</span>{{book?.author}}</p>
+    
+                <p id="book_date"><span>Fecha de publicación:</span>{{book?.publicationDate}}</p>
+    
+                <p id="book_editorial"><span>Editorial: </span>{{book?.editorial}}</p>
+    
+                <p id="book_genre"><span>Género: </span>{{book?.genre}}</p>
+    
+                <p id="book_sinopsis"><span>Sinopsis: </span>{{book?.sinopsis}}</p>
+            </div>
         </div>
-    </div>
-    <div class="right_content" id="right_content">
-        <div class="book_details">
-
-            <h1 id="book_title">{{book?.title}}</h1>
-
-            <p id="book_author"><span>Autor:</span>{{book?.author}}</p>
-
-            <p id="book_date"><span>Fecha de publicación:</span>{{book?.publicationDate}}</p>
-
-            <p id="book_editorial"><span>Editorial: </span>{{book?.editorial}}</p>
-
-            <p id="book_genre"><span>Género: </span>{{book?.genre}}</p>
-
-            <p id="book_sinopsis"><span>Sinopsis: </span>{{book?.sinopsis}}</p>
-        </div>
-    </div>
+    </section>
     <div *ngIf="id != undefined" >
         <div style="
             position: absolute;
-            background-color: white;
+            background-color: var(--bkg-color);
             height: 100vh;
             left: 0;
             width: 46px;
@@ -55,14 +57,15 @@
             justify-content: space-around;
             align-items: center;
         ">
-            <svg (click)="close()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16">
+            <svg style="color:var(--btn-bg-color)" (click)="close()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16">
             <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
             </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-check-fill" viewBox="0 0 16 16">
+            <svg style="color:var(--btn-bg-color)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-check-fill" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
             </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            <svg style="color:var(--btn-bg-color)"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-translate" viewBox="0 0 16 16">
+                <path d="M4.545 6.714 4.11 8H3l1.862-5h1.284L8 8H6.833l-.435-1.286H4.545zm1.634-.736L5.5 3.956h-.049l-.679 2.022H6.18z"/>
+                <path d="M0 2a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v3h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2zm7.138 9.995c.193.301.402.583.63.846-.748.575-1.673 1.001-2.768 1.292.178.217.451.635.555.867 1.125-.359 2.08-.844 2.886-1.494.777.665 1.739 1.165 2.93 1.472.133-.254.414-.673.629-.89-1.125-.253-2.057-.694-2.82-1.284.681-.747 1.222-1.651 1.621-2.757H14V8h-3v1.047h.765c-.318.844-.74 1.546-1.272 2.13a6.066 6.066 0 0 1-.415-.492 1.988 1.988 0 0 1-.94.31z"/>
             </svg>
         </div>
         <iframe [src]="urlID" width="100%" height="100vh" style="
@@ -74,6 +77,7 @@
         border: none;"></iframe>
     </div>
 
-</section>
+</article>
+
 
 <app-footer></app-footer>
