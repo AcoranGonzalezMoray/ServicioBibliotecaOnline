@@ -32,6 +32,8 @@ import { CarouselOpenComponent } from './carousel-open/carousel-open.component';
 import { BannerComponent } from './banner/banner.component';
 import { LoaderComponent } from './loader/loader.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { TranslocoRootModule } from './transloco-root.module';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,8 @@ import { LoaderComponent } from './loader/loader.component';
     AngularFireModule.initializeApp(environment.firebase),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    HttpClientModule,
+    TranslocoRootModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

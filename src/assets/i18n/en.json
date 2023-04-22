@@ -1,0 +1,82 @@
+{
+    "nav": {
+        "home": "HOME",
+        "audiobooks": "AUDIOBOOKS",
+        "podcast": "PODCAST",
+        "filters": "FILTERS",
+        "profile": "My Profile",
+        "logout": "Log Out"
+    },
+    "language": {
+        "en": "English",
+        "es": "Spanish"
+    },
+    "footer": {
+        "legallinks": "Legal Links",
+        "cookies": "Cookies Policy",
+        "privacy": "Privacy Policy",
+        "legalnotice": "Legal notice",
+        "contact": "Contact",
+        "phone": "Phone",
+        "email": "Email",
+        "copy": "© 2022 Company, Inc. All rights reserved."
+    },
+    "banner": {
+        "read": "Read",
+        "mylist": "My List"
+    },
+    "aside": {
+        "books": "BOOKS",
+        "users": "USERS",
+        "search": "Search",
+        "sortbydefault": "Sort by: default",
+        "sortbyname1": "Sort by: name (A-Z)",
+        "sortbyname2": "Sort by: name (Z-A)",
+        "sortbyprice1": "Sort by: price (low to high)",
+        "sortbyprice2": "Sort by: price (high to low)"
+    },
+    "userprofile": {
+        "followed": "Followed",
+        "followers": "Followers",
+        "favourites": "Favourites",
+        "reviews": "Reviews"
+    },
+    "signup": {
+        "suscribe": "Suscribe with",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "repeatpassword": "Confirm password",
+        "signup": "Sign Up",
+        "forgotpassword": "Forgot password?",
+        "login": "Log In",
+        "already": "Already have an account?"
+    },
+    "signin": {
+        "login": "Log In",
+        "email": "Email",
+        "password": "Password",
+        "forgotpassword": "Forgot password?",
+        "notregistered": "Not registered yet?"
+    },
+    "bookdescription": {
+        "author": "Author",
+        "date": "Publication date",
+        "editorial": "Editorial",
+        "genre": "Genre",
+        "sinopsis": "Sinopsis"
+    },
+    "admin": {
+        "books": "Books",
+        "users": "Users",
+        "add": "ADD",
+        "delete": "DELETE SELECTED",
+        "action": "ACTION",
+        "name": "NAME",
+        "isbn": "ISBN",
+        "editorial": "EDITORIAL",
+        "addbook": "Add Book",
+        "close": "Close",
+        "save": "Save changes"
+    }
+}

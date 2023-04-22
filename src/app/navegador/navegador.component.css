@@ -23,6 +23,7 @@
     display: flex;
     align-items: center;
     margin-inline:10px;
+    cursor: pointer;
 }
 .dropdown-menu {
     background-color: var(--bkg-color) !important;
@@ -47,4 +48,9 @@
 /*Estilos al estar log*/
 .menu-log {
     display:none
+}
+
+#collapseExample {
+    position: relative;
+    
 }
