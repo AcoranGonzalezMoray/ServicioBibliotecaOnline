@@ -1,16 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-carousel-open',
   templateUrl: './carousel-open.component.html',
   styleUrls: ['./carousel-open.component.css']
 })
-export class CarouselOpenComponent implements OnInit {
-  public books:any;
+export class CarouselOpenComponent {
+  @Input() books:any[] = [];
   constructor(){}
-  ngOnInit(): void {
-    this.books = sessionStorage.getItem("books");
-    this.books = JSON.parse(this.books)
-  }
+
   
 }

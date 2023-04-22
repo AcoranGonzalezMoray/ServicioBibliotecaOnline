@@ -1,6 +1,6 @@
 <app-navegador></app-navegador>
 <section class="panel">
-  <app-banner></app-banner>
+  <app-banner [books]="books" ></app-banner>
   <div class="tools">
     <h4>Género</h4>
     <mat-form-field appearance="fill">
@@ -25,7 +25,7 @@
 
   <div class="CAROUSEL-SACTION">
     <div id={{cat[1]}} class="carousel slide" *ngFor="let cat of categories;let x = index">
-      <app-carousel-open *ngIf="x==2"></app-carousel-open>
+      <app-carousel-open [books]="books" *ngIf="x==2"></app-carousel-open>
       <h1 class="CT">{{cat[0]}}</h1>
       <div class="flex-carousel">
         <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#'+cat[1]" data-bs-slide="prev">
