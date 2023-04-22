@@ -7,8 +7,8 @@
         <div class="topButtons">
             <!-- Button trigger modal -->
             <button type="button" class="btn1 btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                id="añadirBtn" i18n>
-                AÑADIR
+                id="añadirBtn">
+                {{"admin.add" | transloco}}
             </button>
 
             <!-- Modal -->
@@ -17,7 +17,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel" i18n>Añadir libro</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">{{"admin.addbook" | transloco}}</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body" #modal>
@@ -34,23 +34,23 @@
                             <input placeholder="Paginas" #pages>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"admin.close" | transloco}}</button>
                             <button type="button" class="btn btn-primary" (click)="addBook(title.value, sinopsis.value, author.value, 
               publicationDate.value, uploadDate.value, editorial.value, isbn.value, genre.value, url.value, imageURL.value, pages.value)"
-                                data-bs-dismiss="modal" i18n>Save changes</button>
+                                data-bs-dismiss="modal">{{"admin.save" | transloco}}</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="btn1" id="eliminarBtn" i18n>ELIMINAR SELECCIONADOS</button>
+            <button class="btn1" id="eliminarBtn">{{"admin.delete" | transloco}}</button>
         </div>
 
 
-        <div class="headerDashboard grid" i18n>
-            <h2 class="el">ACCIÓN</h2>
-            <h2 class="el">NOMBRE</h2>
-            <h2 class="el">ISBN</h2>
-            <h2 class="el">EDITORIAL</h2>
+        <div class="headerDashboard grid">
+            <h2 class="el">{{"admin.action" | transloco}}</h2>
+            <h2 class="el">{{"admin.name" | transloco}}</h2>
+            <h2 class="el">{{"admin.isbn" | transloco}}</h2>
+            <h2 class="el">{{"admin.editorial" | transloco}}</h2>
         </div>
 
             <div class="elementDashboard grid" *ngFor="let a of books">

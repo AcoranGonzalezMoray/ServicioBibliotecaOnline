@@ -10,5 +10,73 @@
     "language": {
         "en": "Inglés",
         "es": "Español"
+    },
+    "footer": {
+        "legallinks": "Enlaces Legales",
+        "cookies": "Política de Cookies",
+        "privacy": "Política de Privacidad",
+        "legalnotice": "Aviso Legal",
+        "contact": "Contacto",
+        "phone": "Teléfono",
+        "email": "Correo electrónico",
+        "copy": "© 2022 Company, Inc. Todos los derechos reservados."
+    },
+    "banner": {
+        "read": "Leer",
+        "mylist": "Mi lista"
+    },
+    "aside": {
+        "books": "LIBROS",
+        "users": "USUARIOS",
+        "search": "Buscar",
+        "sortbydefault": "Ordenar por: defecto",
+        "sortbyname1": "Ordenar por: nombre (A-Z)",
+        "sortbyname2": "Ordenar por: nombre (Z-A)",
+        "sortbyprice1": "Ordenar por: precio (menor a mayor)",
+        "sortbyprice2": "Ordenar por: precio (mayor a menor)"
+    },
+    "userprofile": {
+        "followed": "Seguidos",
+        "followers": "Seguidores",
+        "favourites": "Favoritos",
+        "reviews": "Reseñas"
+    },
+    "signup": {
+        "suscribe": "Suscríbete con", 
+        "username": "Nombre de usuario",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "repeatpassword": "Confirma contraseña",
+        "signup": "Regístrate",
+        "forgotpassword": "¿Olvidaste tu contraseña",
+        "login": "Iniciar sesión",
+        "already": "¿Ya tienes una cuenta?"
+    },
+    "signin": {
+        "login": "Iniciar sesión",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "forgotpassword": "¿Olvidaste tu contraseña?",
+        "notregistered": "¿No tienes una cuenta?"
+    },
+    "bookdescription": {
+        "author": "Autor",
+        "date": "Fecha de publicación",
+        "editorial": "Editorial",
+        "genre": "Género",
+        "sinopsis": "Sinopsis"
+    },
+    "admin": {
+        "books": "Libros",
+        "users": "Usuarios",
+        "add": "AÑADIR",
+        "delete": "ELIMINAR SELECCIONADOS", 
+        "action": "ACCIÓN",
+        "name": "NOMBRE",
+        "isbn": "ISBN",
+        "editorial": "EDITORIAL",
+        "addbook": "Añadir libro",
+        "close": "Cerrar",
+        "save": "Guardar cambios"
     }
 }

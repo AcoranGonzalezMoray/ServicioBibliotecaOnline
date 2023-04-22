@@ -3,18 +3,18 @@
   <div class="register-login-form">
     <article class="shadow-lg">
     <img src="">
-    <h2 i18n>Suscribirte con {{plan}}</h2>
-    <input required class = "shadow-lg" type="text" placeholder="Nombre de Usuario" #userNm>
-    <input required pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" #userEmail  class="shadow-lg"  type="email" placeholder="Correo electrónico">
-    <input required  minlength="6" maxlength="9" class="shadow-lg"  type="password" placeholder="Contraseña">
-    <input required  minlength="6" maxlength="9" class="shadow-lg"  type="password" placeholder="Confirme su Contraseña" #userPwd>
-    <button class="ov-btn-grow-ellipse" (click)="authService.SignUp(userEmail.value, userPwd.value, userNm.value,plan, url)" i18n>Regístrate</button>
+    <h2 i18n>{{"signup.suscribe" | transloco}} {{plan}}</h2>
+    <input required class = "shadow-lg" type="text" placeholder='{{"signup.username" | transloco}}' #userNm>
+    <input required pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" #userEmail  class="shadow-lg"  type="email" placeholder='{{"signup.email" | transloco}}'>
+    <input required  minlength="6" maxlength="9" class="shadow-lg"  type="password" placeholder='{{"signup.password" | transloco}}'>
+    <input required  minlength="6" maxlength="9" class="shadow-lg"  type="password" placeholder='{{"signup.repeatpassword" | transloco}}' #userPwd>
+    <button class="ov-btn-grow-ellipse" (click)="authService.SignUp(userEmail.value, userPwd.value, userNm.value,plan, url)">{{"signup.signup" | transloco}}</button>
     <br>
     <br>
-    <a href="#" i18n> ¿Has olvidado la contraseña? </a>
+    <a href="#">{{"signup.forgotpassword" | transloco}}</a>
     </article>
     <div class="register-login-box shadow-lg">
-      <p i18n>¿Ya tienes una cuenta? <a href="SIGNIN">Inicia Sesión</a> </p>
+      <p>{{"signup.already" | transloco}} <a href="SIGNIN">{{"signup.login" | transloco}}</a> </p>
     </div>
     </div>
 </div>
