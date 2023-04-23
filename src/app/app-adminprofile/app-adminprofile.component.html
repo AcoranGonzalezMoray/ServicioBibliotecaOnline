@@ -10,35 +10,37 @@
                 AÑADIR
             </button>
 
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                Añadir libro
-                            </h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body" #modal>
-                            <input placeholder="titulo" #title id="title" />
-                            <input placeholder="sinopsis" #sinopsis />
-                            <input placeholder="autor" #author />
-                            <input placeholder="fecha de publicacion" #publicationDate />
-                            <input placeholder="fecha de subida" #uploadDate />
-                            <input placeholder="editorial" #editorial />
-                            <input placeholder="ISBN" #isbn />
-                            <input placeholder="genero" #genre />
-                            <input placeholder="URL" #url />
-                            <input placeholder="URL de la imagen" #imageURL />
-                            <input placeholder="Paginas" #pages />
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                Close
-                            </button>
-                            <button type="button" class="btn btn-primary" (click)="
+            <!-- Modal libros -->
+            <div *ngIf="booksClicked; else usersModal">
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                    Añadir libro
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" #modal>
+                                <input placeholder="titulo" #title id="title" />
+                                <input placeholder="sinopsis" #sinopsis />
+                                <input placeholder="autor" #author />
+                                <input placeholder="fecha de publicacion" #publicationDate />
+                                <input placeholder="fecha de subida" #uploadDate />
+                                <input placeholder="editorial" #editorial />
+                                <input placeholder="ISBN" #isbn />
+                                <input placeholder="genero" #genre />
+                                <input placeholder="URL" #url />
+                                <input placeholder="URL de la imagen" #imageURL />
+                                <input placeholder="Paginas" #pages />
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="button" class="btn btn-primary" (click)="
                   addBook(
                     title.value,
                     sinopsis.value,
@@ -53,13 +55,58 @@
                     pages.value
                   )
                 " data-bs-dismiss="modal">
-                                Save changes
-                            </button>
+                                    Save changes
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="btn1" id="eliminarBtn">ELIMINAR SELECCIONADOS</button>
+
+            <ng-template #usersModal>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                    Añadir usuario
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" #modal>
+                                <input placeholder="uid" #uid id="uid" />
+                                <input placeholder="email" #email />
+                                <input placeholder="displayName" #displayName />
+                                <input placeholder="photoURL" #photoURL />
+                                <input placeholder="plan" #plan />
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="button" class="btn btn-primary" (click)="
+              addUser(
+                uid.value,
+                email.value,
+                displayName.value,
+                photoURL.value,
+                plan.value
+              )
+            " data-bs-dismiss="modal">
+                                    Save changes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            
+            <button *ngIf="booksClicked; else usersDelete" class="btn1" id="eliminarBtn" (click)="deleteSelectedBooks()">ELIMINAR SELECCIONADOS</button>
+            <ng-template #usersDelete>
+                <button class="btn1" id="eliminarBtn" (click)="deleteSelectedUsers()">ELIMINAR SELECCIONADOS</button>
+            </ng-template>
         </div>
 
         <div *ngIf="booksClicked; else usersClicked" class="headerDashboard grid">
@@ -71,11 +118,11 @@
 
         <ng-template #usersClicked>
             <div class="headerDashboard grid">
-                
-            <h2 class="el">ACCIÓN</h2>
-            <h2 class="el">NOMBRE</h2>
-            <h2 class="el">CORREO</h2>
-            <h2 class="el">ESTADO</h2>
+
+                <h2 class="el">ACCIÓN</h2>
+                <h2 class="el">NOMBRE</h2>
+                <h2 class="el">CORREO</h2>
+                <h2 class="el">ESTADO</h2>
             </div>
         </ng-template>
 
@@ -83,7 +130,7 @@
             <div class="elementDashboard grid" *ngFor="let a of books">
                 <div class="optionButtons">
                     <div class="form-check">
-                        <input class="form-check-input form-check" type="checkbox" value="" id="flexCheckDefault" />
+                        <input class="form-check-input form-check" type="checkbox" value="" id="checkbox_{{a.id}}" />
                         <label class="form-check-label form-check" for="flexCheckDefault"></label>
                     </div>
 
@@ -123,11 +170,11 @@
             <div class="elementDashboard grid" *ngFor="let a of users">
                 <div class="optionButtons">
                     <div class="form-check">
-                        <input class="form-check-input form-check" type="checkbox" value="" id="flexCheckDefault" />
+                        <input class="form-check-input form-check" type="checkbox" value="" id="checkbox_{{a.id}}" />
                         <label class="form-check-label form-check" for="flexCheckDefault"></label>
                     </div>
 
-                    <button type="button" class="btn">
+                    <button type="button" class="btn" (click)="firestoreService.deleteUser(a.id)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-trash3-fill" viewBox="0 0 16 16">
                             <path
@@ -153,9 +200,9 @@
                     </button>
                 </div>
 
+                <h2 class="el">{{ a.displayName }}</h2>
                 <h2 class="el">{{ a.email }}</h2>
-                <h2 class="el">{{ a.email }}</h2>
-                <h2 class="el">{{ a.email }}</h2>
+                <h2 class="el">{{ a.emailVerified }}</h2>
             </div>
         </ng-template>
 

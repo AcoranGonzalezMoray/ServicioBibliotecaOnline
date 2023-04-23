@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import { User } from '../interfaces/user';
 import { Book } from '../interfaces/book';
 @Injectable({
   providedIn: 'root'
@@ -30,10 +31,17 @@ export class FirestoreService {
     return this.firestore.collection('LIBROS').doc(documentId).set(book);
   }
 
-
-    //Obtiene todos los usuarios
-    public getUsers() {
-      return this.firestore.collection('USUARIOS').snapshotChanges();
-    }
+  //Crea un nuevo usuario
+  public createUser(user: User) {
+    return this.firestore.collection('USUARIOS').add(user);
+  }
+  //Elimina un usuario
+  public deleteUser(documentId: string) {
+    return this.firestore.collection('USUARIOS').doc(documentId).delete();
+  }
+  //Obtiene todos los usuarios
+  public getUsers() {
+    return this.firestore.collection('USUARIOS').snapshotChanges();
+  }
   
 }
