@@ -27,6 +27,9 @@ import { AppPricingTableComponent } from './app-pricing-table/app-pricing-table.
 import { AppPaymentConfirmationComponent } from './app-payment-confirmation/app-payment-confirmation.component';
 import { CarouselOpenComponent } from './carousel-open/carousel-open.component';
 import { BannerComponent } from './banner/banner.component';
+import { UserdataComponent } from './app-userprofile/userdata/userdata.component';
+import { CollectionsComponent } from './app-userprofile/collections/collections.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -46,11 +49,14 @@ import { BannerComponent } from './banner/banner.component';
     AppPaymentConfirmationComponent,
     CarouselOpenComponent,
     BannerComponent,
+    UserdataComponent,
+    CollectionsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatSlideToggleModule,
     RouterModule.forRoot([
       {path: '', component: AppInicioComponent },
