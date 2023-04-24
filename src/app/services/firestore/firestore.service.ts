@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { AngularFirestore} from '@angular/fire/compat/firestore';
 import { Book } from '../interfaces/book';
 @Injectable({
   providedIn: 'root'
@@ -16,6 +15,10 @@ export class FirestoreService {
   //Obtiene un libro
   public getBook(documentId: string) {
     return this.firestore.collection('LIBROS').doc(documentId).snapshotChanges();
+  }
+  //Elimina un libro
+  public deleteBook(documentId: string) {
+    return this.firestore.collection('LIBROS').doc(documentId).delete();
   }
   //Obtiene todos los libros
   public getBooks() {

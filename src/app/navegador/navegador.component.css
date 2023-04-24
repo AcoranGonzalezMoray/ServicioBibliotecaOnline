@@ -25,9 +25,12 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-inline:1rem;
+
+    margin-inline:10px;
+    cursor: pointer;
 }
 .dropdown-menu {
+    background-color: var(--bkg-color) !important;
     position: fixed !important;
     top: 44px !important;
     left: unset !important;
@@ -52,10 +55,16 @@
 }
 
 
+
 @media screen and (max-width: 1199px) {
     .navbar-nav {
         background-color: var(--bkg-color);
         /*#16161a*/
     }
 
+}
+
+
+#collapseExample {
+    position: relative;
 }
