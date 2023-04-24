@@ -6,7 +6,7 @@
                 <img id="book_image" src={{book?.imageURL}} alt="El pianista del gueto de Varsovia">
             </div>
             <div class="buttons" id="buttons">
-                <button style="background-color:var(--btn-bg-color)" (click)="leer()">Leer</button>
+                <button style="background-color:var(--btn-bg-color)" (click)="leer()">{{"seccion.Leer" | transloco}}</button>
                 <svg style="color:var(--btn-bg-color)" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                     fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
                     <path
@@ -29,29 +29,29 @@
 
                 <h1 id="book_title">{{book?.title}}</h1>
 
-                <p id="book_author"><span>Autor:</span>{{book?.author}}</p>
+                <p id="book_author"><span>{{"bookdescription.author" | transloco}}: </span>{{book?.author}}</p>
 
-                <p id="book_date"><span>Fecha de publicación:</span>{{book?.publicationDate}}</p>
+                <p id="book_date"><span>{{"bookdescription.date" | transloco}}: </span>{{book?.publicationDate}}</p>
 
-                <p id="book_editorial"><span>Editorial: </span>{{book?.editorial}}</p>
+                <p id="book_editorial"><span>{{"bookdescription.editorial" | transloco}}: </span>{{book?.editorial}}</p>
 
-                <p id="book_genre"><span>Género: </span>{{book?.genre}}</p>
+                <p id="book_genre"><span>{{"bookdescription.genre" | transloco}}: </span>{{book?.genre}}</p>
 
-                <p id="book_sinopsis"><span>Sinopsis: </span>{{book?.sinopsis}}</p>
+                <p id="book_sinopsis"><span>{{"bookdescription.sinopsis" | transloco}}: </span>{{book?.sinopsis}}</p>
             </div>
         </div>
     </section>
     <section class="msg_container">
         <div class="comment-box">
             <form>
-                <h4>Deja tu comentario</h4>
-                <label for="comment">Comentario:</label>
+                <h4>{{"seccion.DejaTuComentario" | transloco}}</h4>
+                <label for="comment">{{"seccion.comentario" | transloco}}:</label>
                 <div class="btn-msg">
                     <textarea id="comment" name="comment" required></textarea>
-                    <button type="submit">Enviar</button>
+                    <button type="submit">{{"seccion.Enviar" | transloco}}</button>
                 </div>
               </form>
-            <h3>Comentarios</h3>
+            <h3>{{"seccion.comentarios" | transloco}}</h3>
             <div>
                 <div class="comment">
                     <h4>Juan Pérez</h4>

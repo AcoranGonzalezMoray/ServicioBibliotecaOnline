@@ -78,5 +78,16 @@
         "addbook": "Add Book",
         "close": "Close",
         "save": "Save changes"
+    },
+    "seccion": {
+        "genero": "Genre",
+        "año": "Year",
+        "FiltrarAño": "Filter by year",
+        "FiltrarGenero": "Filter by genre",
+        "DejaTuComentario": "Share your comments",
+        "comentario": "comment",
+        "comentarios": "Comments",
+        "Leer": "Read",
+        "Enviar": "Send"
     }
 }
