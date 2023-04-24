@@ -1,19 +1,37 @@
 import { Component, Input} from '@angular/core';
-import { FirestoreService } from '../services/firestore/firestore.service';
-
+import {BookDescriptionService} from '../services/book-description.service'
+import {Router} from '@angular/router';
+import { Book } from '../services/interfaces/book';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
 export class CardComponent {
-  @Input() Nombre="";
-  @Input() Descripcion="";
-  @Input() Autor="";
-  @Input() IMG="";
-  @Input() Votos=0;
-  @Input() id="";
   
+  @Input() book:Book={
+    //id: 0,
+    title: '',
+    sinopsis: '',
+    author: '',
+    publicationDate: '',
+    uploadDate: '',
+    editorial: '',
+    isbn: 0,
+    reviews: []    ,
+    comments: [],
+    genre: '',
+    url: '',
+    read: [],
+    imageURL:'',
+    pages: 0
+  };
 
-  constructor() { }
+  constructor(public router:Router, public bookDescriptionService:BookDescriptionService) { }
+
+
+  updateDescription(){
+    this.bookDescriptionService.updateDescripcion(this.book)
+    this.router.navigate(['BOOKDESCRIPTION']);
+  }
 }
