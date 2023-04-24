@@ -7,7 +7,7 @@
             <!-- Button trigger modal -->
             <button type="button" class="btn1 btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
                 id="añadirBtn">
-                AÑADIR
+                {{"admin.add" | transloco}}
             </button>
 
             <!-- Modal libros -->
@@ -18,7 +18,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                    Añadir libro
+                                    {{"admin.addbook" | transloco}}
                                 </h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
@@ -38,7 +38,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                    Close
+                                    {{"admin.close" | transloco}}
                                 </button>
                                 <button type="button" class="btn btn-primary" (click)="
                   addBook(
@@ -110,10 +110,10 @@
         </div>
 
         <div *ngIf="booksClicked; else usersClicked" class="headerDashboard grid">
-            <h2 class="el">ACCIÓN</h2>
-            <h2 class="el">TÍTULO</h2>
-            <h2 class="el">AUTOR</h2>
-            <h2 class="el">ISBN</h2>
+            <h2 class="el">{{"admin.action" | transloco}}</h2>
+            <h2 class="el">{{"admin.name" | transloco}}</h2>
+            <h2 class="el">{{"admin.editorial" | transloco}}</h2>
+            <h2 class="el">{{"admin.isbn" | transloco}}</h2>
         </div>
 
         <ng-template #usersClicked>
