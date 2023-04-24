@@ -15,3 +15,19 @@
     --bs-text-opacity: 1;
     color: #ffffff!important;
 }
+
+@media screen and (min-width: 1199px) {
+    .col-6 {
+        margin-left: 15rem;
+    }
+}
+
+@media screen and (max-width: 1199px) and (min-width: 701px) {
+    .col-6 {
+        margin-left: 10rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+     
+}

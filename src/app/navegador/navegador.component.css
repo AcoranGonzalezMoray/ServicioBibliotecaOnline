@@ -14,16 +14,18 @@
 }
 .navbar .navbar-brand, .navbar a{
     color: var(--btn-bg-color);
+    margin-left: 1rem;
 }
 .navbar-nav {
     position: fixed;
     right: 20px;
-    background-color: black;
+    /*background-color: black;*/
 }
 .nav-icon {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    margin-inline:10px;
+    margin-inline:1rem;
 }
 .dropdown-menu {
     position: fixed !important;
@@ -47,4 +49,13 @@
 /*Estilos al estar log*/
 .menu-log {
     display:none
+}
+
+
+@media screen and (max-width: 1199px) {
+    .navbar-nav {
+        background-color: var(--bkg-color);
+        /*#16161a*/
+    }
+
 }
