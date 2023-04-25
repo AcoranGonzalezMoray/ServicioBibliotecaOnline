@@ -56,12 +56,24 @@
 
 
 
-@media screen and (max-width: 1199px) {
+@media screen and (max-width: 1199px) and (min-width: 701px) {
     .navbar-nav {
         background-color: var(--bkg-color);
         /*#16161a*/
     }
 
+}
+
+@media screen and (max-width: 700px) {
+    .navbar-nav {
+        background-color: var(--bkg-color);
+        /*#16161a*/
+    }
+
+    .nav-icon {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
 }
 
 
