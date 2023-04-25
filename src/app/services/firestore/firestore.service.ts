@@ -43,5 +43,10 @@ export class FirestoreService {
   public getUsers() {
     return this.firestore.collection('USUARIOS').snapshotChanges();
   }
+
+  //Actualiza un usuario
+  public updateUser(documentId: string, user: User){
+    return this.firestore.collection('USUARIOS').doc(documentId).set(user);
+  }
   
 }

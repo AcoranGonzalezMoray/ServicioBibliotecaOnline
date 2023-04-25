@@ -1,9 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { Book } from '../services/interfaces/book';
 import { User } from '../services/interfaces/user';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { FirestoreService } from '../services/firestore/firestore.service';
-import {BookDescriptionService} from '../services/book-description.service'
+import { BookDescriptionService } from '../services/book-description.service'
+import { NgForm } from '@angular/forms'
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-app-adminprofile',
@@ -17,11 +19,14 @@ export class AppAdminprofileComponent implements OnInit {
   public users: any;
   selectedBooks: Array<any> = [];
   public currentBook: any;
+  public currentUser: any;
 
 
-  constructor(public firestoreService: FirestoreService, public bookDescriptionService:BookDescriptionService, public router:Router) {
+
+  constructor(public firestoreService: FirestoreService, public bookDescriptionService: BookDescriptionService, public router: Router) {
     this.booksClicked = true;
     this.currentBook = "";
+    this.currentUser = "";
   }
 
   ngOnInit(): void {
@@ -144,17 +149,6 @@ export class AppAdminprofileComponent implements OnInit {
     console.log(this.booksClicked);
   }
 
-  getSelectedBooks() {
-    for (let book of this.books) {
-      let checkbox = document.getElementById(`checkbox_${book.id}`) as HTMLInputElement;
-      if (checkbox.checked) {
-        this.selectedBooks.push({
-          book
-        })
-      }
-    }
-  }
-
   deleteSelectedBooks() {
     for (let book of this.books) {
       let checkbox = document.getElementById(`checkbox_${book.id}`) as HTMLInputElement;
@@ -173,16 +167,69 @@ export class AppAdminprofileComponent implements OnInit {
     }
   }
 
-  viewBook(id:Book) {
+  viewBook(id: Book) {
     this.bookDescriptionService.updateDescripcion(id)
     this.router.navigate(['BOOKDESCRIPTION']);
-  
+
   }
 
-  getCurrentBook(a:Book){
+  getCurrentBook(a: Book) {
     this.currentBook = a;
   }
 
+  getCurrentUser(a: User) {
+    this.currentUser = a;
+  }
+
+  editBookForm(editForm: NgForm): void {
+    var fields = ['title', 'sinopsis', 'author', 'publicationDate', 'uploadDate', 'editorial', 'isbn', 'genre', 'url', 'imageURL', 'pages'];
+    var fieldValues = [];
+
+    for (var i = 0; i < fields.length; i++) {
+      var field = fields[i];
+      var value = editForm.controls[field].value;
+
+      if (!value) {
+        value = this.currentBook[field];
+      }
+
+      fieldValues.push(value);
+      editForm.controls[field].setValue(value);
+    }
+    console.log(fieldValues)
+
+    const book: Book = {
+      title: fieldValues[0], sinopsis: fieldValues[1], author: fieldValues[2], publicationDate: fieldValues[3], uploadDate: fieldValues[4],
+      editorial: fieldValues[5], isbn: fieldValues[6], reviews: [], comments: [], genre: fieldValues[7], url: fieldValues[8], read: [],
+      imageURL: fieldValues[9], pages: fieldValues[10]
+    }
+
+    this.firestoreService.updateBook(this.currentBook.id, book)
+  }
+
+  editUserForm(editForm: NgForm): void {
+    var fields = ['uid', 'email', 'displayName', 'photoURL', 'plan'];
+    var fieldValues = [];
+
+    for (var i = 0; i < fields.length; i++) {
+      var field = fields[i];
+      var value = editForm.controls[field].value;
+
+      if (!value) {
+        value = this.currentUser[field];
+      }
+
+      fieldValues.push(value);
+      editForm.controls[field].setValue(value);
+    }
+    console.log(fieldValues)
+
+    const user: User = {
+      uid: fieldValues[0], email: fieldValues[1], displayName: fieldValues[2], photoURL: fieldValues[3], emailVerified: false, plan: fieldValues[4],
+      favoriteBooksList: [], followers: [], following: [], readingHistory: []
+    }
+
+    this.firestoreService.updateUser(this.currentUser.id, user)
+  }
+
 }
-
-
