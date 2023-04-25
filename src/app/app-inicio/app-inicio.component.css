@@ -133,6 +133,10 @@ h1, h4 {
 
 /*movil*/
 @media screen and (max-width: 700px) {
+    /*Botones filtrar*/
+    mat-form-field {
+        width: 7rem;
+    }
     .CT {
         margin-left: 55px;
     }

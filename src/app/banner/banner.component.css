@@ -148,7 +148,7 @@
     height: 50px;
   }
 }    
-
+/*TABLET*/
 @media screen and (min-width: 701px) and (max-width: 1199px) {
   .banner__contents {
     top: 120px;
