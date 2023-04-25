@@ -1,72 +1,61 @@
 <app-navegador></app-navegador>
 <section class="panel">
-  <app-banner></app-banner>
+  <app-banner [books]="books" ></app-banner>
   <div class="tools">
-    <button type="button" class="btn btn-primary position-relative">
-      Profile
-      <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-        <span class="visually-hidden">New alerts</span>
-      </span>
-    </button>
-    <button type="button" class="btn btn-primary position-relative">
-      Profile
-      <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-        <span class="visually-hidden">New alerts</span>
-      </span>
-    </button>
-    <button type="button" class="btn btn-primary position-relative">
-      Profile
-      <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-        <span class="visually-hidden">New alerts</span>
-      </span>
-    </button>
-    <button type="button" class="btn btn-primary position-relative">
-      Profile
-      <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-        <span class="visually-hidden">New alerts</span>
-      </span>
-    </button>
-    <button type="button" class="btn btn-primary position-relative">
-      Profile
-      <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-        <span class="visually-hidden">New alerts</span>
-      </span>
-    </button>
+    <h4>{{'seccion.genero' | transloco}}</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>{{'seccion.FiltrarGenero' | transloco}}</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <h4>{{'seccion.año' | transloco}}</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>{{'seccion.FiltrarAño' | transloco}}</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
-  <div class="CAROUSEL-SACTION" >
+  <div class="CAROUSEL-SACTION">
     <div id={{cat[1]}} class="carousel slide" *ngFor="let cat of categories;let x = index">
-      <app-carousel-open *ngIf="x==2" ></app-carousel-open>
+      <app-carousel-open [books]="books" *ngIf="x==2"></app-carousel-open>
       <h1 class="CT">{{cat[0]}}</h1>
       <div class="flex-carousel">
         <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#'+cat[1]" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+          <span class="visually-hidden" i18n>Previous</span>
         </button>
-  
+
         <div class="carousel-inner">
           <div class="carousel-item active">
             <article class="firstRow">
-              <div *ngFor="let book of books;let i = index" >
-                <app-card *ngIf="i<5"   [Nombre]="book.title" [Descripcion]="book.sinopsis" [Autor]="book.Autor" [IMG]="book.imageURL" ></app-card>
+              <div *ngFor="let book of books;let i = index">
+                <app-card *ngIf="i<5" [book]="book"></app-card>
               </div>
             </article>
           </div>
           <div class="carousel-item">
             <article class="firstRow">
-              <div *ngFor="let book of books;let i = index" >
-                <app-card *ngIf="i>=5"    [Nombre]="book.title" [Descripcion]="book.sinopsis" [Autor]="book.autor" [IMG]="book.imageURL" ></app-card>
+              <div *ngFor="let book of books;let i = index">
+                <app-card *ngIf="i>=5" [book]="book"></app-card>
               </div>
             </article>
           </div>
         </div>
-  
-  
+
+
         <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#'+cat[1]" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+          <span class="visually-hidden" i18n>Next</span>
         </button>
-  
+
       </div>
     </div>
   </div>

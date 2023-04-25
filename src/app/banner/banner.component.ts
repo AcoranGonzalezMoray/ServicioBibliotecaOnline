@@ -1,19 +1,17 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,Input} from '@angular/core';
 
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
   styleUrls: ['./banner.component.css']
 })
-export class BannerComponent implements  OnInit {
+export class BannerComponent{
   public data:any;
-  public books:any;
-  constructor(){ }
-  ngOnInit() { 
-    this.books = sessionStorage.getItem("books");
-    this.books = JSON.parse(this.books)
-    this.books = this.books
+  @Input() books:any[] = [];
+  constructor(){ 
+
   }
+
 
   banner(d:string,title:string, des:string):void{
     this.data = "url('"+d+"'";
