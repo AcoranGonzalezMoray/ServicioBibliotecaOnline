@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Book } from '../services/interfaces/book';
 import { User } from '../services/interfaces/user';
+import {Router} from '@angular/router';
 import { FirestoreService } from '../services/firestore/firestore.service';
+import {BookDescriptionService} from '../services/book-description.service'
 
 @Component({
   selector: 'app-app-adminprofile',
@@ -14,9 +16,12 @@ export class AppAdminprofileComponent implements OnInit {
   public books: any;
   public users: any;
   selectedBooks: Array<any> = [];
+  public currentBook: any;
 
-  constructor(public firestoreService: FirestoreService) {
+
+  constructor(public firestoreService: FirestoreService, public bookDescriptionService:BookDescriptionService, public router:Router) {
     this.booksClicked = true;
+    this.currentBook = "";
   }
 
   ngOnInit(): void {
@@ -139,6 +144,17 @@ export class AppAdminprofileComponent implements OnInit {
     console.log(this.booksClicked);
   }
 
+  getSelectedBooks() {
+    for (let book of this.books) {
+      let checkbox = document.getElementById(`checkbox_${book.id}`) as HTMLInputElement;
+      if (checkbox.checked) {
+        this.selectedBooks.push({
+          book
+        })
+      }
+    }
+  }
+
   deleteSelectedBooks() {
     for (let book of this.books) {
       let checkbox = document.getElementById(`checkbox_${book.id}`) as HTMLInputElement;
@@ -155,6 +171,16 @@ export class AppAdminprofileComponent implements OnInit {
         this.firestoreService.deleteUser(user.id)
       }
     }
+  }
+
+  viewBook(id:Book) {
+    this.bookDescriptionService.updateDescripcion(id)
+    this.router.navigate(['BOOKDESCRIPTION']);
+  
+  }
+
+  getCurrentBook(a:Book){
+    this.currentBook = a;
   }
 
 }
