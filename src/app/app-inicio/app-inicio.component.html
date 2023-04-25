@@ -26,7 +26,7 @@
   <div class="CAROUSEL-SACTION">
     <div id={{cat[1]}} class="carousel slide" *ngFor="let cat of categories;let x = index">
       <app-carousel-open [books]="books" *ngIf="x==2"></app-carousel-open>
-      <h1 class="CT">{{cat[0]}}</h1>
+      <h1 class="CT">{{'seccion.'+cat[0] | transloco}}</h1>
       <div class="flex-carousel">
         <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#'+cat[1]" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>

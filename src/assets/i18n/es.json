@@ -88,6 +88,10 @@
         "comentario": "comentario",
         "comentarios": "Comentarios",
         "Leer": "Leer",
-        "Enviar": "Enviar"
+        "Enviar": "Enviar",
+        "MásLeídos": "Más Leídos",
+        "MásVotados": "Más Votados",
+        "MásComentados": "Más Comentados",
+        "MásRecientes": "Más Recientes"
     }
 }

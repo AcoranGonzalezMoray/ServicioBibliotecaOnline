@@ -1,5 +1,5 @@
 article {
-  margin-bottom: 282px;
+
 }
 
 .btn-msg{
@@ -124,7 +124,7 @@ article {
   display: block;
     background-color: var(--bkg-color);
     width: 100%;
-    height: 100%;
+ 
     padding-top: 30px;
     padding-bottom: 60px;
    

@@ -88,6 +88,10 @@
         "comentario": "comment",
         "comentarios": "Comments",
         "Leer": "Read",
-        "Enviar": "Send"
+        "Enviar": "Send",
+        "MásLeídos": "More Reads",
+        "MásVotados": "More voted",
+        "MásComentados": "More Commented",
+        "MásRecientes": "More Recent"
     }
 }
