@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { FirestoreService } from '../services/firestore/firestore.service';
 import { BookDescriptionService } from '../services/book-description.service'
 import { NgForm } from '@angular/forms'
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-app-adminprofile',
@@ -66,7 +65,7 @@ export class AppAdminprofileComponent implements OnInit {
       catsSnapshot.forEach((catData: any) => {
         this.users.push({
           id: catData.payload.doc.id,
-          uid: catData.payload.doc.uid,
+          uid: catData.payload.doc.data().uid,
           email: catData.payload.doc.data().email,
           displayName: catData.payload.doc.data().displayName,
           photoURL: catData.payload.doc.data().photoURL,
@@ -107,13 +106,13 @@ export class AppAdminprofileComponent implements OnInit {
     this.clearModal()
   }
 
-  addUser(uid: string,
-    email: string,
+  addUser(email: string,
     displayName: string,
     photoURL: string,
     plan: string) {
+
     const user: User = {
-      uid: uid,
+      uid: this.generateRandomId(),
       email: email,
       displayName: displayName,
       photoURL: photoURL,
@@ -127,6 +126,15 @@ export class AppAdminprofileComponent implements OnInit {
 
     this.firestoreService.createUser(user);
     this.clearModal();
+  }
+
+  generateRandomId(): string {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < 28; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
   }
 
   embeddingDriveImg(data: string) {
@@ -200,15 +208,15 @@ export class AppAdminprofileComponent implements OnInit {
 
     const book: Book = {
       title: fieldValues[0], sinopsis: fieldValues[1], author: fieldValues[2], publicationDate: fieldValues[3], uploadDate: fieldValues[4],
-      editorial: fieldValues[5], isbn: fieldValues[6], reviews: [], comments: [], genre: fieldValues[7], url: fieldValues[8], read: [],
-      imageURL: fieldValues[9], pages: fieldValues[10]
+      editorial: fieldValues[5], isbn: fieldValues[6], reviews: this.currentBook.reviews, comments: this.currentBook.comments, genre: fieldValues[7],
+      url: fieldValues[8], read: this.currentBook.read, imageURL: fieldValues[9], pages: fieldValues[10]
     }
 
     this.firestoreService.updateBook(this.currentBook.id, book)
   }
 
   editUserForm(editForm: NgForm): void {
-    var fields = ['uid', 'email', 'displayName', 'photoURL', 'plan'];
+    var fields = ['email', 'displayName', 'photoURL', 'plan'];
     var fieldValues = [];
 
     for (var i = 0; i < fields.length; i++) {
@@ -225,8 +233,9 @@ export class AppAdminprofileComponent implements OnInit {
     console.log(fieldValues)
 
     const user: User = {
-      uid: fieldValues[0], email: fieldValues[1], displayName: fieldValues[2], photoURL: fieldValues[3], emailVerified: false, plan: fieldValues[4],
-      favoriteBooksList: [], followers: [], following: [], readingHistory: []
+      uid: this.currentUser.uid, email: fieldValues[1], displayName: fieldValues[2], photoURL: fieldValues[3], emailVerified: this.currentUser.emailVerified,
+      plan: fieldValues[4], favoriteBooksList: this.currentUser.favoriteBooksList, followers: this.currentUser.followers, following: this.currentUser.following,
+      readingHistory: this.currentUser.readingHistory
     }
 
     this.firestoreService.updateUser(this.currentUser.id, user)
