@@ -32,7 +32,7 @@ export class AppAdminprofileComponent implements OnInit {
     this.authService.isAdmin.subscribe(isAdmin => {
       // Utilizar el valor de isAdmin, por ejemplo:
       console.log(isAdmin)
-      !isAdmin?this.router.navigate(['/']):null
+      !isAdmin ? this.router.navigate(['/']) : null
     });
 
     this.books = sessionStorage.getItem("books");
@@ -81,7 +81,7 @@ export class AppAdminprofileComponent implements OnInit {
           followers: catData.payload.doc.data().followers,
           following: catData.payload.doc.data().following,
           readingHistory: [],
-          rol:catData.payload.doc.data().rol,
+          rol: catData.payload.doc.data().rol,
         });
         sessionStorage.setItem('users', JSON.stringify(this.users))
       })
@@ -197,39 +197,27 @@ export class AppAdminprofileComponent implements OnInit {
     this.currentUser = a;
   }
 
-  editBookForm(editForm: NgForm): void {
-    var fields = ['title', 'sinopsis', 'author', 'publicationDate', 'uploadDate', 'editorial', 'isbn', 'genre', 'url', 'imageURL', 'pages'];
-    var fieldValues = [];
+  editBookForm(editForm: NgForm, title: string, sinopsis: string, author: string, publicationDate: string,
+    uploadDate: string, editorial: string, isbn: string, genre: string, url: string, imageURL: string, pages: string): void {
 
-    for (var i = 0; i < fields.length; i++) {
-      var field = fields[i];
-      var value = editForm.controls[field].value;
-
-      if (!value) {
-        value = this.currentBook[field];
-      }
-
-      fieldValues.push(value);
-      editForm.controls[field].setValue(value);
-    }
-    console.log(fieldValues)
+    var fieldValues = [title, sinopsis, author, publicationDate, uploadDate, editorial, isbn, genre, url, imageURL, pages]
 
     const book: Book = {
       title: fieldValues[0], sinopsis: fieldValues[1], author: fieldValues[2], publicationDate: fieldValues[3], uploadDate: fieldValues[4],
-      editorial: fieldValues[5], isbn: fieldValues[6], reviews: this.currentBook.reviews, comments: this.currentBook.comments, genre: fieldValues[7],
-      url: fieldValues[8], read: this.currentBook.read, imageURL: fieldValues[9], pages: fieldValues[10]
+      editorial: fieldValues[5], isbn: parseInt(fieldValues[6]), reviews: this.currentBook.reviews, comments: this.currentBook.comments, genre: fieldValues[7],
+      url: fieldValues[8], read: this.currentBook.read, imageURL: fieldValues[9], pages: parseInt(fieldValues[10])
     }
-
+    console.log(book)
     this.firestoreService.updateBook(this.currentBook.id, book)
   }
 
-  editUserForm(editForm: NgForm, email:string, displayName:string, plan:string, photoUrl:string): void {
+  editUserForm(editForm: NgForm, email: string, displayName: string, plan: string, photoUrl: string): void {
     var fieldValues = [email, displayName, photoUrl, plan];
 
     const user: User = {
       uid: this.currentUser.uid, email: fieldValues[0], displayName: fieldValues[1], photoURL: fieldValues[2], emailVerified: this.currentUser.emailVerified,
       plan: fieldValues[3], favoriteBooksList: this.currentUser.favoriteBooksList, followers: this.currentUser.followers, following: this.currentUser.following,
-      readingHistory: this.currentUser.readingHistory,rol: 'USER'
+      readingHistory: this.currentUser.readingHistory, rol: 'USER'
     }
     console.log(user)
     this.firestoreService.updateUser(this.currentUser.id, user)

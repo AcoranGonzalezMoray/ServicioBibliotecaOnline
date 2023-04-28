@@ -15,8 +15,8 @@
                         {{"admin.eliminarSeleccionados" | transloco}}
                     </button>
                 </div>
-    
-    
+
+
                 <!-- header -->
                 <div class="headerDashboard grid">
                     <h2 class="el">{{ "admin.action" | transloco }}</h2>
@@ -25,16 +25,17 @@
                     <h2 class="el">{{"admin.genero" | transloco}}</h2>
                     <h2 class="el">{{ "admin.isbn" | transloco }}</h2>
                 </div>
-    
-    
+
+
                 <!-- elements -->
                 <div class="elementDashboard grid" *ngFor="let a of books">
                     <div class="optionButtons">
                         <div class="form-check">
-                            <input class="form-check-input form-check" type="checkbox" value="" id="checkbox_{{ a.id }}" />
+                            <input class="form-check-input form-check" type="checkbox" value=""
+                                id="checkbox_{{ a.id }}" />
                             <label class="form-check-label form-check" for="flexCheckDefault"></label>
                         </div>
-    
+
                         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal"
                             (click)="getCurrentBook(a)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -62,23 +63,25 @@
                             </svg>
                         </button>
                     </div>
-    
+
                     <h2 class="el">{{ a.title }}</h2>
                     <h2 class="el">{{ a.editorial }}</h2>
                     <h2 class="el">{{ a.genre }}</h2>
                     <h2 class="el">{{ a.isbn }}</h2>
                 </div>
-    
-    
+
+
                 <!-- addModal -->
-                <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">
                                     {{ "admin.addbook" | transloco }}
                                 </h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body" #modal>
                                 <div class="form-group">
@@ -88,8 +91,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="sinopsis">Sinopsis:</label>
-                                    <input type="text" class="form-control" id="sinopsis" placeholder="Ingrese la sinopsis"
-                                        #sinopsis />
+                                    <input type="text" class="form-control" id="sinopsis"
+                                        placeholder="Ingrese la sinopsis" #sinopsis />
                                 </div>
                                 <div class="form-group">
                                     <label for="author">Autor:</label>
@@ -113,7 +116,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="isbn">ISBN:</label>
-                                    <input type="text" class="form-control" id="isbn" placeholder="Ingrese el ISBN" #isbn />
+                                    <input type="text" class="form-control" id="isbn" placeholder="Ingrese el ISBN"
+                                        #isbn />
                                 </div>
                                 <div class="form-group">
                                     <label for="genre">Género:</label>
@@ -122,7 +126,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="url">URL:</label>
-                                    <input type="text" class="form-control" id="url" placeholder="Ingrese la URL" #url />
+                                    <input type="text" class="form-control" id="url" placeholder="Ingrese la URL"
+                                        #url />
                                 </div>
                                 <div class="form-group">
                                     <label for="imageURL">URL de la imagen:</label>
@@ -154,16 +159,18 @@
                         pages.value
                       )
                     " data-bs-dismiss="modal">
-                                {{ "admin.save" | transloco }}
+                                    {{ "admin.save" | transloco }}
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-    
-    
+
+
                 <!-- editModal -->
-                <form #editForm="ngForm" (ngSubmit)="editBookForm(editForm)">
+                <form #editForm="ngForm"
+                    (ngSubmit)="editBookForm(editForm, titleEdit.value, sinopsisEdit.value, authorEdit.value, publicationDateEdit.value,
+                        uploadDateEdit.value, editorialEdit.value, isbnEdit.value, genreEdit.value, urlEdit.value, imageURLEdit.value, pagesEdit.value)">
                     <div class="modal fade" id="editBookModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
@@ -179,65 +186,67 @@
                                     <div class="form-group">
                                         <label for="title">Título:</label>
                                         <input type="text" class="form-control" id="titleEdit"
-                                            placeholder="Ingrese el título" #title value="{{ currentBook.title }}"
+                                            placeholder="Ingrese el título" #titleEdit value="{{ currentBook.title }}"
                                             name="title" ngModel />
                                     </div>
                                     <div class="form-group">
                                         <label for="sinopsis">Sinopsis:</label>
                                         <input type="text" class="form-control" id="sinopsisEdit"
-                                            placeholder="Ingrese la sinopsis" #sinopsis value="{{ currentBook.sinopsis }}"
-                                            name="sinopsis" ngModel />
+                                            placeholder="Ingrese la sinopsis" #sinopsisEdit
+                                            value="{{ currentBook.sinopsis }}" name="sinopsis" ngModel />
                                     </div>
                                     <div class="form-group">
                                         <label for="author">Autor:</label>
                                         <input type="text" class="form-control" id="authorEdit"
-                                            placeholder="Ingrese el autor" #author value="{{ currentBook.author }}"
+                                            placeholder="Ingrese el autor" #authorEdit value="{{ currentBook.author }}"
                                             name="author" ngModel />
                                     </div>
                                     <div class="form-group">
                                         <label for="publicationDate">Fecha de publicación:</label>
-                                        <input type="date" class="form-control" id="publicationDateEdit"
-                                            placeholder="Ingrese la fecha de publicación" #publicationDate
+                                        <input type="text" class="form-control" id="publicationDateEdit"
+                                            placeholder="Ingrese la fecha de publicación" #publicationDateEdit
                                             value="{{ currentBook.publicationDate }}" name="publicationDate" ngModel />
                                     </div>
                                     <div class="form-group">
                                         <label for="uploadDate">Fecha de subida:</label>
-                                        <input type="date" class="form-control" id="uploadDateEdit"
-                                            placeholder="Ingrese la fecha de subida" #uploadDate
+                                        <input type="text" class="form-control" id="uploadDateEdit"
+                                            placeholder="Ingrese la fecha de subida" #uploadDateEdit
                                             value="{{ currentBook.uploadDate }}" name="uploadDate" ngModel />
                                     </div>
                                     <div class="form-group">
                                         <label for="editorial">Editorial:</label>
                                         <input type="text" class="form-control" id="editorialEdit"
-                                            placeholder="Ingrese la editorial" #editorial
+                                            placeholder="Ingrese la editorial" #editorialEdit
                                             value="{{ currentBook.editorial }}" name="editorial" ngModel />
                                     </div>
                                     <div class="form-group">
                                         <label for="isbn">ISBN:</label>
-                                        <input type="text" class="form-control" id="isbnEdit" placeholder="Ingrese el ISBN"
-                                            #isbn value="{{ currentBook.isbn }}" name="isbn" ngModel />
+                                        <input type="text" class="form-control" id="isbnEdit"
+                                            placeholder="Ingrese el ISBN" #isbnEdit value="{{ currentBook.isbn }}"
+                                            name="isbn" ngModel />
                                     </div>
                                     <div class="form-group">
                                         <label for="genre">Género:</label>
                                         <input type="text" class="form-control" id="genreEdit"
-                                            placeholder="Ingrese el género" #genre value="{{ currentBook.genre }}"
+                                            placeholder="Ingrese el género" #genreEdit value="{{ currentBook.genre }}"
                                             name="genre" ngModel />
                                     </div>
                                     <div class="form-group">
                                         <label for="url">URL:</label>
-                                        <input type="text" class="form-control" id="urlEdit" placeholder="Ingrese la URL"
-                                            #url value="{{ currentBook.url }}" name="url" ngModel />
+                                        <input type="text" class="form-control" id="urlEdit"
+                                            placeholder="Ingrese la URL" #urlEdit value="{{ currentBook.url }}"
+                                            name="url" ngModel />
                                     </div>
                                     <div class="form-group">
                                         <label for="imageURL">URL de la imagen:</label>
                                         <input type="text" class="form-control" id="imageURLEdit"
-                                            placeholder="Ingrese la URL de la imagen" #imageURL
+                                            placeholder="Ingrese la URL de la imagen" #imageURLEdit
                                             value="{{ currentBook.imageURL }}" name="imageURL" ngModel />
                                     </div>
                                     <div class="form-group">
                                         <label for="pages">Páginas:</label>
                                         <input type="number" class="form-control" id="pagesEdit"
-                                            placeholder="Ingrese el número de páginas" #pages
+                                            placeholder="Ingrese el número de páginas" #pagesEdit
                                             value="{{ currentBook.pages }}" name="pages" ngModel />
                                     </div>
                                 </div>
@@ -253,8 +262,8 @@
                         </div>
                     </div>
                 </form>
-    
-    
+
+
                 <!-- deleteModal -->
                 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -262,10 +271,11 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                    
+
                                     {{ "admin.eliminarLibro" | transloco }}
                                 </h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body" #modal>
                                 <h1>¿{{ "admin.deseaEliminar" | transloco }} {{ currentBook.title }}?</h1>
@@ -282,8 +292,8 @@
                         </div>
                     </div>
                 </div>
-    
-    
+
+
                 <!-- deleteModal2 -->
                 <div class="modal fade" id="deleteModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -293,7 +303,8 @@
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">
                                     {{ "admin.eliminarLibro" | transloco }}
                                 </h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body" #modal>
                                 <h1>¿{{ "admin.deseaEliminarLibros" | transloco }}?</h1>
@@ -311,9 +322,9 @@
                     </div>
                 </div>
             </div>
-    
-    
-    
+
+
+
             <!-- USUARIOS -->
             <ng-template #usersClicked>
                 <!-- topButtons -->
@@ -326,7 +337,7 @@
                         {{"admin.eliminarSeleccionados" | transloco}}
                     </button>
                 </div>
-    
+
                 <!-- header -->
                 <div class="headerDashboard grid">
                     <h2 class="el">{{ "admin.action" | transloco }}</h2>
@@ -336,15 +347,16 @@
                     <h2 class="el">PLAN</h2>
                     <!--<h2 class="el">ESTADO</h2>-->
                 </div>
-    
+
                 <!-- elements -->
                 <div class="elementDashboard grid" *ngFor="let a of users">
                     <div class="optionButtons">
                         <div class="form-check">
-                            <input class="form-check-input form-check" type="checkbox" value="" id="checkbox_{{ a.id }}" />
+                            <input class="form-check-input form-check" type="checkbox" value=""
+                                id="checkbox_{{ a.id }}" />
                             <label class="form-check-label form-check" for="flexCheckDefault"></label>
                         </div>
-    
+
                         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal"
                             (click)="getCurrentUser(a)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -373,15 +385,15 @@
                             </svg>
                         </button>
                     </div>
-    
+
                     <h2 class="el">{{ a.displayName }}</h2>
                     <h2 class="el">{{ a.rol}}</h2>
                     <h2 class="el">{{ a.email }}</h2>
                     <h2 class="el">{{ a.plan }}</h2>
-                   <!--<h2 class="el">{{ a.emailVerified }}</h2>--> 
+                    <!--<h2 class="el">{{ a.emailVerified }}</h2>-->
                 </div>
-    
-    
+
+
                 <!-- addModal -->
                 <!-- <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -416,8 +428,8 @@
                         </div>
                     </div>
                 </div> -->
-    
-    
+
+
                 <!-- deleteModal -->
                 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -427,7 +439,8 @@
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">
                                     {{ "admin.eliminarUsuario" | transloco }}
                                 </h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body" #modal>
                                 <h1>¿{{ "admin.deseaEliminarUsuario" | transloco }} {{ currentUser.displayName }}?</h1>
@@ -444,8 +457,8 @@
                         </div>
                     </div>
                 </div>
-    
-    
+
+
                 <!-- deleteModal2 -->
                 <div class="modal fade" id="deleteModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -455,7 +468,8 @@
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">
                                     {{ "admin.eliminarUsuario" | transloco }}
                                 </h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body" #modal>
                                 <h1>¿{{ "admin.deseaEliminarUsuarios" | transloco }}?</h1>
@@ -472,10 +486,11 @@
                         </div>
                     </div>
                 </div>
-    
-    
+
+
                 <!-- editModal -->
-                <form #editForm="ngForm" (ngSubmit)="editUserForm(editForm, email.value, displayName.value, plan.value, photoURL.value)">
+                <form #editForm="ngForm"
+                    (ngSubmit)="editUserForm(editForm, email.value, displayName.value, plan.value, photoURL.value)">
                     <div class="modal fade" id="editBookModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
@@ -509,8 +524,8 @@
                                     <div class="form-group">
                                         <label for="plan">Plan:</label>
                                         <input type="text" class="form-control" id="planEdit"
-                                            placeholder="Ingrese la fecha de subida" #plan value="{{ currentUser.plan }}"
-                                            name="plan" ngModel />
+                                            placeholder="Ingrese la fecha de subida" #plan
+                                            value="{{ currentUser.plan }}" name="plan" ngModel />
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -525,8 +540,8 @@
                         </div>
                     </div>
                 </form>
-    
-    
+
+
                 <!-- visualizeModal -->
                 <div class="modal fade" id="visualizeModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -536,7 +551,8 @@
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">
                                     Usuario: {{ currentUser.displayName }}
                                 </h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body" #modal>
                                 <div class="form-group">
@@ -563,7 +579,7 @@
                                     <label for="photoURL">Foto de perfil:</label>
                                     <p class="form-control-plaintext">{{ currentUser.photoURL }}</p>
                                 </div>
-    
+
                             </div>
                         </div>
                     </div>
