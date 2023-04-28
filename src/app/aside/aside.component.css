@@ -1,0 +1,5 @@
+#sidebar{
+    position: fixed;
+    top: 35px;
+    z-index: 0;
+}

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { Book } from '../services/interfaces/book';
+import { User } from '../services/interfaces/user';
+import { Router } from '@angular/router';
 import { FirestoreService } from '../services/firestore/firestore.service';
-
-
+import { BookDescriptionService } from '../services/book-description.service'
+import { NgForm } from '@angular/forms'
 
 @Component({
   selector: 'app-app-adminprofile',
@@ -11,14 +13,77 @@ import { FirestoreService } from '../services/firestore/firestore.service';
 })
 export class AppAdminprofileComponent implements OnInit {
 
-  public books:any;
+  booksClicked: boolean;
+  public books: any;
+  public users: any;
+  selectedBooks: Array<any> = [];
+  public currentBook: any;
+  public currentUser: any;
 
-  constructor(public firestoreService: FirestoreService) { }
+
+
+  constructor(public firestoreService: FirestoreService, public bookDescriptionService: BookDescriptionService, public router: Router) {
+    this.booksClicked = true;
+    this.currentBook = "";
+    this.currentUser = "";
+  }
+
   ngOnInit(): void {
     this.books = sessionStorage.getItem("books");
     this.books = JSON.parse(this.books);
+    //Obtenemos Coleccion Libros
+    this.firestoreService.getBooks().subscribe((catsSnapshot) => {
+      this.books = [];
+      catsSnapshot.forEach((catData: any) => {
+        this.books.push({
+
+          id: catData.payload.doc.id,
+          title: catData.payload.doc.data().title,
+          sinopsis: catData.payload.doc.data().sinopsis,
+          author: catData.payload.doc.data().author,
+          publicationDate: catData.payload.doc.data().publicationDate,
+          uploadDate: catData.payload.doc.data().uploadDate,
+          editorial: catData.payload.doc.data().editorial,
+          isbn: catData.payload.doc.data().isbn,
+          reviews: catData.payload.doc.data().reviews,
+          comments: catData.payload.doc.data().comments,
+          genre: catData.payload.doc.data().genre,
+          url: catData.payload.doc.data().url,
+          read: catData.payload.doc.data().read,
+          imageURL: this.embeddingDriveImg(catData.payload.doc.data().imageURL.split("/")[5]),
+          pages: catData.payload.doc.data().pages
+        });
+        sessionStorage.setItem('books', JSON.stringify(this.books))
+      })
+    });
     console.log(this.books);
+
+
+    //Obtenemos Coleccion Usuarios
+    this.firestoreService.getUsers().subscribe((catsSnapshot) => {
+      this.users = [];
+      catsSnapshot.forEach((catData: any) => {
+        this.users.push({
+          id: catData.payload.doc.id,
+          uid: catData.payload.doc.data().uid,
+          email: catData.payload.doc.data().email,
+          displayName: catData.payload.doc.data().displayName,
+          photoURL: catData.payload.doc.data().photoURL,
+          emailVerified: catData.payload.doc.data().emailVerified,
+          plan: catData.payload.doc.data().plan,
+          favoriteBooksList: catData.payload.doc.data().favoriteBooksList,
+          followers: catData.payload.doc.data().followers,
+          following: catData.payload.doc.data().following,
+          readingHistory: [],
+        });
+        sessionStorage.setItem('users', JSON.stringify(this.users))
+      })
+    });
+    this.users = sessionStorage.getItem("users");
+    this.users = JSON.parse(this.users);
+    console.log(this.users);
   }
+
   addBook(title: string,
     sinopsis: string,
     author: string,
@@ -41,6 +106,41 @@ export class AppAdminprofileComponent implements OnInit {
     this.clearModal()
   }
 
+  addUser(email: string,
+    displayName: string,
+    photoURL: string,
+    plan: string) {
+
+    const user: User = {
+      uid: this.generateRandomId(),
+      email: email,
+      displayName: displayName,
+      photoURL: photoURL,
+      emailVerified: true,
+      plan: plan,
+      favoriteBooksList: [],
+      followers: [],
+      following: [],
+      readingHistory: [],
+    }
+
+    this.firestoreService.createUser(user);
+    this.clearModal();
+  }
+
+  generateRandomId(): string {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < 28; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  }
+
+  embeddingDriveImg(data: string) {
+    return "https://drive.google.com/uc?export=view&id=" + data
+  }
+
   clearModal() {
     //(<HTMLInputElement> document.querySelector('title')).value=''
     let n = document.getElementsByTagName('input').length
@@ -52,6 +152,93 @@ export class AppAdminprofileComponent implements OnInit {
 
   }
 
+  changestate(state: boolean) {
+    this.booksClicked = state;
+    console.log(this.booksClicked);
+  }
+
+  deleteSelectedBooks() {
+    for (let book of this.books) {
+      let checkbox = document.getElementById(`checkbox_${book.id}`) as HTMLInputElement;
+      if (checkbox.checked) {
+        this.firestoreService.deleteBook(book.id)
+      }
+    }
+  }
+
+  deleteSelectedUsers() {
+    for (let user of this.users) {
+      let checkbox = document.getElementById(`checkbox_${user.id}`) as HTMLInputElement;
+      if (checkbox.checked) {
+        this.firestoreService.deleteUser(user.id)
+      }
+    }
+  }
+
+  viewBook(id: Book) {
+    this.bookDescriptionService.updateDescripcion(id)
+    this.router.navigate(['BOOKDESCRIPTION']);
+
+  }
+
+  getCurrentBook(a: Book) {
+    this.currentBook = a;
+  }
+
+  getCurrentUser(a: User) {
+    this.currentUser = a;
+  }
+
+  editBookForm(editForm: NgForm): void {
+    var fields = ['title', 'sinopsis', 'author', 'publicationDate', 'uploadDate', 'editorial', 'isbn', 'genre', 'url', 'imageURL', 'pages'];
+    var fieldValues = [];
+
+    for (var i = 0; i < fields.length; i++) {
+      var field = fields[i];
+      var value = editForm.controls[field].value;
+
+      if (!value) {
+        value = this.currentBook[field];
+      }
+
+      fieldValues.push(value);
+      editForm.controls[field].setValue(value);
+    }
+    console.log(fieldValues)
+
+    const book: Book = {
+      title: fieldValues[0], sinopsis: fieldValues[1], author: fieldValues[2], publicationDate: fieldValues[3], uploadDate: fieldValues[4],
+      editorial: fieldValues[5], isbn: fieldValues[6], reviews: this.currentBook.reviews, comments: this.currentBook.comments, genre: fieldValues[7],
+      url: fieldValues[8], read: this.currentBook.read, imageURL: fieldValues[9], pages: fieldValues[10]
+    }
+
+    this.firestoreService.updateBook(this.currentBook.id, book)
+  }
+
+  editUserForm(editForm: NgForm): void {
+    var fields = ['email', 'displayName', 'photoURL', 'plan'];
+    var fieldValues = [];
+
+    for (var i = 0; i < fields.length; i++) {
+      var field = fields[i];
+      var value = editForm.controls[field].value;
+
+      if (!value) {
+        value = this.currentUser[field];
+      }
+
+      fieldValues.push(value);
+      editForm.controls[field].setValue(value);
+    }
+    console.log(fieldValues)
+
+    const user: User = {
+      uid: this.currentUser.uid, email: fieldValues[1], displayName: fieldValues[2], photoURL: fieldValues[3], emailVerified: this.currentUser.emailVerified,
+      plan: fieldValues[4], favoriteBooksList: this.currentUser.favoriteBooksList, followers: this.currentUser.followers, following: this.currentUser.following,
+      readingHistory: this.currentUser.readingHistory
+    }
+
+    this.firestoreService.updateUser(this.currentUser.id, user)
+  }
+
 }
-
-

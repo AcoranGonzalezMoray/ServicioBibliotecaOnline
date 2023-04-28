@@ -19,6 +19,7 @@ import { AppComponent } from './app.component';
 import { AppInicioComponent } from './app-inicio/app-inicio.component';
 import { AppBookdescriptionComponent } from './app-bookdescription/app-bookdescription.component';
 import { AuthService } from './services/auth.service';
+import { FormsModule } from '@angular/forms';
 //import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
@@ -36,7 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     NavegadorComponent,
     FooterComponent,
@@ -52,8 +53,8 @@ import { TranslocoRootModule } from './transloco-root.module';
     AppPaymentConfirmationComponent,
     CarouselOpenComponent,
     BannerComponent,
-    LoaderComponent,
-  ],
+    LoaderComponent
+   ],
   imports: [
     BrowserModule,
     MatFormFieldModule ,
@@ -62,6 +63,7 @@ import { TranslocoRootModule } from './transloco-root.module';
     MatInputModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
+    FormsModule,
     RouterModule.forRoot([
       {path: '', component: AppInicioComponent },
       {path: 'DASHBOARDADMIN', component: AppAdminprofileComponent},

@@ -1,5 +1,5 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+<div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px; height: 100vh;">
+  <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
     <svg class="bi me-2" width="40" height="32">
       <use xlink:href="#bootstrap"></use>
     </svg>
@@ -8,35 +8,32 @@
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item">
-      <a href="#" class="nav-link active" aria-current="page">
-        <svg class="bi me-2" width="16" height="16">
-          <use xlink:href="#home"></use>
-        </svg>
+      <button class="nav-link" (click)="enviar(true)">
         {{"aside.books" | transloco}}
-      </a>
+      </button>
     </li>
     <li>
-      <a href="#" class="nav-link text-white" i18n>
-        <svg class="bi me-2" width="16" height="16">
-          <use xlink:href="#speedometer2"></use>
-        </svg>
+      <button class="nav-link" (click)="enviar(false)">
         {{"aside.users" | transloco}}
-      </a>
+      </button>
     </li>
   </ul>
   <hr>
-  <div class="input-group mb-3" i18n>
-    <span class="input-group-text" id="inputGroup-sizing-default">{{"aside.search" | transloco}}</span>
-    <input type="text" class="form-control" aria-label="Sizing example input"
-      aria-describedby="inputGroup-sizing-default">
+  <div id="opciones">
+    <div class="input-group mb-3" i18n>
+      <span class="input-group-text" id="inputGroup-sizing-default">{{"aside.search" | transloco}}</span>
+      <input type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default">
+    </div>
+    <div class="Filtrar">
+      <select class="form-select" aria-label="Default select example" onchange="ordenar(value,0)">
+        <option selected>{{"aside.sortbydefault" | transloco}}</option>
+        <option value="1">{{"aside.sortbyname1" | transloco}}</option>
+        <option value="2">{{"aside.sortbyname2" | transloco}}</option>
+        <option value="3">{{"aside.sortbyprice1" | transloco}}</option>
+        <option value="4">{{"aside.sortbyprice2" | transloco}}</option>
+      </select>
+    </div>
   </div>
-  <div class="Filtrar">
-    <select class="form-select" aria-label="Default select example" onchange="ordenar(value,0)">
-      <option selected>{{"aside.sortbydefault" | transloco}}</option>
-      <option value="1">{{"aside.sortbyname1" | transloco}}</option>
-      <option value="2">{{"aside.sortbyname2" | transloco}}</option>
-      <option value="3">{{"aside.sortbyprice1" | transloco}}</option>
-      <option value="4">{{"aside.sortbyprice2" | transloco}}</option>
-    </select>
-  </div>
+  <div class="flex-grow-1"></div>
 </div>

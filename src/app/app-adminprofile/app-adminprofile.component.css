@@ -2,6 +2,7 @@
 #main {
   display: flex;
   margin-top: 60px;
+  margin-left: 270px;
 }
 
 .adminContent {
@@ -16,7 +17,8 @@
 .topButtons {
   display: flex;
   flex-direction: row;
-  width: 50%;
+  width: 30%;
+  margin-left: 20px;
 }
 
 .btn1 {
@@ -47,7 +49,7 @@
 /* Grid de elementos del dashboard */
 .grid {
   display: grid;
-  grid-template-columns: 225px repeat(3, 1fr);
+  grid-template-columns: 225px repeat(4, 1fr);
   gap: 2em;
   margin: 2em 2em 2em 2em;
   grid-auto-flow: row dense;
@@ -58,7 +60,7 @@
   align-items: center;
   background-color: #f2f2f2;
   display: grid;
-  grid-template-columns: 4em, repeat(3, 1fr);
+  grid-template-columns: 4em, repeat(4, 1fr);
   place-items: center;
 }
 
@@ -68,7 +70,7 @@
   background-color: var(--bkg-color);
   border: 1px solid #ccc;
   display: grid;
-  grid-template-columns: 4em, repeat(3, 1fr);
+  grid-template-columns: 4em, repeat(4, 1fr);
   place-items: center;
 }
 
