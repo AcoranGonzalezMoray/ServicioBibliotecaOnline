@@ -30,6 +30,12 @@ export class AppBookdescriptionComponent implements OnInit {
 
   async ngOnInit() {
     this.book = this.bookDescriptionService.getLibro();
+    if (this.book && this.book.title) {
+      this.book.title = this.book.title.toUpperCase()
+    }
+    var backup = sessionStorage.getItem('temporalBookDescription')
+    this.book?sessionStorage.setItem('temporalBookDescription', JSON.stringify(this.book)):this.book=JSON.parse(backup?backup:'')
+    
     if (this.datauser){
       const user = JSON.parse(this.datauser);
       this.userTool.getUser(user.uid).subscribe(async user => {

@@ -36,15 +36,17 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <article class="firstRow">
-              <div *ngFor="let book of books;let i = index">
+              <div *ngFor="let book of cat[2];let i = index">
                 <app-card *ngIf="i<5" [book]="book"></app-card>
               </div>
             </article>
           </div>
+
+
           <div class="carousel-item">
             <article class="firstRow">
-              <div *ngFor="let book of books;let i = index">
-                <app-card *ngIf="i>=5" [book]="book"></app-card>
+              <div *ngFor="let book of cat[2];let i = index">
+                <app-card *ngIf="i>=5 && i<10" [book]="book"></app-card>
               </div>
             </article>
           </div>
