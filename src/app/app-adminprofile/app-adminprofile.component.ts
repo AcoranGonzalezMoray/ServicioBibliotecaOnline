@@ -223,29 +223,15 @@ export class AppAdminprofileComponent implements OnInit {
     this.firestoreService.updateBook(this.currentBook.id, book)
   }
 
-  editUserForm(editForm: NgForm): void {
-    var fields = ['email', 'displayName', 'photoURL', 'plan'];
-    var fieldValues = [];
-
-    for (var i = 0; i < fields.length; i++) {
-      var field = fields[i];
-      var value = editForm.controls[field].value;
-
-      if (!value) {
-        value = this.currentUser[field];
-      }
-
-      fieldValues.push(value);
-      editForm.controls[field].setValue(value);
-    }
-    console.log(fieldValues)
+  editUserForm(editForm: NgForm, email:string, displayName:string, plan:string, photoUrl:string): void {
+    var fieldValues = [email, displayName, photoUrl, plan];
 
     const user: User = {
-      uid: this.currentUser.uid, email: fieldValues[1], displayName: fieldValues[2], photoURL: fieldValues[3], emailVerified: this.currentUser.emailVerified,
-      plan: fieldValues[4], favoriteBooksList: this.currentUser.favoriteBooksList, followers: this.currentUser.followers, following: this.currentUser.following,
-      readingHistory: this.currentUser.readingHistory,rol: this.currentUser.readingHistory
+      uid: this.currentUser.uid, email: fieldValues[0], displayName: fieldValues[1], photoURL: fieldValues[2], emailVerified: this.currentUser.emailVerified,
+      plan: fieldValues[3], favoriteBooksList: this.currentUser.favoriteBooksList, followers: this.currentUser.followers, following: this.currentUser.following,
+      readingHistory: this.currentUser.readingHistory,rol: 'USER'
     }
-
+    console.log(user)
     this.firestoreService.updateUser(this.currentUser.id, user)
   }
 

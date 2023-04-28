@@ -475,7 +475,7 @@
     
     
                 <!-- editModal -->
-                <form #editForm="ngForm" (ngSubmit)="editUserForm(editForm)">
+                <form #editForm="ngForm" (ngSubmit)="editUserForm(editForm, email.value, displayName.value, plan.value, photoURL.value)">
                     <div class="modal fade" id="editBookModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
