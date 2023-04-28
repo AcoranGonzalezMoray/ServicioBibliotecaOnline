@@ -16,13 +16,13 @@ export class CollectionsComponent implements OnInit{
 
   async ngOnInit(){
     this.booksfav  = await this.cargarlibros();
-    console.log(this.booksfav);
   }
 
   async cargarlibros():Promise<Book[]>{
     var booksfav: Book[] = [];
     for(let ISBN_book in this.booksfavISBN){
       await this.userTools.getBookforISBN(Number(this.booksfavISBN[ISBN_book])).subscribe(async book => {
+        console.log(book)
         book.forEach(async( element:any) => {
           booksfav.push(element.payload.doc.data() as Book)
         });

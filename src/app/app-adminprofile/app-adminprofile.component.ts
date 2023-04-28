@@ -30,7 +30,6 @@ export class AppAdminprofileComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.isAdmin.subscribe(isAdmin => {
-      // Utilizar el valor de isAdmin, por ejemplo:
       console.log(isAdmin)
       !isAdmin ? this.router.navigate(['/']) : null
     });
