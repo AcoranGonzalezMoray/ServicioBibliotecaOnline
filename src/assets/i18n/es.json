@@ -79,7 +79,19 @@
         "close": "Cerrar",
         "save": "Guardar cambios",
         "genero": "GÉNERO",
-        "eliminarSeleccionados": "ELIMINAR SELECCIONADOS"
+        "eliminarSeleccionados": "ELIMINAR SELECCIONADOS",
+        "editarLibro":"Editar libro",
+        "eliminarLibro": "Eliminar libro",
+        "deseaEliminar":"Desea eliminar el libro",
+        "deseaEliminarLibros":"Desea eliminar los libros seleccionados",
+        "eliminar": "Eliminar",
+        "rol": "ROL",
+        "correo": "CORREO",
+        "editarUsuario":"Editar usuario",
+        "eliminarUsuario": "Eliminar Usuario",
+        "deseaEliminarUsuario":"Desea eliminar el usuario ",
+        "deseaEliminarUsuarios":"Desea eliminar los usuarios seleccionados"
+
     },
     "seccion": {
         "genero": "Genero",

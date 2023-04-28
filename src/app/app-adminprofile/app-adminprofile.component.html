@@ -170,7 +170,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                        Editar libro
+                                        {{ "admin.editarLibro" | transloco }}
                                     </h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
@@ -246,7 +246,7 @@
                                         {{ "admin.close" | transloco }}
                                     </button>
                                     <button type="button submit" class="btn btn-primary" data-bs-dismiss="modal">
-                                        Save changes
+                                        {{ "admin.save" | transloco }}
                                     </button>
                                 </div>
                             </div>
@@ -262,12 +262,13 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                    Eliminar libro
+                                    
+                                    {{ "admin.eliminarLibro" | transloco }}
                                 </h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body" #modal>
-                                <h1>¿Desea eliminar el libro {{ currentBook.title }}?</h1>
+                                <h1>¿{{ "admin.deseaEliminar" | transloco }} {{ currentBook.title }}?</h1>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -275,7 +276,7 @@
                                 </button>
                                 <button type="button" class="btn btn-primary"
                                     (click)="firestoreService.deleteBook(currentBook.id)" data-bs-dismiss="modal">
-                                    Eliminar
+                                    {{ "admin.eliminar" | transloco }}
                                 </button>
                             </div>
                         </div>
@@ -290,19 +291,19 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                    Eliminar libros
+                                    {{ "admin.eliminarLibro" | transloco }}
                                 </h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body" #modal>
-                                <h1>¿Desea eliminar los libros seleccionados?</h1>
+                                <h1>¿{{ "admin.deseaEliminarLibros" | transloco }}?</h1>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                         {{ "admin.close" | transloco }}
                                     </button>
                                     <button type="button" class="btn btn-primary" (click)="deleteSelectedBooks()"
                                         data-bs-dismiss="modal">
-                                        Eliminar
+                                        {{ "admin.eliminar" | transloco }}
                                     </button>
                                 </div>
                             </div>
@@ -322,16 +323,16 @@
                         {{ "admin.add" | transloco }}
                     </button> -->
                     <button class="btn1" id="eliminarBtn" data-bs-toggle="modal" data-bs-target="#deleteModal2">
-                        ELIMINAR SELECCIONADOS
+                        {{"admin.eliminarSeleccionados" | transloco}}
                     </button>
                 </div>
     
                 <!-- header -->
                 <div class="headerDashboard grid">
-                    <h2 class="el">ACCIÓN</h2>
-                    <h2 class="el">NOMBRE</h2>
-                    <h2 class="el">ROL</h2>
-                    <h2 class="el">CORREO</h2>
+                    <h2 class="el">{{ "admin.action" | transloco }}</h2>
+                    <h2 class="el">{{ "admin.name" | transloco }}</h2>
+                    <h2 class="el">{{ "admin.rol" | transloco }}</h2>
+                    <h2 class="el">{{ "admin.correo" | transloco }}</h2>
                     <h2 class="el">PLAN</h2>
                     <!--<h2 class="el">ESTADO</h2>-->
                 </div>
@@ -424,12 +425,12 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                    Eliminar usuario
+                                    {{ "admin.eliminarUsuario" | transloco }}
                                 </h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body" #modal>
-                                <h1>¿Desea eliminar el usuario {{ currentUser.displayName }}?</h1>
+                                <h1>¿{{ "admin.deseaEliminarUsuario" | transloco }} {{ currentUser.displayName }}?</h1>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -437,7 +438,7 @@
                                 </button>
                                 <button type="button" class="btn btn-primary"
                                     (click)="firestoreService.deleteUser(currentUser.id)" data-bs-dismiss="modal">
-                                    Eliminar
+                                    {{ "admin.eliminar" | transloco }}
                                 </button>
                             </div>
                         </div>
@@ -452,19 +453,19 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                    Eliminar Usuarios
+                                    {{ "admin.eliminarUsuario" | transloco }}
                                 </h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body" #modal>
-                                <h1>¿Desea eliminar los usuarios seleccionados?</h1>
+                                <h1>¿{{ "admin.deseaEliminarUsuarios" | transloco }}?</h1>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                         {{ "admin.close" | transloco }}
                                     </button>
                                     <button type="button" class="btn btn-primary" (click)="deleteSelectedUsers()"
                                         data-bs-dismiss="modal">
-                                        Eliminar
+                                        {{ "admin.eliminar" | transloco }}
                                     </button>
                                 </div>
                             </div>
@@ -481,7 +482,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                        Editar usuario
+                                        {{ "admin.editarUsuario" | transloco }}
                                     </h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
@@ -517,7 +518,7 @@
                                         {{ "admin.close" | transloco }}
                                     </button>
                                     <button type="button submit" class="btn btn-primary" data-bs-dismiss="modal">
-                                        Save changes
+                                        {{ "admin.save" | transloco }}
                                     </button>
                                 </div>
                             </div>

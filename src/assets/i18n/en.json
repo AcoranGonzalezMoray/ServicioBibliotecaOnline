@@ -1,4 +1,4 @@
-{
+{ 
     "nav": {
         "home": "HOME",
         "audiobooks": "AUDIOBOOKS",
@@ -79,7 +79,18 @@
         "close": "Close",
         "save": "Save changes",
         "genero": "GENRE",
-        "eliminarSeleccionados": "REMOVE SELECTED"
+        "eliminarSeleccionados": "REMOVE SELECTED",
+        "editarLibro":"Edit book",
+        "eliminarLibro": "Delete book",
+        "deseaEliminar":"Do you want to delete the book ",
+        "deseaEliminarLibros":"Do you want to delete the selected books",
+        "eliminar": "Delete",
+        "rol": "ROLE",
+        "correo": "EMAIL",
+        "editarUsuario":"Edit user",
+        "eliminarUsuario": "Delete user",
+        "deseaEliminarUsuario":"Do you want to delete the user  ",
+        "deseaEliminarUsuarios":"Do you want to delete the selected users"
     },
     "seccion": {
         "genero": "Genre",
