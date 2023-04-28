@@ -1,9 +1,9 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { BookDescriptionService } from '../services/book-description.service';
 import { Book } from '../services/interfaces/book';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { UserToolsService } from '../services/user-tools.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-app-bookdescription',
   templateUrl: './app-bookdescription.component.html',
@@ -15,9 +15,16 @@ export class AppBookdescriptionComponent {
   public id:string|undefined
   public urlID:SafeResourceUrl|undefined
   public pageBook:number = 0
-  constructor(private userTool: UserToolsService ,private sanitizer: DomSanitizer,bookDescriptionService:BookDescriptionService){
+
+  constructor(private userTool: UserToolsService ,private sanitizer: DomSanitizer,public bookDescriptionService:BookDescriptionService, private route:Router){
     this.book = bookDescriptionService.getLibro()
+    var backup = sessionStorage.getItem('temporalBookDescription')
+    this.book?sessionStorage.setItem('temporalBookDescription', JSON.stringify(this.book)):this.book=JSON.parse(backup?backup:'')
   }
+
+
+
+
 
   leer(){
     const data = sessionStorage.getItem('user')
@@ -45,6 +52,8 @@ export class AppBookdescriptionComponent {
       //this.urlID se usa como src del ifrmae que esta en el html
       this.urlID = this.sanitizer.bypassSecurityTrustResourceUrl('https://docs.google.com/file/d/'+this.id+'/preview')
       
+    }else{
+      this.route.navigate(['/SIGNIN'])
     }
   }
 

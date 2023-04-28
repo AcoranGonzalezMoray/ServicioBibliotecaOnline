@@ -2,4 +2,12 @@
     position: fixed;
     top: 35px;
     z-index: 0;
+    background-color: var(--bkg-color) !important;
+}
+
+#sidebar .fs-4 {
+    color: var(--btn-bg-color) !important
+}
+#sidebar hr {
+    color: var(--btn-bg-color) !important
 }

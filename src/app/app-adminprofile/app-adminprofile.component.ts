@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { FirestoreService } from '../services/firestore/firestore.service';
 import { BookDescriptionService } from '../services/book-description.service'
 import { NgForm } from '@angular/forms'
-
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-app-adminprofile',
   templateUrl: './app-adminprofile.component.html',
@@ -22,13 +22,19 @@ export class AppAdminprofileComponent implements OnInit {
 
 
 
-  constructor(public firestoreService: FirestoreService, public bookDescriptionService: BookDescriptionService, public router: Router) {
+  constructor(public firestoreService: FirestoreService, public bookDescriptionService: BookDescriptionService, public router: Router, public authService: AuthService) {
     this.booksClicked = true;
     this.currentBook = "";
     this.currentUser = "";
   }
 
   ngOnInit(): void {
+    this.authService.isAdmin.subscribe(isAdmin => {
+      // Utilizar el valor de isAdmin, por ejemplo:
+      console.log(isAdmin)
+      !isAdmin?this.router.navigate(['/']):null
+    });
+
     this.books = sessionStorage.getItem("books");
     this.books = JSON.parse(this.books);
     //Obtenemos Coleccion Libros
@@ -75,6 +81,7 @@ export class AppAdminprofileComponent implements OnInit {
           followers: catData.payload.doc.data().followers,
           following: catData.payload.doc.data().following,
           readingHistory: [],
+          rol:catData.payload.doc.data().rol,
         });
         sessionStorage.setItem('users', JSON.stringify(this.users))
       })
@@ -122,6 +129,7 @@ export class AppAdminprofileComponent implements OnInit {
       followers: [],
       following: [],
       readingHistory: [],
+      rol: 'USER'
     }
 
     this.firestoreService.createUser(user);
@@ -235,7 +243,7 @@ export class AppAdminprofileComponent implements OnInit {
     const user: User = {
       uid: this.currentUser.uid, email: fieldValues[1], displayName: fieldValues[2], photoURL: fieldValues[3], emailVerified: this.currentUser.emailVerified,
       plan: fieldValues[4], favoriteBooksList: this.currentUser.favoriteBooksList, followers: this.currentUser.followers, following: this.currentUser.following,
-      readingHistory: this.currentUser.readingHistory
+      readingHistory: this.currentUser.readingHistory,rol: this.currentUser.readingHistory
     }
 
     this.firestoreService.updateUser(this.currentUser.id, user)

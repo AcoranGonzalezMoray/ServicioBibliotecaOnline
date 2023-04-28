@@ -21,7 +21,19 @@ export class AppInicioComponent implements OnInit{
   
   filter = false
 
-  foods: Genre[] = [
+  yrs: Genre[] = [
+    {value: 'steak-0', viewValue: '1990'},
+    {value: 'steak-0', viewValue: '1991'},
+    {value: 'steak-0', viewValue: '1992'},
+    {value: 'steak-0', viewValue: '1993'},
+    {value: 'steak-0', viewValue: '1994'},
+    {value: 'steak-0', viewValue: '1995'},
+    {value: 'steak-0', viewValue: '1996'},
+    {value: 'steak-0', viewValue: '1997'},
+    {value: 'steak-0', viewValue: '1998'},
+    {value: 'steak-0', viewValue: '1999'},
+  ];
+  gnr: Genre[] = [
     {value: 'steak-0', viewValue: 'Infantil'},
     {value: 'pizza-1', viewValue: 'DE 12 AÑOS EN ADELANTE'},
     {value: 'tacos-2', viewValue: 'Clásicos Universales'},
@@ -29,7 +41,6 @@ export class AppInicioComponent implements OnInit{
     {value: 'pizza-1', viewValue: 'Poesía y Teatro'},
     {value: 'tacos-2', viewValue: 'Diarios'},
   ];
-
   constructor(
     private firestoreService: FirestoreService,
     public authService: AuthService

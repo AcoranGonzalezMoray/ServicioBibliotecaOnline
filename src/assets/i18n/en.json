@@ -77,7 +77,9 @@
         "editorial": "EDITORIAL",
         "addbook": "Add Book",
         "close": "Close",
-        "save": "Save changes"
+        "save": "Save changes",
+        "genero": "GENRE",
+        "eliminarSeleccionados": "REMOVE SELECTED"
     },
     "seccion": {
         "genero": "Genre",

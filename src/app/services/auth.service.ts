@@ -7,12 +7,14 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  userData: any; 
-  DisplayName:any;
+  userData: any;
+  DisplayName: any;
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -50,20 +52,20 @@ export class AuthService {
       });
   }
 
-  SignUp(email: string,password:string,displayName: string, plan:string, url:string) {
+  SignUp(email: string, password: string, displayName: string, plan: string, url: string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
-       //this.SendVerificationMail();
+        //this.SendVerificationMail();
         this.DisplayName = displayName;
         this.SetUserData(result.user);
         console.log(result.user);
         sessionStorage.setItem('user', JSON.stringify(result.user));
         //this.router.navigate(['/']);
-        var Url = url+"?prefilled_email="+email
-        location.href=Url
+        var Url = url + "?prefilled_email=" + email
+        location.href = Url
       })
       .catch((error) => {
         window.alert(error.message);
@@ -90,12 +92,12 @@ export class AuthService {
   }
 
   get isLoggedIn(): boolean {
-    if(sessionStorage.getItem('user')){
-      var obj =sessionStorage.getItem('user');
+    if (sessionStorage.getItem('user')) {
+      var obj = sessionStorage.getItem('user');
       obj = JSON.parse(obj!);
       console.log(obj);
       return true;
-    }else{
+    } else {
       return false;
     }
   }
@@ -125,23 +127,41 @@ export class AuthService {
     const userData: User = {
       uid: user.uid,
       email: user.email,
-      displayName:this.DisplayName,
+      displayName: this.DisplayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
       plan: "Loading",
       favoriteBooksList: [],
       followers: [],
       following: [],
-      readingHistory: []
+      readingHistory: [],
+      rol: 'USER'
     };
     return userRef.set(userData, {
       merge: true,
     });
   }
+  get isAdmin(): Observable<boolean> {
+    const admin = sessionStorage.getItem('user');
+    if (admin) {
+      var obj = JSON.parse(admin);
+      const userRef: AngularFirestoreDocument<any> = this.afs.doc(`USUARIOS/${obj.uid}`);
+
+      // Obtener el valor del campo 'rol' del documento del usuario
+      return userRef.valueChanges().pipe(
+        map(rol => {
+          return rol.rol === 'ADMIN';
+        })
+      );
+    } else {
+      return of(false);
+    }
+  }
 
   SignOut() {
     return this.afAuth.signOut().then(() => {
-      sessionStorage.removeItem('user');
+      console.log("se elimina")
+      sessionStorage.clear();
       this.router.navigate(['/']);
     });
   }
