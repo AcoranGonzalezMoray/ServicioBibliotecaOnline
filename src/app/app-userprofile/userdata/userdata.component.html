@@ -1,0 +1,57 @@
+<div class="grid-userinformation">
+    <div>
+        <div class="field">
+        <h1><b>Datos de Usuario</b></h1>
+        </div>
+        <div class="field">
+            <label><b>Nombre de Usuario:</b></label>
+            <input type="text" [(ngModel)]="username" [disabled]="!editar">
+        </div>
+        <div class="field">
+            <label><b>Correo Electrónico:</b></label>
+            <input type="text" [(ngModel)]="email" [disabled]="!editar">
+            <p class="verificación" *ngIf="!verificado">El correo electronico no ha sido verificado: <button class="btn btn-primary">Verificar</button></p>
+        </div>
+        <div class="field">
+            <label><b>Cambiar Contraseña:</b></label>
+            <form action="">
+                <p>            
+                    <input type="password" placeholder="Contraseña Actual" required>
+                </p>
+                <p>
+                    <input type="password" placeholder="Contraseña Nueva" required>
+                </p>
+                <p>
+                    <input type="password" placeholder="Repetir Contraseña" required>
+                </p>
+                <p>
+                    <input class="btn btn-primary" type="submit" value="Cambiar">
+                </p>
+            </form>
+        </div>
+        <div class="field buttonsModify">
+            <div>
+            <button class="btn btn-primary" *ngIf="editar" (click)="aceptarEdicion()">Aceptar los cambios</button>
+            <button class="btn btn-primary" *ngIf="editar" (click)="cancelarEdicion()">Descartar los cambios</button>
+            <button class="btn btn-primary" *ngIf="!editar" (click)="editarInformacion()">Editar Información</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="field">
+            <h1><b>Datos del Plan</b></h1>
+            </div>
+        <div class="field">
+            <label><b>Plan:</b></label>
+            <p class="plan">{{plan}} <button class="btn btn-primary">Cambiar plan</button></p>
+        </div>
+        <div class="field">
+            <label><b>Inicio del Plan:</b></label>
+            <p class="plan">{{dateInit}}</p>
+        </div>
+        <div class="field">
+            <label><b>Fin del Plan:</b></label>
+            <p class="plan">{{dateFinal}}</p>
+        </div>
+    </div>
+</div>

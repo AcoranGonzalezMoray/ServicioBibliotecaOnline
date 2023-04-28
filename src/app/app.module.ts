@@ -30,13 +30,16 @@ import { AppPricingTableComponent } from './app-pricing-table/app-pricing-table.
 import { AppPaymentConfirmationComponent } from './app-payment-confirmation/app-payment-confirmation.component';
 import { CarouselOpenComponent } from './carousel-open/carousel-open.component';
 import { BannerComponent } from './banner/banner.component';
+import { UserdataComponent } from './app-userprofile/userdata/userdata.component';
+import { CollectionsComponent } from './app-userprofile/collections/collections.component';
+import { FormsModule } from '@angular/forms';
 import { LoaderComponent } from './loader/loader.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     NavegadorComponent,
     FooterComponent,
@@ -52,7 +55,9 @@ import { TranslocoRootModule } from './transloco-root.module';
     AppPaymentConfirmationComponent,
     CarouselOpenComponent,
     BannerComponent,
-    LoaderComponent,
+    UserdataComponent,
+    CollectionsComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +66,9 @@ import { TranslocoRootModule } from './transloco-root.module';
     AppRoutingModule,
     MatInputModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatSlideToggleModule,
+    FormsModule,
     RouterModule.forRoot([
       {path: '', component: AppInicioComponent },
       {path: 'DASHBOARDADMIN', component: AppAdminprofileComponent},

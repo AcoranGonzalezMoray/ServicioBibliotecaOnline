@@ -1,4 +1,4 @@
-{
+{ 
     "nav": {
         "home": "HOME",
         "audiobooks": "AUDIOBOOKS",
@@ -77,7 +77,20 @@
         "editorial": "EDITORIAL",
         "addbook": "Add Book",
         "close": "Close",
-        "save": "Save changes"
+        "save": "Save changes",
+        "genero": "GENRE",
+        "eliminarSeleccionados": "REMOVE SELECTED",
+        "editarLibro":"Edit book",
+        "eliminarLibro": "Delete book",
+        "deseaEliminar":"Do you want to delete the book ",
+        "deseaEliminarLibros":"Do you want to delete the selected books",
+        "eliminar": "Delete",
+        "rol": "ROLE",
+        "correo": "EMAIL",
+        "editarUsuario":"Edit user",
+        "eliminarUsuario": "Delete user",
+        "deseaEliminarUsuario":"Do you want to delete the user  ",
+        "deseaEliminarUsuarios":"Do you want to delete the selected users"
     },
     "seccion": {
         "genero": "Genre",
@@ -88,6 +101,10 @@
         "comentario": "comment",
         "comentarios": "Comments",
         "Leer": "Read",
-        "Enviar": "Send"
+        "Enviar": "Send",
+        "MásLeídos": "More Reads",
+        "MásVotados": "More voted",
+        "MásComentados": "More Commented",
+        "MásRecientes": "More Recent"
     }
 }

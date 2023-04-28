@@ -58,10 +58,10 @@
             </svg>
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/DASHBOARDUSER" href="#">Mi Perfil</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" routerLink="/DASHBOARDUSER" >{{'nav.profile' | transloco}}</a></li>
+            <li><a *ngIf="isAdmin" routerLink="/DASHBOARDADMIN" class="dropdown-item" href="#">Admin Dashboard</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#" (click)="authService.SignOut()" >Cerrar Sesion</a></li>
+            <li><a class="dropdown-item" href="#" (click)="signOut()" >{{'nav.logout' | transloco}}</a></li>
           </ul>
         </li>
 

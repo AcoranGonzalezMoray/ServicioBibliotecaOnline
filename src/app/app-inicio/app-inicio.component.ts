@@ -21,7 +21,19 @@ export class AppInicioComponent implements OnInit{
   
   filter = false
 
-  foods: Genre[] = [
+  yrs: Genre[] = [
+    {value: 'steak-0', viewValue: '1990'},
+    {value: 'steak-0', viewValue: '1991'},
+    {value: 'steak-0', viewValue: '1992'},
+    {value: 'steak-0', viewValue: '1993'},
+    {value: 'steak-0', viewValue: '1994'},
+    {value: 'steak-0', viewValue: '1995'},
+    {value: 'steak-0', viewValue: '1996'},
+    {value: 'steak-0', viewValue: '1997'},
+    {value: 'steak-0', viewValue: '1998'},
+    {value: 'steak-0', viewValue: '1999'},
+  ];
+  gnr: Genre[] = [
     {value: 'steak-0', viewValue: 'Infantil'},
     {value: 'pizza-1', viewValue: 'DE 12 AÑOS EN ADELANTE'},
     {value: 'tacos-2', viewValue: 'Clásicos Universales'},
@@ -29,7 +41,6 @@ export class AppInicioComponent implements OnInit{
     {value: 'pizza-1', viewValue: 'Poesía y Teatro'},
     {value: 'tacos-2', viewValue: 'Diarios'},
   ];
-
   constructor(
     private firestoreService: FirestoreService,
     public authService: AuthService
@@ -41,7 +52,7 @@ export class AppInicioComponent implements OnInit{
   ngOnInit() {
     
     //this.firestoreService.createCat({Autor: "ROBERTO ARLT", Descripcion: "Conjunto de escritos que describe la mutación de la ciudad de Buenos Aires, interpretando su pulso cotidiano, de modo crítico, nada concesivo, y haciendo del humor el estilo desenfadado de abordar esa compleja trama de personajes urbanos que desfilan en la vida porteña: tan lejos de cualquier moralismo abstracto como de toda pretensión estetizante y sacralizadora del mundo popular.",IMG: "https://covers.alibrate.com/b/59872e85cba2bce50c19b25b/29ea8e7b-0cff-4b81-8d6b-677faca87094/medium",Nombre: "AGUAFUERTES PORTEÑAS", Votos:65})
-    this.categories = [["Más Leídos","A"],["Más Votados","B"],["Más Comentados","C"],["Más Recientes","D"]]
+    this.categories = [["MásLeídos","A"],["MásVotados","B"],["MásComentados","C"],["MásRecientes","D"]]
     //Obtenemos Coleccion Libros
     this.firestoreService.getBooks().subscribe((catsSnapshot) => {
       this.books = [];

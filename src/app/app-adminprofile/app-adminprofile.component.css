@@ -1,10 +1,17 @@
+/*SVG*/
+img, svg {
+  vertical-align: middle;
+  color: var(--btn-bg-color);
+}
+
 /* Sección principal */
 #main {
   display: flex;
   margin-top: 60px;
+  margin-left: 270px;
 }
 
-.adminContent {
+.adminContent, .clm {
   width: 100%;
 }
 
@@ -16,7 +23,11 @@
 .topButtons {
   display: flex;
   flex-direction: row;
-  width: 50%;
+  width: 100%;
+  /* margin-left: 20px; */
+  justify-content: space-around;
+  /* align-content: space-between; */
+  flex-wrap: nowrap;
 }
 
 .btn1 {
@@ -26,7 +37,7 @@
   background: 0;
   cursor: pointer;
   transition: all .5s;
-  width: 100%;
+  width: 30%;
   margin-left: 5px;
   font-size: 10px;
 }
@@ -47,7 +58,7 @@
 /* Grid de elementos del dashboard */
 .grid {
   display: grid;
-  grid-template-columns: 225px repeat(3, 1fr);
+  grid-template-columns: 225px repeat(4, 1fr);
   gap: 2em;
   margin: 2em 2em 2em 2em;
   grid-auto-flow: row dense;
@@ -58,7 +69,7 @@
   align-items: center;
   background-color: #f2f2f2;
   display: grid;
-  grid-template-columns: 4em, repeat(3, 1fr);
+  grid-template-columns: 4em, repeat(4, 1fr);
   place-items: center;
 }
 
@@ -66,9 +77,10 @@
 .elementDashboard {
   align-items: center;
   background-color: var(--bkg-color);
+  color: var(--text-color);
   border: 1px solid #ccc;
   display: grid;
-  grid-template-columns: 4em, repeat(3, 1fr);
+  grid-template-columns: 4em, repeat(4, 1fr);
   place-items: center;
 }
 

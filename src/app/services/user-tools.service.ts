@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
+import { User } from './interfaces/user';
+import { Book } from './interfaces/book';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -59,7 +63,24 @@ export class UserToolsService {
     this.page = page;
     return page;
   }
-  
+
+  public getUser(id: string): Observable<any>{
+    return this.firestore.doc(`USUARIOS/${id}`).snapshotChanges();
+  }
+
+  public updateUser(user: User){
+    this.firestore.doc(`USUARIOS/${user.uid}`).update(user);
+  }
+
+  public updateFavoritesBooks(iduser: string, favbooks: string[]){
+    this.firestore.doc(`USUARIOS/${iduser}`).update({
+      favoriteBooksList: favbooks
+    });
+  }
+
+  public getBookforISBN(isbn: number): Observable<any> {
+    return this.firestore.collection('LIBROS', ref => ref.where('isbn', '==', isbn)).snapshotChanges()
+  }
 
 
 }

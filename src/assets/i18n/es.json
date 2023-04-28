@@ -77,7 +77,21 @@
         "editorial": "EDITORIAL",
         "addbook": "Añadir libro",
         "close": "Cerrar",
-        "save": "Guardar cambios"
+        "save": "Guardar cambios",
+        "genero": "GÉNERO",
+        "eliminarSeleccionados": "ELIMINAR SELECCIONADOS",
+        "editarLibro":"Editar libro",
+        "eliminarLibro": "Eliminar libro",
+        "deseaEliminar":"Desea eliminar el libro",
+        "deseaEliminarLibros":"Desea eliminar los libros seleccionados",
+        "eliminar": "Eliminar",
+        "rol": "ROL",
+        "correo": "CORREO",
+        "editarUsuario":"Editar usuario",
+        "eliminarUsuario": "Eliminar Usuario",
+        "deseaEliminarUsuario":"Desea eliminar el usuario ",
+        "deseaEliminarUsuarios":"Desea eliminar los usuarios seleccionados"
+
     },
     "seccion": {
         "genero": "Genero",
@@ -88,6 +102,10 @@
         "comentario": "comentario",
         "comentarios": "Comentarios",
         "Leer": "Leer",
-        "Enviar": "Enviar"
+        "Enviar": "Enviar",
+        "MásLeídos": "Más Leídos",
+        "MásVotados": "Más Votados",
+        "MásComentados": "Más Comentados",
+        "MásRecientes": "Más Recientes"
     }
 }
