@@ -15,7 +15,7 @@ export class AppBookdescriptionComponent {
   public id:string|undefined
   public urlID:SafeResourceUrl|undefined
   public pageBook:number = 0
-
+  public pages:number|undefined = 0
   constructor(private userTool: UserToolsService ,private sanitizer: DomSanitizer,public bookDescriptionService:BookDescriptionService, private route:Router){
     this.book = bookDescriptionService.getLibro()
     var backup = sessionStorage.getItem('temporalBookDescription')
@@ -34,6 +34,7 @@ export class AppBookdescriptionComponent {
 
       this.userTool.getMarker(uuid.uid,this.book.isbn).then((result)=>{
           this.pageBook = result
+          this.pages = this.book?.pages
       })
     
 
