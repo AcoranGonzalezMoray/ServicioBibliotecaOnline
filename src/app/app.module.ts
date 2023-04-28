@@ -19,7 +19,6 @@ import { AppComponent } from './app.component';
 import { AppInicioComponent } from './app-inicio/app-inicio.component';
 import { AppBookdescriptionComponent } from './app-bookdescription/app-bookdescription.component';
 import { AuthService } from './services/auth.service';
-import { FormsModule } from '@angular/forms';
 //import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
@@ -31,6 +30,9 @@ import { AppPricingTableComponent } from './app-pricing-table/app-pricing-table.
 import { AppPaymentConfirmationComponent } from './app-payment-confirmation/app-payment-confirmation.component';
 import { CarouselOpenComponent } from './carousel-open/carousel-open.component';
 import { BannerComponent } from './banner/banner.component';
+import { UserdataComponent } from './app-userprofile/userdata/userdata.component';
+import { CollectionsComponent } from './app-userprofile/collections/collections.component';
+import { FormsModule } from '@angular/forms';
 import { LoaderComponent } from './loader/loader.component';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -53,8 +55,10 @@ import { TranslocoRootModule } from './transloco-root.module';
     AppPaymentConfirmationComponent,
     CarouselOpenComponent,
     BannerComponent,
+    UserdataComponent,
+    CollectionsComponent,
     LoaderComponent
-   ],
+  ],
   imports: [
     BrowserModule,
     MatFormFieldModule ,
@@ -62,6 +66,7 @@ import { TranslocoRootModule } from './transloco-root.module';
     AppRoutingModule,
     MatInputModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatSlideToggleModule,
     FormsModule,
     RouterModule.forRoot([

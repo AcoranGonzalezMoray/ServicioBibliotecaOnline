@@ -1,0 +1,14 @@
+.tituloCarrusel h2{
+    display: inline-block;
+    margin-left: 1em;
+    margin-right: 5px;
+    margin-top: 1em;
+}
+
+.tituloCarrusel svg{
+    margin-top: -5px;
+}
+
+.carousel-control-next, .carousel-control-prev{
+    width: 5%;
+}
