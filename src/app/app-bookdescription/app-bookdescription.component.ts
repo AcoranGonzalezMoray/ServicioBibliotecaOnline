@@ -17,10 +17,12 @@ export class AppBookdescriptionComponent implements OnInit {
   public id:string|undefined
   public urlID:SafeResourceUrl|undefined
   public pageBook:number = 0
+  public availableLanguages:string[] =[]
+  public pages:number|undefined = 0
   userInformation!: User
   datauser = sessionStorage.getItem('user')
   fav = false
-  public pages:number|undefined = 0
+
   constructor(private userTool: UserToolsService ,private sanitizer: DomSanitizer,private bookDescriptionService:BookDescriptionService, private route:Router){
     
     this.book = bookDescriptionService.getLibro()
@@ -49,6 +51,8 @@ export class AppBookdescriptionComponent implements OnInit {
       })
       
     }
+
+    this.onInitBookLanguage()
   }
 
 
@@ -131,5 +135,50 @@ export class AppBookdescriptionComponent implements OnInit {
   close(){
     this.id= undefined
   }
+  onInitBookLanguage(){
+    const books = sessionStorage.getItem('books')
+    var booksJson:Book[]
+    if(books){
+      booksJson = JSON.parse(books)
+
+      booksJson.forEach((book:Book)=> {
+          if(book.title.toLocaleLowerCase()==this.book?.title.toLocaleLowerCase() && 
+            book.author.toLocaleLowerCase()==this.book.author.toLocaleLowerCase()){
+                this.availableLanguages.push(book.lan)
+          }
+      });
+
+    }
+  }
+
+
+  
+  bookLanguage(lan:string, isReading:boolean ){
+    const books = sessionStorage.getItem('books')
+    var booksJson:Book[]
+    if(books){
+      booksJson = JSON.parse(books)
+
+      booksJson.forEach((book:Book)=> {
+        if(book.title.toLocaleLowerCase()==this.book?.title.toLocaleLowerCase() && 
+        book.author.toLocaleLowerCase()==this.book.author.toLocaleLowerCase() && book.lan==lan){
+                this.book = book
+          }
+      });
+
+    }
+    isReading?this.leer():null
+  }
+
+
+
+
+
+
+
+
+
+
+
 
 }
