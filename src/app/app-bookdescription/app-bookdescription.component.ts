@@ -31,6 +31,7 @@ export class AppBookdescriptionComponent implements OnInit {
   }
 
   async ngOnInit() {
+    
     this.book = this.bookDescriptionService.getLibro();
     if (this.book && this.book.title) {
       this.book.title = this.book.title.toUpperCase()
@@ -53,6 +54,7 @@ export class AppBookdescriptionComponent implements OnInit {
     }
 
     this.onInitBookLanguage()
+    window.scrollTo(0, 0);
   }
 
 
@@ -126,7 +128,7 @@ export class AppBookdescriptionComponent implements OnInit {
         this.fav = !this.fav        
       }
     } else {
-      alert("Debe Iniciar Sesión para poder hacer uso de esta funcionalidad")
+      this.route.navigate(['/SIGNIN'])
     }
   }
   
@@ -167,6 +169,13 @@ export class AppBookdescriptionComponent implements OnInit {
       });
 
     }
+    const input:HTMLInputElement|null= document.querySelector('#page')
+    console.log(input)
+    if(input){
+      input.value = ''
+    }
+   
+
     isReading?this.leer():null
   }
 

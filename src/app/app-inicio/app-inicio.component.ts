@@ -93,7 +93,7 @@ export class AppInicioComponent implements OnInit{
       ["MásRecientes","D", this.shuffleArray(this.shuffleArray(this.books))]]
 
     });
-
+    window.scrollTo(0, 0);
   }
 
 }
