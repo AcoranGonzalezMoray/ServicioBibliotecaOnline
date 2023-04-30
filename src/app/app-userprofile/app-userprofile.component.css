@@ -66,3 +66,9 @@
 .carousel-control-next, .carousel-control-prev{
     width: 5%;
 }
+
+@media screen and (max-width:700px) {
+    .botonesSeleccion button, .botonesSeguidores button {
+        margin: 0.2rem;
+    }
+}

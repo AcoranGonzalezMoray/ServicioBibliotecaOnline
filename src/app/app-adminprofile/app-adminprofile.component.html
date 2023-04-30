@@ -1,5 +1,5 @@
 <app-navegador></app-navegador>
-<app-aside (usersClicked)="changestate($event)"></app-aside>
+<app-aside (usersClicked)="changestate($event)" #asideRef></app-aside>
 <section id="main">
     <div class="clm">
         <div class="adminContent">
@@ -7,6 +7,7 @@
             <div *ngIf="booksClicked; else usersClicked">
                 <!-- topButtons -->
                 <div class="topButtons">
+                    <!--<button class="asideButton" (click)="showHideAside()">aside</button>-->
                     <button type="button" class="btn1 btn-primary" data-bs-toggle="modal" data-bs-target="#addModal"
                         id="añadirBtn">
                         {{ "admin.add" | transloco }}

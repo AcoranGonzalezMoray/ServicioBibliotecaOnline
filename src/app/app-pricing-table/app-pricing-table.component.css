@@ -442,3 +442,18 @@ section{height: 100vh;background-image: url('https://i1.wp.com/www.24symbols.com
   color: #FFF;
   text-decoration:none;
 }
+
+
+@media screen and (max-width: 700px) {
+  section {
+    height: 100% !important;
+  }
+
+  .generic_price_table {
+    height: 250% !important;
+}
+
+  .dark-div {
+    height: 250% !important;
+  }
+}

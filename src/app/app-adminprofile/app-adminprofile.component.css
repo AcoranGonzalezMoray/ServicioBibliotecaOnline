@@ -102,3 +102,40 @@ img, svg {
 .btn:hover {
   color: #007bff;
 }
+
+@media screen and (max-width: 1199px) and (min-width: 701px) {
+  .clm {
+    width: 50rem;
+  }
+
+  .elementDashboard h2, .topButtons, .headerDashboard h2, .topButtons button {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .clm {
+    width: 40rem;
+  }
+
+  .elementDashboard h2, .topButtons, .headerDashboard h2, .topButtons button {
+    font-size: 15px;
+  }
+}
+
+/*ordenador*/
+@media screen and (min-width: 1200px) {
+  .asideButton {
+    display: none;
+  }
+}
+
+/*tablet*/
+@media screen and (max-width: 1199px) and (min-width: 701px) {
+  
+}
+
+/*movil*/
+@media screen and (max-width: 700px) {
+  
+}

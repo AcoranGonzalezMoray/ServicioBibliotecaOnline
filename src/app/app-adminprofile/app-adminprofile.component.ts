@@ -221,5 +221,18 @@ export class AppAdminprofileComponent implements OnInit {
     console.log(user)
     this.firestoreService.updateUser(this.currentUser.id, user)
   }
+/*
+  @ViewChild('asideRef', { static: false }) asideRef!: ElementRef;
 
+  showHideAside() {
+    if (this.asideRef) {
+      const aside = this.asideRef.nativeElement;
+      if (aside.style.display === "none") {
+        aside.style.display = "block";
+      } else {
+        aside.style.display = "none";
+      }
+    }
+  }
+*/
 }
