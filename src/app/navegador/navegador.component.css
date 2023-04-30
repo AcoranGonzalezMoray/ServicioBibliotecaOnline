@@ -14,14 +14,18 @@
 }
 .navbar .navbar-brand, .navbar a{
     color: var(--btn-bg-color);
+    margin-left: 1rem;
 }
 .navbar-nav {
     position: fixed;
     right: 20px;
+    /*background-color: black;*/
 }
 .nav-icon {
     display: flex;
+    flex-direction: row;
     align-items: center;
+
     margin-inline:10px;
     cursor: pointer;
 }
@@ -50,7 +54,44 @@
     display:none
 }
 
+
+
+@media screen and (max-width: 1199px) and (min-width: 701px) {
+    .navbar-nav {
+        background-color: var(--bkg-color);
+        /*#16161a*/
+    }
+
+    .nav-item a, .nav-icon svg {
+        color: var(--btn-bg-color) !important; 
+        font-size: 1.2rem
+    }
+
+    .nav-icon {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+    .navbar-nav {
+        background-color: var(--bkg-color);
+        /*#16161a*/
+    }
+
+    .nav-icon {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .nav-item a, .nav-icon svg {
+        color: var(--btn-bg-color) !important; 
+
+    }
+}
+
+
 #collapseExample {
     position: relative;
-    
 }

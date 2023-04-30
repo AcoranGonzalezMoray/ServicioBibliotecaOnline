@@ -6,6 +6,7 @@ body {
 --text-color: #000000;
 --paragraph: #000000;
 --bkg-color: #ffffff;
+--nav-color: #ffffff;
 --btn-txt-color: #fffffe;
 --btn-bg-color: #7f5af0;
 --bk-shadow: #2cb67d;
@@ -18,6 +19,7 @@ body.dark-theme {
 --text-color: #fffffe;
 --paragraph: #94a1b2;
 --bkg-color: #16161a;
+--nav-color: #16161a;
 --btn-txt-color: #fffffe;
 --btn-bg-color: #7f5af0;
 --bk-shadow: #2cb67d;
