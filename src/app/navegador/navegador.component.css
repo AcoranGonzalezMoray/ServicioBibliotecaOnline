@@ -57,20 +57,7 @@
 
 
 @media screen and (max-width: 1199px) and (min-width: 701px) {
-    .navbar-nav {
-        background-color: var(--bkg-color);
-        /*#16161a*/
-    }
-
-    .nav-item a, .nav-icon svg {
-        color: var(--btn-bg-color) !important; 
-        font-size: 1.2rem
-    }
-
-    .nav-icon {
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
-    }
+    
 
 }
 
