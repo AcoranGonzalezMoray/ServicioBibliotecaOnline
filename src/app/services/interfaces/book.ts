@@ -12,5 +12,6 @@ export interface Book {
     url: string,
     read: string[],
     imageURL: string,
-    pages: number
+    pages: number,
+    lan:string
 }

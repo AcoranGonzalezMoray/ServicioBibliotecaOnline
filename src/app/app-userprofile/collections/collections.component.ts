@@ -7,29 +7,39 @@ import { UserToolsService } from 'src/app/services/user-tools.service';
   templateUrl: './collections.component.html',
   styleUrls: ['./collections.component.css']
 })
-export class CollectionsComponent implements OnInit{
+export class CollectionsComponent implements OnInit {
   @Input() booksfavISBN!: String[];
-  booksfav!: Book[];
+  booksfav: Book[] = [];
   aparece = false;
 
-  constructor(private userTools: UserToolsService){}
+  constructor(private userTools: UserToolsService) { }
 
-  async ngOnInit(){
-    this.booksfav  = await this.cargarlibros();
+  async ngOnInit() {
+    await this.cargarlibros();
   }
 
-  async cargarlibros():Promise<Book[]>{
-    var booksfav: Book[] = [];
-    for(let ISBN_book in this.booksfavISBN){
+  async cargarlibros() {
+    for (let ISBN_book in this.booksfavISBN) {
       await this.userTools.getBookforISBN(Number(this.booksfavISBN[ISBN_book])).subscribe(async book => {
-        console.log(book)
-        book.forEach(async( element:any) => {
-          booksfav.push(element.payload.doc.data() as Book)
+        book.forEach(async (element: any) => {
+          this.booksfav.push(element.payload.doc.data() as Book)
         });
-      })
+        await this.eliminaDuplicados(); // Llamamos al método aquí, dentro del bloque subscribe
+      });
     }
-    console.log(booksfav)
     this.aparece = true;
-    return booksfav
+  }
+
+  async eliminaDuplicados() {
+    //console.log(this.booksfav)
+    let arraySinDuplicados: Book[] = [];
+    this.booksfav.forEach((objeto) => {
+      if (!arraySinDuplicados.some((item) => item.isbn === objeto.isbn)) {
+        //console.log(objeto.isbn)
+        arraySinDuplicados.push(objeto);
+      }
+    });
+    this.booksfav = arraySinDuplicados;
+    //console.log(this.booksfav)
   }
 }

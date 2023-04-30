@@ -140,6 +140,11 @@
                                     <input type="number" class="form-control" id="pages"
                                         placeholder="Ingrese el número de páginas" #pages />
                                 </div>
+                                <div class="form-group">
+                                    <label for="pages">Lenguaje:</label>
+                                    <input  class="form-control" 
+                                        placeholder="Lenguaje" #lan />
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -157,7 +162,8 @@
                         genre.value,
                         url.value,
                         imageURL.value,
-                        pages.value
+                        pages.value,
+                        lan.value
                       )
                     " data-bs-dismiss="modal">
                                     {{ "admin.save" | transloco }}
@@ -171,7 +177,7 @@
                 <!-- editModal -->
                 <form #editForm="ngForm"
                     (ngSubmit)="editBookForm(editForm, titleEdit.value, sinopsisEdit.value, authorEdit.value, publicationDateEdit.value,
-                        uploadDateEdit.value, editorialEdit.value, isbnEdit.value, genreEdit.value, urlEdit.value, imageURLEdit.value, pagesEdit.value)">
+                        uploadDateEdit.value, editorialEdit.value, isbnEdit.value, genreEdit.value, urlEdit.value, imageURLEdit.value, pagesEdit.value, lanEdit.value)">
                     <div class="modal fade" id="editBookModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
@@ -249,6 +255,11 @@
                                         <input type="number" class="form-control" id="pagesEdit"
                                             placeholder="Ingrese el número de páginas" #pagesEdit
                                             value="{{ currentBook.pages }}" name="pages" ngModel />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pages">Lenguaje:</label>
+                                        <input  class="form-control" 
+                                            placeholder="Lenguaje" value="{{ currentBook.lan }}" #lanEdit />
                                     </div>
                                 </div>
                                 <div class="modal-footer">

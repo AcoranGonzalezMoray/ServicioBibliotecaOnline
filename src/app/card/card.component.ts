@@ -24,7 +24,8 @@ export class CardComponent implements OnInit{
     url: '',
     read: [],
     imageURL:'',
-    pages: 0
+    pages: 0,
+    lan:''
   };
 
   constructor(public router:Router, public bookDescriptionService:BookDescriptionService) {

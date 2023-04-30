@@ -46,13 +46,21 @@ export class AppInicioComponent implements OnInit{
     public authService: AuthService
   ) {}
 
+  shuffleArray(array: any[]) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
+
   embeddingDriveImg(data:string){
     return "https://drive.google.com/uc?export=view&id="+data
   }
+
   ngOnInit() {
     
-    //this.firestoreService.createCat({Autor: "ROBERTO ARLT", Descripcion: "Conjunto de escritos que describe la mutación de la ciudad de Buenos Aires, interpretando su pulso cotidiano, de modo crítico, nada concesivo, y haciendo del humor el estilo desenfadado de abordar esa compleja trama de personajes urbanos que desfilan en la vida porteña: tan lejos de cualquier moralismo abstracto como de toda pretensión estetizante y sacralizadora del mundo popular.",IMG: "https://covers.alibrate.com/b/59872e85cba2bce50c19b25b/29ea8e7b-0cff-4b81-8d6b-677faca87094/medium",Nombre: "AGUAFUERTES PORTEÑAS", Votos:65})
-    this.categories = [["MásLeídos","A"],["MásVotados","B"],["MásComentados","C"],["MásRecientes","D"]]
     //Obtenemos Coleccion Libros
     this.firestoreService.getBooks().subscribe((catsSnapshot) => {
       this.books = [];
@@ -73,11 +81,19 @@ export class AppInicioComponent implements OnInit{
           url: catData.payload.doc.data().url,
           read: catData.payload.doc.data().read,
           imageURL:this.embeddingDriveImg(catData.payload.doc.data().imageURL.split("/")[5]),
-          pages: catData.payload.doc.data().pages
+          pages: catData.payload.doc.data().pages,
+          lan: catData.payload.doc.data().lan,
         });
         sessionStorage.setItem('books',JSON.stringify(this.books))
       })
+      // Mezcla la matriz de libros aleatoriamente una vez
+      this.categories = [["MásLeídos","A", this.shuffleArray(this.shuffleArray(this.books))],
+      ["MásVotados","B",  this.shuffleArray(this.shuffleArray(this.books))],
+      ["MásComentados","C", this.shuffleArray(this.shuffleArray(this.books))],
+      ["MásRecientes","D", this.shuffleArray(this.shuffleArray(this.books))]]
+
     });
+    window.scrollTo(0, 0);
   }
 
 }

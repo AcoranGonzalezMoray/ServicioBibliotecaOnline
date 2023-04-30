@@ -56,7 +56,8 @@ export class AppAdminprofileComponent implements OnInit {
           url: catData.payload.doc.data().url,
           read: catData.payload.doc.data().read,
           imageURL: this.embeddingDriveImg(catData.payload.doc.data().imageURL.split("/")[5]),
-          pages: catData.payload.doc.data().pages
+          pages: catData.payload.doc.data().pages,
+          lan: catData.payload.doc.data().lan
         });
         sessionStorage.setItem('books', JSON.stringify(this.books))
       })
@@ -100,12 +101,13 @@ export class AppAdminprofileComponent implements OnInit {
     genre: string,
     url: string,
     imageURL: string,
-    pages: string) {
+    pages: string,
+    lan:string) {
     const numberisbn = parseInt(isbn)
     const numberpages = parseInt(pages)
     const book: Book = {
       title: title, sinopsis: sinopsis, author: author, publicationDate: publicationDate, uploadDate: uploadDate,
-      editorial: editorial, isbn: numberisbn, reviews: [], comments: [], genre: genre, url: url, read: [], imageURL: imageURL, pages: numberpages
+      editorial: editorial, isbn: numberisbn, reviews: [], comments: [], genre: genre, url: url, read: [], imageURL: imageURL, pages: numberpages, lan:lan
     }
 
     this.firestoreService.createBook(book)
@@ -197,14 +199,14 @@ export class AppAdminprofileComponent implements OnInit {
   }
 
   editBookForm(editForm: NgForm, title: string, sinopsis: string, author: string, publicationDate: string,
-    uploadDate: string, editorial: string, isbn: string, genre: string, url: string, imageURL: string, pages: string): void {
+    uploadDate: string, editorial: string, isbn: string, genre: string, url: string, imageURL: string, pages: string, lan:string): void {
 
     var fieldValues = [title, sinopsis, author, publicationDate, uploadDate, editorial, isbn, genre, url, imageURL, pages]
 
     const book: Book = {
       title: fieldValues[0], sinopsis: fieldValues[1], author: fieldValues[2], publicationDate: fieldValues[3], uploadDate: fieldValues[4],
       editorial: fieldValues[5], isbn: parseInt(fieldValues[6]), reviews: this.currentBook.reviews, comments: this.currentBook.comments, genre: fieldValues[7],
-      url: fieldValues[8], read: this.currentBook.read, imageURL: fieldValues[9], pages: parseInt(fieldValues[10])
+      url: fieldValues[8], read: this.currentBook.read, imageURL: fieldValues[9], pages: parseInt(fieldValues[10]), lan: lan
     }
     console.log(book)
     this.firestoreService.updateBook(this.currentBook.id, book)
