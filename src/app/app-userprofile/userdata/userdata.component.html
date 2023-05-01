@@ -14,19 +14,38 @@
         </div>
         <div class="field">
             <label><b>Cambiar Contraseña:</b></label>
-            <form action="">
-                <p>            
-                    <input type="password" placeholder="Contraseña Actual" required>
-                </p>
-                <p>
-                    <input type="password" placeholder="Contraseña Nueva" required>
-                </p>
-                <p>
-                    <input type="password" placeholder="Repetir Contraseña" required>
-                </p>
-                <p>
+            <form name="form" [formGroup]="passwordForm" (ngSubmit)="onSubmit()">
+                <div class="inputerror">
+                    <input type="password" placeholder="Contraseña Nueva" formControlName="newPassword">
+                    <div class="errores">
+                        <div *ngIf="passwordForm.get('newPassword')?.errors?.['required'] && aparecenErrores">
+                            · El campo es obligatorio.
+                        </div>
+                        <div *ngIf="passwordForm.get('newPassword')?.errors?.['minlength'] && aparecenErrores">
+                            · Contraseña demasiado corta.(6 caracteres como mínimo)
+                        </div>
+                        <div *ngIf="passwordForm.get('newPassword')?.errors?.['maxlength'] && aparecenErrores">
+                            · Contraseña demasiado larga.(9 caracteres como máximo)
+                        </div>
+                    </div>
+                </div>
+                <div class="inputerror">
+                    <input class="inputerror" type="password" placeholder="Repetir Contraseña" formControlName="replynewPassword">
+                    <div class="errores">
+                        <div *ngIf="passwordForm.get('replynewPassword')?.errors?.['required'] && aparecenErrores">
+                            · El campo es obligatorio.
+                        </div>
+                        <div  *ngIf="passwordForm.get('replynewPassword')?.errors?.['minlength'] && aparecenErrores">
+                            · Contraseña demasiado corta.(6 caracteres como mínimo)
+                        </div>
+                        <div  *ngIf="passwordForm.get('replynewPassword')?.errors?.['maxlength'] && aparecenErrores">
+                            · Contraseña demasiado larga.(9 caracteres como máximo)
+                        </div>
+                    </div>
+                </div>
+                <div class="inputerror">
                     <input class="btn btn-primary" type="submit" value="Cambiar">
-                </p>
+                </div>
             </form>
         </div>
         <div class="field buttonsModify">

@@ -9,6 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { Auth, updateEmail, updatePassword } from '@angular/fire/auth';
 @Injectable({
   providedIn: 'root',
 })
@@ -20,6 +21,7 @@ export class AuthService {
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
     public ngZone: NgZone, // NgZone service to remove outside scope warning
+    private afnewAuth: Auth
   ) {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -165,4 +167,17 @@ export class AuthService {
       this.router.navigate(['/']);
     });
   }
+
+  UpdateEmail(email: string){
+    return updateEmail(this.afnewAuth.currentUser!, email)
+  }
+
+  CurrencyUser(){
+    return this.afnewAuth.currentUser;
+  }
+
+  UpdatePassword(newpassword:string){
+    return updatePassword(this.afnewAuth.currentUser!, newpassword);
+  }
+
 }

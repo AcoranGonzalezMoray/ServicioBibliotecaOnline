@@ -19,7 +19,7 @@ import { AppComponent } from './app.component';
 import { AppInicioComponent } from './app-inicio/app-inicio.component';
 import { AppBookdescriptionComponent } from './app-bookdescription/app-bookdescription.component';
 import { AuthService } from './services/auth.service';
-//import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
@@ -32,7 +32,7 @@ import { CarouselOpenComponent } from './carousel-open/carousel-open.component';
 import { BannerComponent } from './banner/banner.component';
 import { UserdataComponent } from './app-userprofile/userdata/userdata.component';
 import { CollectionsComponent } from './app-userprofile/collections/collections.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoaderComponent } from './loader/loader.component';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -67,6 +67,7 @@ import { TranslocoRootModule } from './transloco-root.module';
     MatInputModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     MatSlideToggleModule,
     FormsModule,
     RouterModule.forRoot([
@@ -79,7 +80,7 @@ import { TranslocoRootModule } from './transloco-root.module';
       {path: 'PLAN', component: AppPricingTableComponent },
       {path: 'PAYMENTCONFIRMATION', component: AppPaymentConfirmationComponent}
     ]),
-    //provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     AngularFireModule.initializeApp(environment.firebase),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),

@@ -1,4 +1,6 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/services/interfaces/user';
 import { UserToolsService } from 'src/app/services/user-tools.service';
 
@@ -16,19 +18,17 @@ export class UserdataComponent implements OnInit, OnChanges {
   dateInit= "10-04-2023"
   dateFinal= "10-05-2023"
   editar = false;
+  aparecenErrores = false;
+  passwordForm!: FormGroup;
 
 
   cpusername?:string
   cpemail?:string
 
-  constructor(private userService: UserToolsService){}
+  constructor(private userService: UserToolsService, private userAuthService: AuthService, private formbuilder: FormBuilder){}
 
   ngOnInit(): void {
-    // console.log(this.user)
-    // this.username = this.user?.displayName;
-    // this.email = this.user?.email;
-    // this.verificado = this.user?.emailVerified;
-    // this.plan = this.user?.plan;
+    this.passwordForm = this.initForm()
   }
 
   ngOnChanges(changes: SimpleChanges): void{
@@ -39,6 +39,21 @@ export class UserdataComponent implements OnInit, OnChanges {
     //   this.verificado = this.user?.emailVerified;
     //   this.plan = this.user?.plan;
     // }
+  }
+
+  initForm(): FormGroup{
+    return this.formbuilder.group({
+      newPassword: ['', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(9)
+      ]],
+      replynewPassword: ['', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(9)
+      ]]
+    })
   }
 
 
@@ -64,6 +79,7 @@ export class UserdataComponent implements OnInit, OnChanges {
       readingHistory: this.user?.readingHistory,
       rol:'USER'
     }
+    this.userAuthService.UpdateEmail(new_user.email!);
     this.userService.updateUser(new_user);
   }
 
@@ -71,6 +87,32 @@ export class UserdataComponent implements OnInit, OnChanges {
     this.username = this.cpusername;
     this.email = this.cpemail;
     this.editar = false;
+  }
+
+  newpasswordConfirmation(){
+    const password = this.passwordForm.value.newPassword;
+    const confirmPassword = this.passwordForm.value.replynewPassword;
+    if ((password == confirmPassword) && (password != "")) {
+      return true;
+    }
+    return false;
+  }
+
+  async onSubmit(){
+    this.aparecenErrores = true;
+    if(this.passwordForm.valid){
+      if(this.newpasswordConfirmation()){
+        let response = await this.userAuthService.UpdatePassword(this.passwordForm.value.newPassword);
+        if(response == undefined){
+          alert("La contraseña se ha actualizado con exito")
+        }
+        else{
+          console.log("Vuelva a logearse para poder realizar esta acción")
+          this.userAuthService.SignOut()
+        }
+      }
+    }
+    
   }
 
 }

@@ -41,6 +41,15 @@ h1{
     font-size: 35px;
 }
 
+.inputerror{
+    margin-top: 10px;
+}
+
+.errores {
+    color: red;
+    margin-bottom: 1em;
+}
+
 
 
 
