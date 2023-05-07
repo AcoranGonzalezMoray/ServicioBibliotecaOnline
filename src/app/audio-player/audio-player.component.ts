@@ -29,6 +29,10 @@ export class AudioPlayerComponent implements OnInit {
   audioURL!: string;
   @ViewChild('audioPlayer') audioPlayer!: ElementRef;
   
+  play = true
+
+
+
   constructor(public storage: AngularFireStorage){}
   ngOnInit() {
     const storageRef = this.storage.ref(this.audioBook.container);
@@ -59,6 +63,19 @@ export class AudioPlayerComponent implements OnInit {
       this.audioURL = url;
       this.audioPlayer.nativeElement.load();
       this.audioPlayer.nativeElement.play();
+      this.play = true
     });
   }
+
+  playStopAudioControl(){
+    if (this.audioPlayer.nativeElement.paused) {
+      this.audioPlayer.nativeElement.play();
+      this.play = true
+    }
+    else{
+      this.audioPlayer.nativeElement.pause();
+      this.play = false
+    } 
+  }
+  
 }
