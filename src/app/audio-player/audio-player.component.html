@@ -1,17 +1,40 @@
 <div class="dark"></div>
 <div class="container">
 	<div class="descripcion">
-		<h2>{{title}}</h2>
-		<p>
-			{{description}}
+		<h2>{{audioBook.title}}</h2>
+		<h5>{{audioBook.author}}</h5>
+		<p style="max-width: 250px;">
+			{{audioBook.synopsis}}		
 		</p>
 	</div>
 	<div class="custom-ol">
 		<ol>
-			<li *ngFor="let i of a">custom ol li url link list</li>
+			<li *ngFor="let item of audioItemsNoComplete">
+				<a  (click)="playAudio(item.fullPath)">{{ item.nameSimple}}</a>
+			</li>
 		</ol>
 	</div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+	<audio style="z-index: 4;" controls #audioPlayer>
+		<source [src]="audioURL" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	  
+
+
+	<!--Reproductor-->
 	<div class="player">
 		<div class="player__controls">
 			<div class="player__btn player__btn--small" id="previous">

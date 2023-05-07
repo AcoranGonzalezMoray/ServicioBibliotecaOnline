@@ -3,16 +3,12 @@
   <div class="carousel-inner">
 
     <div class="carousel-item active">
-      <app-audio-player title="EJEMPLO1" description="asdasdasdasdadasdsad"></app-audio-player>
+      <app-audio-player [audioBook]="{author:'', container:'', coverart:'', genre:'', lan:'', synopsis:'fghfghfgh', title:'fghfgh'}" ></app-audio-player>
     </div>
 
-    <div class="carousel-item">
-      <app-audio-player title="EJEMPLO2" description=""></app-audio-player>
+    <div *ngFor="let item of audiolibros" class="carousel-item">
+      <app-audio-player  [audioBook]="item" ></app-audio-player>
     </div>
-    <div class="carousel-item">
-      <app-audio-player title="EJEMPLO2"></app-audio-player>
-    </div>
-
 
   </div>
   <button class="carousel-control-prev" style="width: 5% !important;z-index: 4;" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">

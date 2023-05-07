@@ -49,4 +49,9 @@ export class FirestoreService {
     return this.firestore.collection('USUARIOS').doc(documentId).set(user);
   }
   
+
+  //Obtiene todos los audioLibros
+  public getAudioBooks() {
+    return this.firestore.collection('AUDIOLIBROS').snapshotChanges();
+  }
 }
