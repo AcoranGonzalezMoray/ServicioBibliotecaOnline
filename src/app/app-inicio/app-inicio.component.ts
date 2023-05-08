@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../services/firestore/firestore.service';
 import { AuthService } from '../services/auth.service';
+import { Book } from '../services/interfaces/book';
+import { NgForm } from '@angular/forms';
 
 interface Genre {
   value: string;
@@ -18,7 +20,9 @@ interface Genre {
 export class AppInicioComponent implements OnInit{
   public books:any[] = [];
   public categories:any[] = [];
-  
+  public searchResults: Book[] = [];
+  public searchEnabled: boolean = false;
+
   filter = false
 
   yrs: Genre[] = [
@@ -94,6 +98,16 @@ export class AppInicioComponent implements OnInit{
 
     });
     window.scrollTo(0, 0);
+  }
+
+
+  search(form: NgForm, searchTerm: string){
+    this.searchResults = this.books.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    this.searchEnabled = true;
+  }
+
+  cleanSearch() {
+
   }
 
 }
