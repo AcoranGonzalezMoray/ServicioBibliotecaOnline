@@ -1,17 +1,23 @@
 <div class="dark"></div>
-<div class="container">
-	<div class="descripcion">
+<div style="background-image: url({{img}});" class="container">
+	<div class="descripcion" id="{{audioBook.container}}Des">
 		<h2>{{audioBook.title}}</h2>
-		<h5>{{audioBook.author}}</h5>
-		<p style="max-width: 250px;">
+		<h3>Autor: {{audioBook.author}}</h3>
+		<h3>Genero: {{audioBook.genre}}</h3>
+		<h3>Lenguaje: {{audioBook.lan}}</h3>
+		<p >
 			{{audioBook.synopsis}}		
 		</p>
 	</div>
-	<div class="custom-ol">
+	<div class="custom-ol" id={{audioBook.container}} #customol  style="display: block;"> 
 		<ol>
-			<li *ngFor="let item of audioItemsNoComplete">
-				<a  (click)="playAudio(item.fullPath)">{{ item.nameSimple}}</a>
+			<li *ngFor="let item of audioItemsNoComplete; let i= index"   >
+				<div  id={{item.fullPath}} class="lds-ripple"><div></div><div></div></div>
+				<a (click)="playAudio(item.fullPath)">
+					{{ item.nameSimple}}
+				</a>
 			</li>
+
 		</ol>
 	</div>
 
@@ -22,7 +28,7 @@
 	<!--Reproductor-->
 	<div class="player">
 		<div class="player__controls">
-			<div class="player__btn player__btn--small" id="previous">
+			<div class="player__btn player__btn--small" id="previous" >
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 					class="bi bi-heart-fill" viewBox="0 0 16 16">
 					<path fill-rule="evenodd"
@@ -30,7 +36,7 @@
 				</svg>
 			</div>
 			<h5 class="player__title">playing now</h5>
-			<div class="player__btn player__btn--small" id="icon-menu">
+			<div class="player__btn player__btn--small" id="icon-menu" (click)="viewChapters(customol.id)">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list"
 					viewBox="0 0 16 16">
 					<path fill-rule="evenodd"
@@ -39,11 +45,11 @@
 			</div>
 		</div>
 		<div class="player__album">
-			<img src="https://i.ibb.co/ZS3wRSh/cover.jpg" alt="Album Cover" class="player__img" loading="lazy" />
+			<img src={{img}} alt="Album Cover" class="player__img" loading="lazy" />
 		</div>
 
-		<h2 class="player__artist">Disclosure</h2>
-		<h3 class="player__song">Latch</h3>
+		<h2 class="player__artist">{{audioBook.author}}</h2>
+		<h3 class="player__song">{{chapter}}</h3>
 
 		<!--<input type="range" value="20" min="0" class="player__level" id="range" />-->
 
@@ -54,7 +60,7 @@
 		</audio>
 		  
 		<div class="player__controls">
-			<div class="player__btn player__btn--medium" id="backward">
+			<div (click)="changeChapter(-1)" class="player__btn player__btn--medium" id="backward">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 					class="bi bi-skip-backward-fill" viewBox="0 0 16 16">
 					<path
@@ -63,19 +69,19 @@
 			</div>
 
 			<div (click)="playStopAudioControl()" class="player__btn player__btn--medium blue play" id="play">
-				<svg *ngIf="play" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+				<svg *ngIf="!play" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 					class="bi bi-google-play" viewBox="0 0 16 16">
 					<path
 						d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96 2.694-1.586Zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055l7.294-4.295ZM1 13.396V2.603L6.846 8 1 13.396ZM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27Z" />
 				</svg>
-				<svg *ngIf="!play" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+				<svg *ngIf="play" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 					class="bi bi-pause-fill" viewBox="0 0 16 16">
 					<path
 						d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z" />
 				</svg>
 			</div>
 
-			<div class="player__btn player__btn--medium" id="forward">
+			<div (click)="changeChapter(1)" class="player__btn player__btn--medium" id="forward">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 					class="bi bi-skip-forward-fill" viewBox="0 0 16 16">
 					<path
