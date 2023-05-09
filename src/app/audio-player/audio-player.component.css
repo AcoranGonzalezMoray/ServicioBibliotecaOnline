@@ -80,7 +80,7 @@ img {
   width: 95%;
   justify-content: space-evenly;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: -2px;
 }
 
 .player__btn {

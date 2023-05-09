@@ -2,6 +2,38 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Audiobook } from '../services/interfaces/audiobook';
 import { Observable, map } from 'rxjs';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+
+export const fadeInOutAnimation_Description =  trigger('fadeInOutA', [
+  state('void', style({ opacity: 0 })),
+  transition(':enter, :leave', [
+    animate(3000)
+  ]),
+]);
+
+export const fadeInOutAnimation_Chapters =  trigger('fadeInOutB', [
+  state('void', style({ opacity: 0 })),
+  transition(':enter, :leave', [
+    animate(3500)
+  ]),
+]);
+export const fadeInOutAnimation_Reproductor =  trigger('fadeInOutC', [
+  state('void', style({ opacity: 0 })),
+  transition(':enter, :leave', [
+    animate(4500)
+  ]),
+]);
+export const slideInAnimation =
+  trigger('slideIn', [
+    state('void', style({ transform: 'translateX(-100%)' })),
+    transition(':enter', [
+      animate('2000ms ease-in', style({ transform: 'translateX(0%)' }))
+    ]),
+    transition(':leave', [
+      animate('2000ms ease-out', style({ transform: 'translateX(100%)' }))
+    ])
+  ]);
+
 
 interface AudioItem {
   name: string;
@@ -14,7 +46,8 @@ interface AudioItem {
 @Component({
   selector: 'app-audio-player',
   templateUrl: './audio-player.component.html',
-  styleUrls: ['./audio-player.component.css']
+  styleUrls: ['./audio-player.component.css'],
+  animations: [slideInAnimation,fadeInOutAnimation_Description, fadeInOutAnimation_Chapters , fadeInOutAnimation_Reproductor ]
 })
 
 

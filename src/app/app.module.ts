@@ -38,6 +38,7 @@ import { AppAudiobookComponent } from './app-audiobook/app-audiobook.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [	
@@ -65,6 +66,7 @@ import { AudioPlayerComponent } from './audio-player/audio-player.component';
   imports: [
     BrowserModule,
     MatFormFieldModule ,
+    SwiperModule,
     MatSelectModule ,
     AppRoutingModule,
     MatInputModule,

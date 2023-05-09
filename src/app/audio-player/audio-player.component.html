@@ -1,6 +1,6 @@
 <div class="dark"></div>
-<div  style="background-image: url({{img}});" class="container">
-	<div class="descripcion" id="{{audioBook.container}}Des">
+<div style="background-image: url({{img}});" class="container">
+	<div [@fadeInOutA]  class="descripcion" id="{{audioBook.container}}Des">
 		<h2>{{audioBook.title}}</h2>
 		<h3>Autor: {{audioBook.author}}</h3>
 		<h3>Genero: {{audioBook.genre}}</h3>
@@ -9,7 +9,7 @@
 			{{audioBook.synopsis}}		
 		</p>
 	</div>
-	<div class="custom-ol" id={{audioBook.container}} #customol  style="display: block;"> 
+	<div [@fadeInOutB]  class="custom-ol" id={{audioBook.container}} #customol  style="display: block;"> 
 		<ol>
 			<li *ngFor="let item of audioItemsNoComplete; let i= index"   >
 				<div  id={{item.fullPath}} class="lds-ripple"><div></div><div></div></div>
@@ -26,7 +26,7 @@
 
 
 	<!--Reproductor-->
-	<div class="player">
+	<div [@slideIn] class="player">
 		<div class="player__controls">
 			<div class="player__btn player__btn--small" id="previous" >
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
