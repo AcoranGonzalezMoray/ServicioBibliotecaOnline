@@ -4,7 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { Book } from '../services/interfaces/book';
 import { NgForm } from '@angular/forms';
 
-interface Genre {
+interface Option {
   value: string;
   viewValue: string;
 }
@@ -22,33 +22,40 @@ export class AppInicioComponent implements OnInit{
   public categories:any[] = [];
   public searchResults: Book[] = [];
   public searchEnabled: boolean = false;
+  public genreResults: Book[] = [];
+  public genreEnabled: boolean = false;
+  public yearResults: Book[] = [];
+  public yearEnabled: boolean = false;
+  public selectedGenre!: string;
+  public selectedYear!: string;
 
   filter = false
 
-  yrs: Genre[] = [
-    {value: 'steak-0', viewValue: '1990'},
-    {value: 'steak-0', viewValue: '1991'},
-    {value: 'steak-0', viewValue: '1992'},
-    {value: 'steak-0', viewValue: '1993'},
-    {value: 'steak-0', viewValue: '1994'},
-    {value: 'steak-0', viewValue: '1995'},
-    {value: 'steak-0', viewValue: '1996'},
-    {value: 'steak-0', viewValue: '1997'},
-    {value: 'steak-0', viewValue: '1998'},
-    {value: 'steak-0', viewValue: '1999'},
-  ];
-  gnr: Genre[] = [
-    {value: 'steak-0', viewValue: 'Infantil'},
-    {value: 'pizza-1', viewValue: 'DE 12 AÑOS EN ADELANTE'},
-    {value: 'tacos-2', viewValue: 'Clásicos Universales'},
-    {value: 'steak-0', viewValue: 'Cuento'},
-    {value: 'pizza-1', viewValue: 'Poesía y Teatro'},
-    {value: 'tacos-2', viewValue: 'Diarios'},
+  years: Option[] = [];
+
+
+
+  
+  gnr: Option[] = [
+    {value: 'Infantil', viewValue: 'Infantil'},
+    {value: 'Misterio', viewValue: 'Misterio'},
+    {value: 'DE 12 AÑOS EN ADELANTE', viewValue: 'DE 12 AÑOS EN ADELANTE'},
+    {value: 'Clásicos Universales', viewValue: 'Clásicos Universales'},
+    {value: 'Cuento', viewValue: 'Cuento'},
+    {value: 'Poesía y Teatro', viewValue: 'Poesía y Teatro'},
+    {value: 'Diarios', viewValue: 'Diarios'},
   ];
   constructor(
     private firestoreService: FirestoreService,
     public authService: AuthService
-  ) {}
+  ) {
+
+    for (let year = 1980; year <= 2020; year++) {
+      const option: Option = {value: year.toString(), viewValue: year.toString()};
+      this.years.push(option);
+    }
+
+  }
 
   shuffleArray(array: any[]) {
     const shuffled = [...array];
@@ -107,6 +114,19 @@ export class AppInicioComponent implements OnInit{
   }
 
   cleanSearch() {
+    this.searchEnabled = false;
+  }
+
+
+  category(form: NgForm, genre: string){
+    this.genreResults = this.books.filter(book => book.genre.toLowerCase() === genre.toLowerCase());
+    this.genreEnabled = true;
+
+  }
+
+  year(form: NgForm, year: string){
+    this.yearResults = this.books.filter(book => book.publicationDate === year);
+    this.yearEnabled = true;
 
   }
 
