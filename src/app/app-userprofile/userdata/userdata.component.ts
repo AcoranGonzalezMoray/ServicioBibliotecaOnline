@@ -115,4 +115,13 @@ export class UserdataComponent implements OnInit, OnChanges {
     
   }
 
+  cancelPlan() {
+    if (this.user) {
+      this.user.plan = "sinPlan";
+      this.userService.updateUser(this.user);
+      alert("Al cancelar su plan no podrá iniciar sesión hasta que se suscriba nuevamente a alguno de nuestros planes")
+      this.userAuthService.SignOut();
+    }
+  }
+
 }

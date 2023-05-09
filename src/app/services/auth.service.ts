@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Auth, updateEmail, updatePassword } from '@angular/fire/auth';
+import {where} from "@angular/fire/firestore";
 @Injectable({
   providedIn: 'root',
 })
@@ -44,8 +45,19 @@ export class AuthService {
         //this.SetUserData(result.user);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
-            sessionStorage.setItem('user', JSON.stringify(user));
-            this.router.navigate(['/']);
+            this.afs.collection<User>('USUARIOS')
+              .valueChanges({idField: 'id', where: [['uid', '==', user.uid]]})
+              .pipe(
+                map(users => users[0])
+              ).subscribe(user => {
+                if (user.plan == "sinPlan") {
+                  alert("Debes suscribirte a un plan para poder iniciar sesión")
+                  this.router.navigate(['/PLAN', user.email, user.displayName])
+                } else {
+                  sessionStorage.setItem('user', JSON.stringify(user));
+                  this.router.navigate(['/']);
+                }
+              })
           }
         });
       })
