@@ -1,9 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Audiobook } from '../services/interfaces/audiobook';
-import { ListResult } from '@angular/fire/compat/storage/interfaces';
 import { Observable, map } from 'rxjs';
-import { from } from 'rxjs';
 
 interface AudioItem {
   name: string;
@@ -101,7 +99,8 @@ export class AudioPlayerComponent implements OnInit {
 
   changeChapter(direccion: number) {
     var minimo = parseInt(this.audioItemsNoComplete[0].name.split('_')[1])
-    if(this.chapter>minimo && this.chapter<this.audioItemsNoComplete.length){
+    console.log(minimo, this.chapter, this.audioItemsNoComplete.length)
+    if((this.chapter+direccion) >= minimo && (this.chapter+direccion)<=this.audioItemsNoComplete.length){
       this.chapter = this.chapter+direccion
       var audio:AudioItem = this.audioItemsNoComplete[this.chapter-1]
       this.playAudio(audio.fullPath)  

@@ -13,6 +13,7 @@ export class AppAudiobookComponent implements OnInit {
 
 
   audiolibros: Audiobook[]  = []
+  activeElement: Audiobook[]  = []
 
   constructor(public firestoreService: FirestoreService) {
   }
@@ -21,10 +22,15 @@ export class AppAudiobookComponent implements OnInit {
     this.firestoreService.getAudioBooks().subscribe((catsSnapshot) => {
       catsSnapshot.forEach((catData: any) => {
         var p: Audiobook = catData.payload.doc.data()
-        console.log(catData.payload.doc.data())
         this.audiolibros.push(p)
       })
+      
+    this.activeElement.push(this.audiolibros[0])
+    this.audiolibros = this.audiolibros.slice(1);
     })
+    
+  
+  
   }
 
 

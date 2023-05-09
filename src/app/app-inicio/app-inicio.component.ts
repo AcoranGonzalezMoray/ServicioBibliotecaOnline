@@ -67,7 +67,7 @@ export class AppInicioComponent implements OnInit{
       catsSnapshot.forEach((catData: any) => {
         this.books.push({
       
-          id: catData.payload.doc.id,
+          //id: catData.payload.doc.id,
           title: catData.payload.doc.data().title,
           sinopsis: catData.payload.doc.data().sinopsis,
           author: catData.payload.doc.data().author,
