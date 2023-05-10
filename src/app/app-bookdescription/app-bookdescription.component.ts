@@ -217,9 +217,9 @@ export class AppBookdescriptionComponent implements OnInit {
   }
 
   showLoggingMessage() {
-    if (!this.isLoggedIn) {
-      alert('Debes iniciar sesión para poder comentar');
-    }
+    !this.isLoggedIn?this.route.navigate(['/SIGNIN']):null
+      
+    
   }
 
   onSubmitReview() {
@@ -235,7 +235,9 @@ export class AppBookdescriptionComponent implements OnInit {
         copyBook?.reviews.push(review);
         copyBook!.imageURL = book.imageURL;
         this.firestoreService.updateBook(book.id, copyBook!);
-        sessionStorage.setItem('temporalBookDescription', JSON.stringify(copyBook));
+
+        //copyBook!.imageURL = this.book!.imageURL;
+        //sessionStorage.setItem('temporalBookDescription', JSON.stringify(copyBook));
       }
     });
 

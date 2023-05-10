@@ -3,6 +3,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Audiobook } from '../services/interfaces/audiobook';
 import { Observable, map } from 'rxjs';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Router } from '@angular/router';
 
 export const fadeInOutAnimation_Description =  trigger('fadeInOutA', [
   state('void', style({ opacity: 0 })),
@@ -67,12 +68,21 @@ export class AudioPlayerComponent implements OnInit {
   play = true
   img!: AudioItem;
 
+  @Input() padre:any
+
+  constructor(public storage: AngularFireStorage, public router: Router){}
 
 
-  constructor(public storage: AngularFireStorage){}
+  mostrarMensaje = false;
+
+
   ngOnInit() {
     const storageRef = this.storage.ref(this.audioBook.container);
 
+    this.padre.miEvento.subscribe(() => {
+      this.audioPlayer.nativeElement.pause();
+      this.play = false
+    });
 
     this.audioItems$ = storageRef.listAll().pipe(
       map((result: { items: { name: any; fullPath: any; }[]; }) => {
@@ -106,6 +116,7 @@ export class AudioPlayerComponent implements OnInit {
   }
 
   playAudio(filePath: string) {
+    sessionStorage.getItem('user')?null:this.router.navigate(['/SIGNIN'])
     this.chapter = parseInt(filePath.split('/')[1].split('_')[1])
     const audioRef = this.storage.ref(filePath);
     audioRef.getDownloadURL().subscribe(url => {

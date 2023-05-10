@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { FirestoreService } from '../services/firestore/firestore.service';
 import { Audiobook } from '../services/interfaces/audiobook';
-
+import { AudioPlayerComponent } from '../audio-player/audio-player.component';
 @Component({
   selector: 'app-app-audiobook',
   templateUrl: './app-audiobook.component.html',
@@ -18,6 +18,16 @@ export class AppAudiobookComponent implements OnInit {
   constructor(public firestoreService: FirestoreService) {
   }
 
+  
+  @ViewChild(AudioPlayerComponent)hijo!: AudioPlayerComponent;
+  miEvento = new EventEmitter();
+
+  emitirEvento() {
+    this.miEvento.emit();
+  }
+
+
+  
   ngOnInit() {
     this.firestoreService.getAudioBooks().subscribe((catsSnapshot) => {
       catsSnapshot.forEach((catData: any) => {
