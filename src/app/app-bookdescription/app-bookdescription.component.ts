@@ -27,7 +27,7 @@ export class AppBookdescriptionComponent implements OnInit {
   fav = false
   isLoggedIn: boolean = false;
   userReviewForm!: FormGroup;
-  books: any[] = [];
+  newBooks: any[] = [];
 
   constructor(private userTool: UserToolsService, private sanitizer: DomSanitizer, private bookDescriptionService: BookDescriptionService, private route: Router, private fb: FormBuilder, private firestoreService: FirestoreService) {
 
@@ -38,8 +38,6 @@ export class AppBookdescriptionComponent implements OnInit {
 
   async ngOnInit() {
 
-    console.log(this.id);
-
     this.book = this.bookDescriptionService.getLibro();
     if (this.book && this.book.title) {
       this.book.title = this.book.title.toUpperCase()
@@ -48,9 +46,8 @@ export class AppBookdescriptionComponent implements OnInit {
     this.book ? sessionStorage.setItem('temporalBookDescription', JSON.stringify(this.book)) : this.book = JSON.parse(backup ? backup : '')
 
     this.firestoreService.getBooks().subscribe((catsSnapshot) => {
-      this.books = [];
       catsSnapshot.forEach((catData: any) => {
-        this.books.push({
+        this.newBooks.push({
 
           id: catData.payload.doc.id,
           title: catData.payload.doc.data().title,
@@ -65,7 +62,7 @@ export class AppBookdescriptionComponent implements OnInit {
           genre: catData.payload.doc.data().genre,
           url: catData.payload.doc.data().url,
           read: catData.payload.doc.data().read,
-          imageURL: this.embeddingDriveImg(catData.payload.doc.data().imageURL.split("/")[5]),
+          imageURL: catData.payload.doc.data().imageURL,
           pages: catData.payload.doc.data().pages,
           lan: catData.payload.doc.data().lan
         });
@@ -230,21 +227,19 @@ export class AppBookdescriptionComponent implements OnInit {
       username: this.userInformation.displayName,
       opinion: this.userReviewForm.controls['opinion'].value
     };
+
+    const copyBook = this.book;
     
-    this.books.filter((book: any) => {
-      if (book.isbn === this.book?.isbn) {
-        book.reviews.push(review);
-        this.book = book;
-        this.firestoreService.updateBook(book.id, book);
+    this.newBooks.filter((book: any) => {
+      if (book.isbn === copyBook?.isbn) {
+        copyBook?.reviews.push(review);
+        copyBook!.imageURL = book.imageURL;
+        this.firestoreService.updateBook(book.id, copyBook!);
+        sessionStorage.setItem('temporalBookDescription', JSON.stringify(copyBook));
       }
     });
 
-
     alert('Comentario enviado con éxito');
     this.userReviewForm.reset();
-  }
-
-  embeddingDriveImg(data: string) {
-    return "https://drive.google.com/uc?export=view&id=" + data
   }
 }

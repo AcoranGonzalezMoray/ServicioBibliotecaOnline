@@ -3,7 +3,7 @@
     <section class="book_description_container">
         <div class="left_content" id="left_content">
             <div class="book_image_content">
-                <img id="book_image" src={{book?.imageURL}} alt="El pianista del gueto de Varsovia">
+                <img id="book_image" src={{book?.imageURL}} alt="{{book?.title}}">
             </div>
             <div class="buttons" id="buttons">
                 <button style="background-color:var(--btn-bg-color)" (click)="leer()">{{"seccion.Leer" | transloco}}</button>
