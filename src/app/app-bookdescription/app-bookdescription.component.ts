@@ -239,8 +239,6 @@ export class AppBookdescriptionComponent implements OnInit {
         sessionStorage.setItem('temporalBookDescription', JSON.stringify(this.book));
       }
     });
-
-    alert('Comentario enviado con éxito');
     this.userReviewForm.reset();
   }
 }
