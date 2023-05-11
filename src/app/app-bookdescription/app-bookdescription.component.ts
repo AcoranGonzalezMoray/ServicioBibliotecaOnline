@@ -8,6 +8,7 @@ import { User } from '../services/interfaces/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { elementAt } from 'rxjs';
 import { FirestoreService } from '../services/firestore/firestore.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-app-bookdescription',
@@ -16,6 +17,7 @@ import { FirestoreService } from '../services/firestore/firestore.service';
 })
 export class AppBookdescriptionComponent implements OnInit {
 
+  public isAdmin = false
   public book: Book | undefined
   public id: string | undefined
   public urlID: SafeResourceUrl | undefined
@@ -29,7 +31,7 @@ export class AppBookdescriptionComponent implements OnInit {
   userReviewForm!: FormGroup;
   newBooks: any[] = [];
 
-  constructor(private userTool: UserToolsService, private sanitizer: DomSanitizer, private bookDescriptionService: BookDescriptionService, private route: Router, private fb: FormBuilder, private firestoreService: FirestoreService) {
+  constructor(private userTool: UserToolsService, private sanitizer: DomSanitizer, private bookDescriptionService: BookDescriptionService, private route: Router, private fb: FormBuilder, private firestoreService: FirestoreService, public authService: AuthService) {
 
     this.book = bookDescriptionService.getLibro()
     var backup = sessionStorage.getItem('temporalBookDescription')
@@ -37,6 +39,11 @@ export class AppBookdescriptionComponent implements OnInit {
   }
 
   async ngOnInit() {
+
+    this.authService.isAdmin.subscribe(isAdmin => {
+        // Utilizar el valor de isAdmin, por ejemplo:
+        this.isAdmin = isAdmin
+      });
 
     this.book = this.bookDescriptionService.getLibro();
     if (this.book && this.book.title) {
