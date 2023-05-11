@@ -56,7 +56,7 @@
                         
                         <!--BUTTON START https://buy.stripe.com/test_8wM9Cab7y9Xt7FmaEF-->
                         <div class="generic_price_btn clearfix">
-                          <a class="" [routerLink]="['/SIGNUP',PLANB, BasicURL]" >Subscribirse</a>
+                          <a class="" (click)="email != null ? pasar_a_pagar(1) : pasar_a_registro(1)" >Subscribirse</a>
                         </div>
                         <!--//BUTTON END-->
                         
@@ -115,7 +115,7 @@
                         
                         <!--BUTTON START-->
                         <div class="generic_price_btn clearfix">
-                          <a class="" [routerLink]="['/SIGNUP',PLANS, StandarURL]" i18n>Subscribirse</a>
+                          <a class="" (click)="email != null ? pasar_a_pagar(2) : pasar_a_registro(2)" i18n>Subscribirse</a>
                         </div>
                         <!--//BUTTON END-->
                         
@@ -173,7 +173,7 @@
                         
                         <!--BUTTON START-->
                         <div class="generic_price_btn clearfix">
-                          <a class=""  [routerLink]="['/SIGNUP',PLANI, IlimitedURL]" i18n>Subscribirse</a>
+                          <a class="" (click)="email != null ? pasar_a_pagar(3) : pasar_a_registro(3)" i18n>Subscribirse</a>
                         </div>
                         <!--//BUTTON END-->
                         
