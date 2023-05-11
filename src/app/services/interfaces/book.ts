@@ -6,7 +6,7 @@ export interface Book {
     uploadDate: string,
     editorial: string,
     isbn: number,
-    reviews: [],    
+    reviews: any[],    
     comments: [],
     genre: string,
     url: string,
