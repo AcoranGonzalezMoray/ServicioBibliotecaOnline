@@ -78,7 +78,7 @@
                 <div class="comment">
                     <h4 class="username">{{review.username}}</h4>
                     <p class="review">{{review.opinion}}</p>
-                    <button class="deleteBtn" *ngIf="isAdmin">Eliminar reseña</button>
+                    <button class="deleteBtn" *ngIf="isAdmin" (click)="deleteReview(review)">Eliminar reseña</button>
                   </div>
             </div>
           </div>

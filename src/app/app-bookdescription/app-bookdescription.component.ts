@@ -10,11 +10,17 @@ import { elementAt } from 'rxjs';
 import { FirestoreService } from '../services/firestore/firestore.service';
 import { AuthService } from '../services/auth.service';
 
+interface Review {
+  username: string,
+  opinion: string
+}
+
 @Component({
   selector: 'app-app-bookdescription',
   templateUrl: './app-bookdescription.component.html',
   styleUrls: ['./app-bookdescription.component.css']
 })
+
 export class AppBookdescriptionComponent implements OnInit {
 
   public isAdmin = false
@@ -30,6 +36,8 @@ export class AppBookdescriptionComponent implements OnInit {
   isLoggedIn: boolean = false;
   userReviewForm!: FormGroup;
   newBooks: any[] = [];
+
+
 
   constructor(private userTool: UserToolsService, private sanitizer: DomSanitizer, private bookDescriptionService: BookDescriptionService, private route: Router, private fb: FormBuilder, private firestoreService: FirestoreService, public authService: AuthService) {
 
@@ -249,4 +257,21 @@ export class AppBookdescriptionComponent implements OnInit {
     alert('Comentario enviado con éxito');
     this.userReviewForm.reset();
   }
+
+  deleteReview(selectedReview: Review) {
+    
+    const copyBook = this.book
+    const currentBook = this.newBooks.filter(book => book.isbn === this.book?.isbn)[0];
+
+    this.book?.reviews.filter((review) => {
+      if (review.username == selectedReview.username && review.opinion == selectedReview.opinion) {
+        console.log(review);
+        var el = copyBook?.reviews.indexOf(review);
+        copyBook!.reviews.splice(el!, 1);
+        copyBook!.imageURL = this.book!.imageURL;
+        this.firestoreService.updateBook(currentBook.id, copyBook!);
+      }
+    });
+  }
+    
 }
