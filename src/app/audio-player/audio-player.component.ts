@@ -62,7 +62,6 @@ export class AudioPlayerComponent implements OnInit {
 
 
 
-
   @ViewChild('audioPlayer') audioPlayer!: ElementRef;
   chapter: number = 0
   play = true
@@ -169,6 +168,14 @@ export class AudioPlayerComponent implements OnInit {
       element.style.maxWidth="500px"
       element.style.fontSize="20px"
     }
+  }
+
+  maxWords = 110;
+  leerMas = false;
+
+  toggleLeerMas() {
+    this.leerMas = !this.leerMas;
+    this.maxWords = this.leerMas ? this.audioBook.synopsis.length : 50;
   }
   
 }

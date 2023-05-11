@@ -5,9 +5,12 @@
 		<h3>Autor: {{audioBook.author}}</h3>
 		<h3>Genero: {{audioBook.genre}}</h3>
 		<h3>Lenguaje: {{audioBook.lan}}</h3>
-		<p >
-			{{audioBook.synopsis}}		
-		</p>
+		<p *ngIf="!leerMas && audioBook.synopsis.length <= maxWords; else textoAcortado">{{ audioBook.synopsis }}</p>
+
+		<ng-template #textoAcortado>
+		  <p>{{ audioBook.synopsis | slice:0:maxWords }} <a style="text-decoration: none;color: inherit;" *ngIf="!leerMas">...</a><a *ngIf="!leerMas" (click)="toggleLeerMas()">Leer más</a></p>
+		  <p *ngIf="leerMas"><a  (click)="toggleLeerMas()">Leer menos</a></p>
+		</ng-template>
 	</div>
 	<div [@fadeInOutB]  class="custom-ol" id={{audioBook.container}} #customol  style="display: block;"> 
 		<ol>
