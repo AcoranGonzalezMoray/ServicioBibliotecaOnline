@@ -78,6 +78,24 @@ export class UserToolsService {
     });
   }
 
+  public updatePendingBooks(iduser: string, pengbooks: string[]){
+    this.firestore.doc(`USUARIOS/${iduser}`).update({
+      pendingBooksList: pengbooks
+    });
+  }
+
+  public updateReadingBooks(iduser: string, readbooks: string[]){
+    this.firestore.doc(`USUARIOS/${iduser}`).update({
+      readingBooksList: readbooks
+    });
+  }
+
+  public updateFinishedBooks(iduser: string, finbooks: string[]){
+    this.firestore.doc(`USUARIOS/${iduser}`).update({
+      finishedBooksList: finbooks
+    });
+  }
+
   public getBookforISBN(isbn: number): Observable<any> {
     return this.firestore.collection('LIBROS', ref => ref.where('isbn', '==', isbn)).snapshotChanges()
   }

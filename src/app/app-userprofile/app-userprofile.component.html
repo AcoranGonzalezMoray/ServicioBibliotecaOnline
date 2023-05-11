@@ -27,7 +27,11 @@
     [verificado]="userInformation?.emailVerified"
     [plan]="userInformation?.plan"></app-userdata>
     <ng-template #collections>
-      <app-collections [booksfavISBN]="userInformation!.favoriteBooksList!"></app-collections>
+      <app-collections 
+      [booksfavISBN]="userInformation!.favoriteBooksList!"
+      [bookspengISBN]="userInformation!.pendingBooksList!"
+      [booksreadISBN]="userInformation!.readingBooksList!"
+      [booksfinISBN]="userInformation!.finishedBooksList!"></app-collections>
     </ng-template>
 </section>
 <app-footer></app-footer>
