@@ -111,22 +111,25 @@ export class AppInicioComponent implements OnInit{
   search(form: NgForm, searchTerm: string){
     this.searchResults = this.books.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase()));
     this.searchEnabled = true;
-  }
 
-  cleanSearch() {
-    this.searchEnabled = false;
+    this.genreEnabled = false;
+    this.yearEnabled = false;
   }
-
 
   category(form: NgForm, genre: string){
     this.genreResults = this.books.filter(book => book.genre.toLowerCase() === genre.toLowerCase());
     this.genreEnabled = true;
 
+    this.searchEnabled = false;
+    this.yearEnabled = false;
   }
 
   year(form: NgForm, year: string){
     this.yearResults = this.books.filter(book => book.publicationDate === year);
     this.yearEnabled = true;
+
+    this.searchEnabled = false;
+    this.genreEnabled = false;
 
   }
 

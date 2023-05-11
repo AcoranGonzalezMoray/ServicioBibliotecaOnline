@@ -1,13 +1,14 @@
 <app-navegador></app-navegador>
 <section class="panel">
-  <app-banner [books]="books" ></app-banner>
+  <app-banner [books]="books"></app-banner>
   <div class="tools">
     <h4>{{'seccion.genero' | transloco}}</h4>
     <form #categoryForm="ngForm" (ngSubmit)="category(categoryForm, selectedGenre)">
       <mat-form-field appearance="fill">
         <mat-label>{{'seccion.FiltrarGenero' | transloco}}</mat-label>
         <mat-select>
-          <mat-option *ngFor="let g of gnr" [value]="g.value" (click)="selectedGenre = g.value; categoryForm.ngSubmit.emit()">
+          <mat-option *ngFor="let g of gnr" [value]="g.value"
+            (click)="selectedGenre = g.value; categoryForm.ngSubmit.emit()">
             {{g.viewValue}}
           </mat-option>
         </mat-select>
@@ -15,16 +16,21 @@
     </form>
 
     <h4>{{'seccion.año' | transloco}}</h4>
-    <form #yearForm="ngForm" (ngSubmit)="year(yearForm, selectedYear)">
-    <mat-form-field appearance="fill">
-      <mat-label>{{'seccion.FiltrarAño' | transloco}}</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let year of years" [value]="year.value" (click)="selectedYear = year.value; yearForm.ngSubmit.emit()">
-          {{year.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </form>
+    <form #yearForm="ngForm" (ngSubmit)="year(yearForm, selectedYear.value)">
+      <div class="input-group mb-3">
+        <input id="yearInput" type="text" class="form-control" placeholder="Año de publicación..." #selectedYear
+          ngModel>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </form>
 
 
     <form #searchForm="ngForm" (ngSubmit)="search(searchForm, searchTerm.value)">
@@ -41,35 +47,37 @@
         </div>
       </div>
     </form>
-    
+
   </div>
 
-  <div *ngIf="searchEnabled">
-    <h4>Resultados de la búsqueda:</h4>
-    <article class="firstRow grid">
-      <div *ngFor="let book of searchResults">
-        <app-card [book]="book"></app-card>
-      </div>
-    </article>
-  </div>
+  <section>
+    <div *ngIf="searchEnabled" class="search-results">
+      <h1>Resultados de la búsqueda:</h1>
+      <article class="firstRow grid">
+        <div *ngFor="let book of searchResults">
+          <app-card [book]="book"></app-card>
+        </div>
+      </article>
+    </div>
 
-  <div *ngIf="genreEnabled">
-    <h4>Resultados de la búsqueda:</h4>
-    <article class="firstRow grid">
-      <div *ngFor="let book of genreResults">
-        <app-card [book]="book"></app-card>
-      </div>
-    </article>
-  </div>
+    <div *ngIf="genreEnabled" class="search-results">
+      <h1>Resultados de la búsqueda:</h1>
+      <article class="firstRow grid">
+        <div *ngFor="let book of genreResults">
+          <app-card [book]="book"></app-card>
+        </div>
+      </article>
+    </div>
 
-  <div *ngIf="yearEnabled">
-    <h4>Resultados de la búsqueda:</h4>
-    <article class="firstRow grid">
-      <div *ngFor="let book of yearResults">
-        <app-card [book]="book"></app-card>
-      </div>
-    </article>
-  </div>
+    <div *ngIf="yearEnabled" class="search-results">
+      <h1>Resultados de la búsqueda:</h1>
+      <article class="firstRow grid">
+        <div *ngFor="let book of yearResults">
+          <app-card [book]="book"></app-card>
+        </div>
+      </article>
+    </div>
+  </section>
 
   <div class="CAROUSEL-SACTION">
     <div id={{cat[1]}} class="carousel slide" *ngFor="let cat of categories;let x = index">
