@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../services/firestore/firestore.service';
 import { AuthService } from '../services/auth.service';
+// import Swiper core and required modules
+// import Swiper core and required modules
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+
+// install Swiper modules
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 interface Genre {
   value: string;
@@ -67,7 +73,7 @@ export class AppInicioComponent implements OnInit{
       catsSnapshot.forEach((catData: any) => {
         this.books.push({
       
-          id: catData.payload.doc.id,
+          //id: catData.payload.doc.id,
           title: catData.payload.doc.data().title,
           sinopsis: catData.payload.doc.data().sinopsis,
           author: catData.payload.doc.data().author,
@@ -96,4 +102,16 @@ export class AppInicioComponent implements OnInit{
     window.scrollTo(0, 0);
   }
 
+
+
+
+
+
+
+  onSwiper(swiper: any) {
+    console.log(swiper);
+  }
+  onSlideChange() {
+    console.log('slide change');
+  }
 }

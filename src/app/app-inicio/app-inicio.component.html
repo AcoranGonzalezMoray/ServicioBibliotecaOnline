@@ -1,6 +1,6 @@
 <app-navegador></app-navegador>
 <section class="panel">
-  <app-banner [books]="books" ></app-banner>
+  <app-banner [books]="books"></app-banner>
   <div class="tools">
     <h4>{{'seccion.genero' | transloco}}</h4>
     <mat-form-field appearance="fill">
@@ -23,44 +23,74 @@
     </mat-form-field>
   </div>
 
-  <div class="CAROUSEL-SACTION">
-    <div id={{cat[1]}} class="carousel slide" *ngFor="let cat of categories;let x = index">
-      <app-carousel-open [books]="books" *ngIf="x==2"></app-carousel-open>
-      <h1 class="CT">{{'seccion.'+cat[0] | transloco}}</h1>
-      <div class="flex-carousel">
-        <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#'+cat[1]" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden" i18n>Previous</span>
-        </button>
-
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <article class="firstRow">
-              <div *ngFor="let book of cat[2];let i = index">
-                <app-card *ngIf="i<5" [book]="book"></app-card>
-              </div>
-            </article>
-          </div>
+  <h1 class="CT">{{'seccion.MásLeídos' | transloco}}</h1>
+  <swiper 
+  [slidesPerView]="5"
+  [spaceBetween]="3"
+  (swiper)="onSwiper($event)"
+  [centeredSlides]="true"
+  [centeredSlidesBounds]="true"
+  (slideChange)="onSlideChange()"
+  [navigation]="true"
+  [pagination]="{ clickable: true }"
+  >
+    <ng-template *ngFor="let book of categories[0][2];let i = index" swiperSlide>
+      <app-card [book]="book"></app-card>
+    </ng-template>
+    
+  </swiper>
 
 
-          <div class="carousel-item">
-            <article class="firstRow">
-              <div *ngFor="let book of cat[2];let i = index">
-                <app-card *ngIf="i>=5 && i<10" [book]="book"></app-card>
-              </div>
-            </article>
-          </div>
-        </div>
 
+  <h1 class="CT">{{'seccion.MásVotados' | transloco}}</h1>
+  <swiper 
+  [slidesPerView]="5"
+  [spaceBetween]="30"
+  (swiper)="onSwiper($event)"
+  [centeredSlides]="true"
+  [centeredSlidesBounds]="true"
+  (slideChange)="onSlideChange()"
+  [navigation]="true"
+  [pagination]="{ clickable: true }"
+  >
+    <ng-template *ngFor="let book of categories[1][2];let i = index" swiperSlide>
+      <app-card [book]="book"></app-card>
+    </ng-template>
+  </swiper>
 
-        <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#'+cat[1]" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden" i18n>Next</span>
-        </button>
+  <app-carousel-open [books]="books"></app-carousel-open>
 
-      </div>
-    </div>
-  </div>
+  <h1 class="CT">{{'seccion.MásComentados'| transloco}}</h1>
+  <swiper  
+  [slidesPerView]="5"
+  [spaceBetween]="30"
+  (swiper)="onSwiper($event)"
+  [centeredSlides]="true"
+  [centeredSlidesBounds]="true"
+  (slideChange)="onSlideChange()"
+  [navigation]="true"
+  [pagination]="{ clickable: true }"
+  >
+    <ng-template *ngFor="let book of categories[2][2];let i = index" swiperSlide>
+      <app-card [book]="book"></app-card>
+    </ng-template>
+  </swiper>
+
+  <h1 class="CT">{{'seccion.MásRecientes'| transloco}}</h1>
+  <swiper 
+  [slidesPerView]="5"
+  [spaceBetween]="30"
+  (swiper)="onSwiper($event)"
+  [centeredSlides]="true"
+  [centeredSlidesBounds]="true"
+  (slideChange)="onSlideChange()"
+  [navigation]="true"
+  [pagination]="{ clickable: true }"
+  >
+    <ng-template *ngFor="let book of categories[3][2];let i = index" swiperSlide>
+      <app-card [book]="book"></app-card>
+    </ng-template>
+  </swiper>
   <br>
 </section>
 

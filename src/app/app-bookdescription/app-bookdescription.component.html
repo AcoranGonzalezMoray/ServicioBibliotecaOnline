@@ -3,7 +3,7 @@
     <section class="book_description_container">
         <div class="left_content" id="left_content">
             <div class="book_image_content">
-                <img id="book_image" src={{book?.imageURL}} alt="El pianista del gueto de Varsovia">
+                <img id="book_image" src={{book?.imageURL}} alt="{{book?.title}}">
             </div>
             <div class="buttons" id="buttons">
                 <button style="background-color:var(--btn-bg-color)" (click)="leer()">{{"seccion.Leer" | transloco}}</button>
@@ -79,27 +79,19 @@
     </section>
     <section class="msg_container">
         <div class="comment-box">
-            <form>
+            <form [formGroup]="userReviewForm" (ngSubmit)="onSubmitReview()">
                 <h4>{{"seccion.DejaTuComentario" | transloco}}</h4>
                 <label for="comment">{{"seccion.comentario" | transloco}}:</label>
                 <div class="btn-msg">
-                    <textarea id="comment" name="comment" required></textarea>
-                    <button type="submit">{{"seccion.Enviar" | transloco}}</button>
+                    <textarea formControlName="opinion" id="comment" name="comment" (click)="showLoggingMessage()" required></textarea>
+                    <button type="submit" [disabled]="!userReviewForm.valid || !isLoggedIn">{{"seccion.Enviar" | transloco}}</button>
                 </div>
               </form>
             <h3>{{"seccion.comentarios" | transloco}}</h3>
-            <div>
+            <div *ngFor="let review of book?.reviews">
                 <div class="comment">
-                    <h4>Juan Pérez</h4>
-                    <p>Me encantó este libro, lo recomiendo totalmente. La trama es muy interesante y los personajes están muy bien desarrollados.</p>
-                  </div>
-                  <div class="comment">
-                    <h4>Maria González</h4>
-                    <p>No pude terminar de leer este libro, la historia no me enganchó y los personajes no me parecieron muy creíbles.</p>
-                  </div>
-                  <div class="comment">
-                    <h4>Pedro Ruiz</h4>
-                    <p>Este libro me resultó aburrido y predecible. No lo recomendaría.</p>
+                    <h4 class="username">{{review.username}}</h4>
+                    <p class="review">{{review.opinion}}</p>
                   </div>
             </div>
           </div>

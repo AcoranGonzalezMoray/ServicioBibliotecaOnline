@@ -34,9 +34,11 @@ import { UserdataComponent } from './app-userprofile/userdata/userdata.component
 import { CollectionsComponent } from './app-userprofile/collections/collections.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoaderComponent } from './loader/loader.component';
-
+import { AppAudiobookComponent } from './app-audiobook/app-audiobook.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
+import { AudioPlayerComponent } from './audio-player/audio-player.component';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [	
@@ -57,11 +59,14 @@ import { TranslocoRootModule } from './transloco-root.module';
     BannerComponent,
     UserdataComponent,
     CollectionsComponent,
-    LoaderComponent
+    LoaderComponent,
+    AppAudiobookComponent,
+    AudioPlayerComponent
   ],
   imports: [
     BrowserModule,
     MatFormFieldModule ,
+    SwiperModule,
     MatSelectModule ,
     AppRoutingModule,
     MatInputModule,
@@ -72,6 +77,7 @@ import { TranslocoRootModule } from './transloco-root.module';
     FormsModule,
     RouterModule.forRoot([
       {path: '', component: AppInicioComponent },
+      {path: 'AUDIOBOOK', component: AppAudiobookComponent },
       {path: 'DASHBOARDADMIN', component: AppAdminprofileComponent},
       {path: 'DASHBOARDUSER', component: AppUserprofileComponent},
       {path: 'BOOKDESCRIPTION', component: AppBookdescriptionComponent},
