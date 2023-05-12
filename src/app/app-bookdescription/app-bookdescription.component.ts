@@ -232,9 +232,9 @@ export class AppBookdescriptionComponent implements OnInit {
   }
 
   showLoggingMessage() {
-    if (!this.isLoggedIn) {
-      alert('Debes iniciar sesión para poder comentar');
-    }
+    !this.isLoggedIn?this.route.navigate(['/SIGNIN']):null
+      
+    
   }
 
   onSubmitReview() {
@@ -243,18 +243,17 @@ export class AppBookdescriptionComponent implements OnInit {
       opinion: this.userReviewForm.controls['opinion'].value
     };
 
-    const copyBook = this.book;
+    const copyBook = Object.assign({}, this.book);
     
     this.newBooks.filter((book: any) => {
       if (book.isbn === copyBook?.isbn) {
         copyBook?.reviews.push(review);
         copyBook!.imageURL = book.imageURL;
         this.firestoreService.updateBook(book.id, copyBook!);
-        sessionStorage.setItem('temporalBookDescription', JSON.stringify(copyBook));
+        this.book!.reviews!= copyBook?.reviews
+        sessionStorage.setItem('temporalBookDescription', JSON.stringify(this.book));
       }
     });
-
-    alert('Comentario enviado con éxito');
     this.userReviewForm.reset();
   }
 
