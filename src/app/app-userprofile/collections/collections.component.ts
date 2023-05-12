@@ -30,7 +30,7 @@ export class CollectionsComponent implements OnInit {
         book.forEach(async (element: any) => {
           this.booksfav.push(element.payload.doc.data() as Book)
         });
-        await this.eliminaDuplicados(); // Llamamos al método aquí, dentro del bloque subscribe
+        this.booksfav = await this.eliminaDuplicados(this.booksfav); // Llamamos al método aquí, dentro del bloque subscribe
       });
     }
     for (let ISBN_book in this.bookspengISBN) {
@@ -38,7 +38,7 @@ export class CollectionsComponent implements OnInit {
         book.forEach(async (element: any) => {
           this.bookspeng.push(element.payload.doc.data() as Book)
         });
-        //await this.eliminaDuplicados(); // Llamamos al método aquí, dentro del bloque subscribe
+        this.bookspeng = await this.eliminaDuplicados(this.bookspeng); // Llamamos al método aquí, dentro del bloque subscribe
       });
     }
 
@@ -47,7 +47,7 @@ export class CollectionsComponent implements OnInit {
         book.forEach(async (element: any) => {
           this.booksread.push(element.payload.doc.data() as Book)
         });
-        //await this.eliminaDuplicados(); // Llamamos al método aquí, dentro del bloque subscribe
+        this.booksread = await this.eliminaDuplicados(this.booksread); // Llamamos al método aquí, dentro del bloque subscribe
       });
     }
 
@@ -56,23 +56,23 @@ export class CollectionsComponent implements OnInit {
         book.forEach(async (element: any) => {
           this.booksfin.push(element.payload.doc.data() as Book)
         });
-        //await this.eliminaDuplicados(); // Llamamos al método aquí, dentro del bloque subscribe
+        this.booksfin = await this.eliminaDuplicados(this.booksfin); // Llamamos al método aquí, dentro del bloque subscribe
       });
     }
 
     this.aparece = true;
   }
 
-  async eliminaDuplicados() {
+  async eliminaDuplicados(array: Book[]) {
     //console.log(this.booksfav)
     let arraySinDuplicados: Book[] = [];
-    this.booksfav.forEach((objeto) => {
+    array.forEach((objeto) => {
       if (!arraySinDuplicados.some((item) => item.isbn === objeto.isbn)) {
         //console.log(objeto.isbn)
         arraySinDuplicados.push(objeto);
       }
     });
-    this.booksfav = arraySinDuplicados;
+    return arraySinDuplicados;
     //console.log(this.booksfav)
   }
 }
