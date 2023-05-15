@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../services/firestore/firestore.service';
 import { AuthService } from '../services/auth.service';
-import { Book } from '../services/interfaces/book';
-import { NgForm } from '@angular/forms';
 // import Swiper core and required modules
 // import Swiper core and required modules
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
@@ -26,21 +24,7 @@ interface Option {
 export class AppInicioComponent implements OnInit{
   public books:any[] = [];
   public categories:any[] = [];
-  public searchResults: Book[] = [];
-  public searchEnabled: boolean = false;
-  public genreResults: Book[] = [];
-  public genreEnabled: boolean = false;
-  public yearResults: Book[] = [];
-  public yearEnabled: boolean = false;
-  public selectedGenre!: string;
-  public selectedYear!: string;
-
   filter = false
-
-  years: Option[] = [];
-
-
-
   
   gnr: Option[] = [
     {value: 'Infantil', viewValue: 'Infantil'},
@@ -54,14 +38,7 @@ export class AppInicioComponent implements OnInit{
   constructor(
     private firestoreService: FirestoreService,
     public authService: AuthService
-  ) {
-
-    for (let year = 1980; year <= 2020; year++) {
-      const option: Option = {value: year.toString(), viewValue: year.toString()};
-      this.years.push(option);
-    }
-
-  }
+  ) {}
 
   shuffleArray(array: any[]) {
     const shuffled = [...array];
@@ -112,36 +89,6 @@ export class AppInicioComponent implements OnInit{
     });
     window.scrollTo(0, 0);
   }
-
-
-  search(form: NgForm, searchTerm: string){
-    this.searchResults = this.books.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase()));
-    this.searchEnabled = true;
-
-    this.genreEnabled = false;
-    this.yearEnabled = false;
-  }
-
-  category(form: NgForm, genre: string){
-    this.genreResults = this.books.filter(book => book.genre.toLowerCase() === genre.toLowerCase());
-    this.genreEnabled = true;
-
-    this.searchEnabled = false;
-    this.yearEnabled = false;
-  }
-
-  year(form: NgForm, year: string){
-    this.yearResults = this.books.filter(book => book.publicationDate === year);
-    this.yearEnabled = true;
-
-    this.searchEnabled = false;
-    this.genreEnabled = false;
-
-  }
-
-
-
-
 
 
   onSwiper(swiper: any) {
