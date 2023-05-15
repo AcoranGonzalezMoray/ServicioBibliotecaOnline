@@ -99,6 +99,7 @@ export class AppBookdescriptionComponent implements OnInit {
 
 
   leer() {
+    this.incrementReadsBooks()
     const data = sessionStorage.getItem('user')
     if (data && this.book && this.book.url) {
 
@@ -241,4 +242,39 @@ export class AppBookdescriptionComponent implements OnInit {
     });
     this.userReviewForm.reset();
   }
+
+
+  incrementReadsBooks(){ 
+    const copyBook = Object.assign({}, this.book);
+    const user = sessionStorage.getItem('user')
+    var uuid = { uid: '' }
+    user?uuid = JSON.parse(user):null
+
+    var exist = false
+    this.newBooks.filter((book: any) => {
+      if (book.isbn === copyBook?.isbn) {
+
+        book.read.filter((read: string)=>{ if (read === uuid.uid) exist = true})
+        if (!exist){
+          console.log("no exiaste");
+          copyBook?.read.push(uuid.uid);
+          book.read.push(uuid.uid)
+          copyBook!.imageURL = book.imageURL;
+          this.firestoreService.updateBook(book.id, copyBook!);
+        }           
+
+      }
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
 }

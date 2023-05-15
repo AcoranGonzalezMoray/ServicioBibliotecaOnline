@@ -93,10 +93,19 @@ export class AppInicioComponent implements OnInit{
         sessionStorage.setItem('books',JSON.stringify(this.books))
       })
       // Mezcla la matriz de libros aleatoriamente una vez
-      this.categories = [["MásLeídos","A", this.shuffleArray(this.shuffleArray(this.books))],
-      ["MásVotados","B",  this.shuffleArray(this.shuffleArray(this.books))],
-      ["MásComentados","C", this.shuffleArray(this.shuffleArray(this.books))],
-      ["MásRecientes","D", this.shuffleArray(this.shuffleArray(this.books))]]
+      var  mostRead = [...this.books];
+      mostRead = mostRead.sort((a,b)=> b.read.length -a.read.length);
+      var mostComment = [...this.books];
+      mostComment =  mostComment.sort((a,b)=> b.reviews.length -a.reviews.length);
+      var mostRecent = [...this.books];
+      mostRecent=   mostRecent.sort((a,b)=> b.uploadDate - a.uploadDate );
+      var mostFav= [...this.books];
+      mostFav=   mostFav.sort((a,b)=> (b.read.length+b.comments.length) - (a.read.length+a.comments.length) );
+
+      this.categories = [["MásLeídos","A",  mostRead],
+      ["MásComentados","B", mostComment],
+      ["MásVotados","C",  mostFav],
+      ["MásRecientes","D", mostRecent]]
 
     });
     window.scrollTo(0, 0);
