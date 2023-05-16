@@ -218,6 +218,10 @@ article {
     font-weight: 600;
 }
 
+.dropdown-item{
+  cursor: pointer;
+}
+
 @media (max-width: 880px) {
     .book_description_container {
         gap: 2rem;
@@ -238,4 +242,6 @@ article {
     .right_content .book_details p {
         font-size: 1rem;
     }
+
+
 }

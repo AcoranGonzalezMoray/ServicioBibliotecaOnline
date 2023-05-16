@@ -25,6 +25,8 @@ export class AppBookdescriptionComponent implements OnInit {
   userInformation!: User
   datauser = sessionStorage.getItem('user')
   fav = false
+  book_state = "";
+  state = false;
   isLoggedIn: boolean = false;
   userReviewForm!: FormGroup;
   newBooks: any[] = [];
@@ -75,11 +77,36 @@ export class AppBookdescriptionComponent implements OnInit {
       this.userTool.getUser(user.uid).subscribe(async user => {
         this.userInformation = await user.payload.data() as User;
         let favbooks = this.userInformation.favoriteBooksList;
-        for (let i = 0; i < favbooks!.length; i++) {
-          if (favbooks![i] == this.book!.isbn.toString()) {
-            this.fav = true
-          }
+        let pengbooks = this.userInformation.pendingBooksList
+        let readbooks = this.userInformation.readingBooksList;
+        let finbooks = this.userInformation.finishedBooksList;
+
+      for(let i = 0 ; i < favbooks!.length ; i++){
+        if (favbooks![i] == this.book!.isbn.toString()){
+          this.fav = true
         }
+      }
+
+      for(let i = 0 ; i < pengbooks!.length ; i++){
+        if (pengbooks![i] == this.book!.isbn.toString()){
+          this.state = true
+          this.book_state = "pendiente"
+        }
+      }
+
+      for(let i = 0 ; i < readbooks!.length ; i++){
+        if (readbooks![i] == this.book!.isbn.toString()){
+          this.state = true
+          this.book_state = "leyendo"
+        }
+      }
+
+      for(let i = 0 ; i < finbooks!.length ; i++){
+        if (finbooks![i] == this.book!.isbn.toString()){
+          this.state = true
+          this.book_state = "leido"
+        }
+      }
       })
     }
     else {
@@ -144,10 +171,10 @@ export class AppBookdescriptionComponent implements OnInit {
   async favobook() {
     if (this.datauser) {
       const user = JSON.parse(this.datauser);
-      if (this.fav == true) {
-        this.userTool.getUser(user.uid).subscribe(async user => {
-          this.userInformation = await user.payload.data() as User;
-        })
+      if (this.fav == true){
+        // this.userTool.getUser(user.uid).subscribe(async user => {
+        //   this.userInformation = await user.payload.data() as User;
+        // })
         let favbooks = await this.userInformation.favoriteBooksList;
         for (let i = 0; i < favbooks!.length; i++) {
           if (favbooks![i] == this.book!.isbn.toString()) {
@@ -156,10 +183,10 @@ export class AppBookdescriptionComponent implements OnInit {
         }
         this.userTool.updateFavoritesBooks(this.userInformation.uid!, favbooks!);
         this.fav = !this.fav
-      } else {
-        this.userTool.getUser(user.uid).subscribe(async user => {
-          this.userInformation = await user.payload.data() as User;
-        })
+      } else{
+        // this.userTool.getUser(user.uid).subscribe(async user => {
+        //   this.userInformation = await user.payload.data() as User;
+        // })
         let favbooks = await this.userInformation.favoriteBooksList!;
         favbooks!.push(this.book!.isbn.toString());
         this.userTool.updateFavoritesBooks(this.userInformation.uid!, favbooks!);
@@ -169,6 +196,87 @@ export class AppBookdescriptionComponent implements OnInit {
       this.route.navigate(['/SIGNIN'])
     }
   }
+
+  statebook(state:string){
+    if (this.datauser){
+      if(state == this.book_state){
+        if (state == "pendiente"){
+          let pengbooks = this.userInformation.pendingBooksList
+          for(let i = 0 ; i < pengbooks!.length ; i++){
+            if (pengbooks![i] == this.book!.isbn.toString()){
+              pengbooks!.splice(i,1);
+            }
+          }
+          this.userTool.updatePendingBooks(this.userInformation.uid!, pengbooks!);
+        } else if (state == "leyendo"){
+          let readbooks = this.userInformation.readingBooksList
+          for(let i = 0 ; i < readbooks!.length ; i++){
+            if (readbooks![i] == this.book!.isbn.toString()){
+              readbooks!.splice(i,1);
+            }
+          }
+          this.userTool.updateReadingBooks(this.userInformation.uid!, readbooks!);
+        } else if (state == "leido"){
+          let finbooks = this.userInformation.finishedBooksList;
+          for(let i = 0 ; i < finbooks!.length ; i++){
+            if (finbooks![i] == this.book!.isbn.toString()){
+              finbooks!.splice(i,1);
+            }
+          }
+          this.userTool.updateFinishedBooks(this.userInformation.uid!, finbooks!);
+        }
+        this.book_state = "";
+        this.state = false;
+      }
+      else{
+        if (this.book_state != ""){
+          if (this.book_state == "pendiente"){
+            let pengbooks = this.userInformation.pendingBooksList
+            for(let i = 0 ; i < pengbooks!.length ; i++){
+              if (pengbooks![i] == this.book!.isbn.toString()){
+                pengbooks!.splice(i,1);
+              }
+            }
+            this.userTool.updatePendingBooks(this.userInformation.uid!, pengbooks!);
+          } else if (this.book_state == "leyendo"){
+            let readbooks = this.userInformation.readingBooksList
+            for(let i = 0 ; i < readbooks!.length ; i++){
+              if (readbooks![i] == this.book!.isbn.toString()){
+                readbooks!.splice(i,1);
+              }
+            }
+            this.userTool.updateReadingBooks(this.userInformation.uid!, readbooks!);
+          } else if (this.book_state == "leido"){
+            let finbooks = this.userInformation.finishedBooksList;
+            for(let i = 0 ; i < finbooks!.length ; i++){
+              if (finbooks![i] == this.book!.isbn.toString()){
+                finbooks!.splice(i,1);
+              }
+            }
+            this.userTool.updateFinishedBooks(this.userInformation.uid!, finbooks!);
+          }
+        } 
+        if (state == "pendiente"){
+          let pengbooks = this.userInformation.pendingBooksList;
+          pengbooks!.push(this.book!.isbn.toString());
+          this.userTool.updatePendingBooks(this.userInformation.uid!, pengbooks!);
+        } else if (state == "leyendo"){
+          let readbooks = this.userInformation.readingBooksList;
+          readbooks!.push(this.book!.isbn.toString());
+          this.userTool.updateReadingBooks(this.userInformation.uid!, readbooks!);
+        } else if (state == "leido"){
+          let finbooks = this.userInformation.finishedBooksList;
+          finbooks!.push(this.book!.isbn.toString());
+          this.userTool.updateFinishedBooks(this.userInformation.uid!, finbooks!);
+        }
+        this.book_state = state;
+        this.state = true;
+      }
+    }
+  }
+
+  
+  
 
 
 
