@@ -7,9 +7,10 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import {first, map} from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Auth, updateEmail, updatePassword } from '@angular/fire/auth';
+import {where} from "@angular/fire/firestore";
 @Injectable({
   providedIn: 'root',
 })
@@ -44,8 +45,19 @@ export class AuthService {
         //this.SetUserData(result.user);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
-            sessionStorage.setItem('user', JSON.stringify(user));
-            this.router.navigate(['/']);
+            this.afs.collection<User>('USUARIOS')
+              .valueChanges({idField: 'id', where: [['uid', '==', user.uid]]})
+              .pipe(
+                map(users => users[0])
+              ).subscribe(user => {
+                if (user.plan == "sinPlan") {
+                  alert("Debes suscribirte a un plan para poder iniciar sesión")
+                  this.router.navigate(['/PLAN', user.email, user.displayName])
+                } else {
+                  sessionStorage.setItem('user', JSON.stringify(user));
+                  this.router.navigate(['/']);
+                }
+              })
           }
         });
       })
@@ -174,6 +186,29 @@ export class AuthService {
 
   UpdateEmail(email: string){
     return updateEmail(this.afnewAuth.currentUser!, email)
+  }
+
+  UpdatePlan(plan: string, email: string) {
+    const query = this.afs.collection('USUARIOS', ref => ref.where('email', '==', email.toLowerCase()));
+
+    query.get().subscribe((querySnapshot) => {
+      if (!querySnapshot.empty) {
+        // Obtener el ID del documento del usuario
+        const userId = querySnapshot.docs[0].id;
+
+        // Actualizar el campo "plan" del usuario
+        this.afs.collection('USUARIOS').doc(userId).update({ plan: plan })
+          .then(() => {
+            console.log('Campo "plan" actualizado correctamente.');
+          })
+          .catch((error) => {
+            console.error('Error al actualizar el campo "plan":', error);
+          });
+      } else {
+        console.log('No se encontró ningún usuario con el correo electrónico especificado.');
+      }
+    });
+
   }
 
   CurrencyUser(){

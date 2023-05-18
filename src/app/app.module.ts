@@ -87,7 +87,8 @@ import { AppSearchComponent } from './app-search/app-search.component';
       {path: 'SIGNUP/:plan/:url', component: AppSingupComponent},
       {path: 'PLAN', component: AppPricingTableComponent },
       {path: 'PAYMENTCONFIRMATION', component: AppPaymentConfirmationComponent},
-      {path: 'SEARCH', component: AppSearchComponent}
+      {path: 'SEARCH', component: AppSearchComponent},
+      {path: 'PLAN/:email/:displayName', component: AppPricingTableComponent }
     ]),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     AngularFireModule.initializeApp(environment.firebase),
