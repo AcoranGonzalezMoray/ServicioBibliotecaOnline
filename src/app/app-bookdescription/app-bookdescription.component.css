@@ -81,7 +81,7 @@ article {
     margin-bottom: 10px;
   }
   
-  .comment-box form button {
+  .comment-box form button, .deleteBtn{
     background-color: var(--btn-bg-color);
     color: #fff;
     border: none;

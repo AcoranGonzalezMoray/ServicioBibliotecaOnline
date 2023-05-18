@@ -1,28 +1,6 @@
 <app-navegador></app-navegador>
 <section class="panel">
   <app-banner [books]="books"></app-banner>
-  <div class="tools">
-    <h4>{{'seccion.genero' | transloco}}</h4>
-    <mat-form-field appearance="fill">
-      <mat-label>{{'seccion.FiltrarGenero' | transloco}}</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let food of gnr" [value]="food.value">
-          {{food.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <h4>{{'seccion.año' | transloco}}</h4>
-    <mat-form-field appearance="fill">
-      <mat-label>{{'seccion.FiltrarAño' | transloco}}</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let food of yrs" [value]="food.value">
-          {{food.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
   <h1 class="CT">{{'seccion.MásLeídos' | transloco}}</h1>
   <swiper 
   [slidesPerView]="5"

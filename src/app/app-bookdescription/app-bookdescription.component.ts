@@ -6,16 +6,25 @@ import { UserToolsService } from '../services/user-tools.service';
 import { Router } from '@angular/router';
 import { User } from '../services/interfaces/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { elementAt } from 'rxjs';
+import { elementAt, first } from 'rxjs';
 import { FirestoreService } from '../services/firestore/firestore.service';
+import { AuthService } from '../services/auth.service';
+
+interface Review {
+  username: string,
+  opinion: string,
+  uid: string
+}
 
 @Component({
   selector: 'app-app-bookdescription',
   templateUrl: './app-bookdescription.component.html',
   styleUrls: ['./app-bookdescription.component.css']
 })
+
 export class AppBookdescriptionComponent implements OnInit {
 
+  public isAdmin = false
   public book: Book | undefined
   public id: string | undefined
   public urlID: SafeResourceUrl | undefined
@@ -31,7 +40,9 @@ export class AppBookdescriptionComponent implements OnInit {
   userReviewForm!: FormGroup;
   newBooks: any[] = [];
 
-  constructor(private userTool: UserToolsService, private sanitizer: DomSanitizer, private bookDescriptionService: BookDescriptionService, private route: Router, private fb: FormBuilder, private firestoreService: FirestoreService) {
+
+
+  constructor(private userTool: UserToolsService, private sanitizer: DomSanitizer, private bookDescriptionService: BookDescriptionService, private route: Router, private fb: FormBuilder, private firestoreService: FirestoreService, public authService: AuthService) {
 
     this.book = bookDescriptionService.getLibro()
     var backup = sessionStorage.getItem('temporalBookDescription')
@@ -39,6 +50,11 @@ export class AppBookdescriptionComponent implements OnInit {
   }
 
   async ngOnInit() {
+
+    this.authService.isAdmin.subscribe(isAdmin => {
+      // Utilizar el valor de isAdmin, por ejemplo:
+      this.isAdmin = isAdmin
+    });
 
     this.book = this.bookDescriptionService.getLibro();
     if (this.book && this.book.title) {
@@ -326,62 +342,76 @@ export class AppBookdescriptionComponent implements OnInit {
   }
 
   showLoggingMessage() {
-    !this.isLoggedIn?this.route.navigate(['/SIGNIN']):null
-      
-    
+    !this.isLoggedIn ? this.route.navigate(['/SIGNIN']) : null
+
+
   }
 
   onSubmitReview() {
     const review = {
       username: this.userInformation.displayName,
-      opinion: this.userReviewForm.controls['opinion'].value
+      opinion: this.userReviewForm.controls['opinion'].value,
+      uid: this.userInformation.uid
     };
-
+  
     const copyBook = Object.assign({}, this.book);
-    
-    this.newBooks.filter((book: any) => {
-      if (book.isbn === copyBook?.isbn) {
-        copyBook?.reviews.push(review);
-        copyBook!.imageURL = book.imageURL;
-        this.firestoreService.updateBook(book.id, copyBook!);
-        this.book!.reviews!= copyBook?.reviews
-        sessionStorage.setItem('temporalBookDescription', JSON.stringify(this.book));
-      }
-    });
+  
+    const foundBook = this.newBooks.find((book: any) => book.isbn === copyBook?.isbn);
+  
+    if (foundBook) {
+      copyBook?.reviews.push(review);
+      copyBook!.imageURL = foundBook.imageURL;
+      this.firestoreService.updateBook(foundBook.id, copyBook!);
+      this.book!.reviews = copyBook?.reviews;
+      sessionStorage.setItem('temporalBookDescription', JSON.stringify(this.book));
+      console.log(foundBook.isbn, foundBook.title);
+    }
+  
     this.userReviewForm.reset();
   }
+  
 
 
-  incrementReadsBooks(){ 
+  incrementReadsBooks() {
     const copyBook = Object.assign({}, this.book);
-    const user = sessionStorage.getItem('user')
-    var uuid = { uid: '' }
-    user?uuid = JSON.parse(user):null
+    const user = sessionStorage.getItem('user');
+    const uuid = user ? JSON.parse(user) : { uid: '' };
+  
+    const foundBook = this.newBooks.find((book: any) => book.isbn === copyBook?.isbn);
+  
+    if (foundBook) {
+      const exist = foundBook.read.includes(uuid.uid);
+  
+      if (!exist) {
+        console.log("no existe");
+        copyBook?.read.push(uuid.uid);
+        foundBook.read.push(uuid.uid);
+        copyBook!.imageURL = foundBook.imageURL;
+        this.firestoreService.updateBook(foundBook.id, copyBook!);
+      }
+    }
+  }
+  
+    
+  async deleteReview(selectedReview: Review) {
 
-    var exist = false
-    this.newBooks.filter((book: any) => {
-      if (book.isbn === copyBook?.isbn) {
+    const copyBook = this.book
+    const currentBook = this.newBooks.filter(book => book.isbn === this.book?.isbn)[0];
 
-        book.read.filter((read: string)=>{ if (read === uuid.uid) exist = true})
-        if (!exist){
-          console.log("no exiaste");
-          copyBook?.read.push(uuid.uid);
-          book.read.push(uuid.uid)
-          copyBook!.imageURL = book.imageURL;
-          this.firestoreService.updateBook(book.id, copyBook!);
-        }           
-
+    this.book?.reviews.filter((review) => {
+      if (review.uid == selectedReview.uid && review.username == selectedReview.username && review.opinion == selectedReview.opinion) {
+        var el = copyBook?.reviews.indexOf(review);
+        copyBook!.reviews.splice(el!, 1);
+        copyBook!.imageURL = this.book!.imageURL;
+        this.firestoreService.updateBook(currentBook.id, copyBook!);
+        let newDeletedReview: string = "Se le ha eliminado la review del libro " + this.book?.title + ": " + selectedReview.opinion
+        this.firestoreService.getUser(review.uid ).pipe(first()).subscribe( user => {
+          user.notifications?.push(newDeletedReview);
+          this.firestoreService.updateUser(user!.uid!, user);
+        })
       }
     });
   }
-
-
-
-
-
-
-
-
 
 
 

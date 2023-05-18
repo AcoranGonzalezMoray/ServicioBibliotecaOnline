@@ -77,7 +77,8 @@ export class UserdataComponent implements OnInit, OnChanges {
       followers: this.user?.followers,
       following: this.user?.following,
       readingHistory: this.user?.readingHistory,
-      rol:'USER'
+      rol:'USER',
+      notifications: this.user?.notifications
     }
     this.userAuthService.UpdateEmail(new_user.email!);
     this.userService.updateUser(new_user);

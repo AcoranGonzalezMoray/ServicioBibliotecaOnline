@@ -8,7 +8,7 @@ import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
-interface Genre {
+interface Option {
   value: string;
   viewValue: string;
 }
@@ -24,28 +24,16 @@ interface Genre {
 export class AppInicioComponent implements OnInit{
   public books:any[] = [];
   public categories:any[] = [];
-  
   filter = false
-
-  yrs: Genre[] = [
-    {value: 'steak-0', viewValue: '1990'},
-    {value: 'steak-0', viewValue: '1991'},
-    {value: 'steak-0', viewValue: '1992'},
-    {value: 'steak-0', viewValue: '1993'},
-    {value: 'steak-0', viewValue: '1994'},
-    {value: 'steak-0', viewValue: '1995'},
-    {value: 'steak-0', viewValue: '1996'},
-    {value: 'steak-0', viewValue: '1997'},
-    {value: 'steak-0', viewValue: '1998'},
-    {value: 'steak-0', viewValue: '1999'},
-  ];
-  gnr: Genre[] = [
-    {value: 'steak-0', viewValue: 'Infantil'},
-    {value: 'pizza-1', viewValue: 'DE 12 AÑOS EN ADELANTE'},
-    {value: 'tacos-2', viewValue: 'Clásicos Universales'},
-    {value: 'steak-0', viewValue: 'Cuento'},
-    {value: 'pizza-1', viewValue: 'Poesía y Teatro'},
-    {value: 'tacos-2', viewValue: 'Diarios'},
+  
+  gnr: Option[] = [
+    {value: 'Infantil', viewValue: 'Infantil'},
+    {value: 'Misterio', viewValue: 'Misterio'},
+    {value: 'DE 12 AÑOS EN ADELANTE', viewValue: 'DE 12 AÑOS EN ADELANTE'},
+    {value: 'Clásicos Universales', viewValue: 'Clásicos Universales'},
+    {value: 'Cuento', viewValue: 'Cuento'},
+    {value: 'Poesía y Teatro', viewValue: 'Poesía y Teatro'},
+    {value: 'Diarios', viewValue: 'Diarios'},
   ];
   constructor(
     private firestoreService: FirestoreService,
@@ -110,11 +98,6 @@ export class AppInicioComponent implements OnInit{
     });
     window.scrollTo(0, 0);
   }
-
-
-
-
-
 
 
   onSwiper(swiper: any) {

@@ -1,6 +1,7 @@
 .card {
     max-height: 250px;
     margin-inline: 20px;
+    cursor: pointer;
     width: 150px;
 }
 
