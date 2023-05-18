@@ -77,6 +77,7 @@ import { TranslocoRootModule } from './transloco-root.module';
       {path: 'BOOKDESCRIPTION', component: AppBookdescriptionComponent},
       {path: 'SIGNIN', component: AppSinginComponent},
       {path: 'SIGNUP/:plan/:url', component: AppSingupComponent},
+      {path: 'PLAN', component: AppPricingTableComponent },
       {path: 'PLAN/:email/:displayName', component: AppPricingTableComponent },
       {path: 'PAYMENTCONFIRMATION', component: AppPaymentConfirmationComponent}
     ]),

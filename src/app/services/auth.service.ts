@@ -7,7 +7,7 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import {first, map} from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Auth, updateEmail, updatePassword } from '@angular/fire/auth';
 import {where} from "@angular/fire/firestore";
@@ -182,6 +182,29 @@ export class AuthService {
 
   UpdateEmail(email: string){
     return updateEmail(this.afnewAuth.currentUser!, email)
+  }
+
+  UpdatePlan(plan: string, email: string) {
+    const query = this.afs.collection('USUARIOS', ref => ref.where('email', '==', email.toLowerCase()));
+
+    query.get().subscribe((querySnapshot) => {
+      if (!querySnapshot.empty) {
+        // Obtener el ID del documento del usuario
+        const userId = querySnapshot.docs[0].id;
+
+        // Actualizar el campo "plan" del usuario
+        this.afs.collection('USUARIOS').doc(userId).update({ plan: plan })
+          .then(() => {
+            console.log('Campo "plan" actualizado correctamente.');
+          })
+          .catch((error) => {
+            console.error('Error al actualizar el campo "plan":', error);
+          });
+      } else {
+        console.log('No se encontró ningún usuario con el correo electrónico especificado.');
+      }
+    });
+
   }
 
   CurrencyUser(){

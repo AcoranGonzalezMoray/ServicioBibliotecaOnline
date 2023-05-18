@@ -26,6 +26,8 @@ export class AppPricingTableComponent {
   }
 
   pasar_a_pagar(plan: number){
+    console.log("Empieza Update Plan")
+    this.authService.UpdatePlan("Loading", this.email);
     if (plan == 1) {
       location.href = this.BasicURL + "?prefilled_email=" + this.email;
     } else if (plan == 2) {
@@ -33,7 +35,6 @@ export class AppPricingTableComponent {
     } else if (plan == 3) {
       location.href = this.IlimitedURL + "?prefilled_email=" + this.email;
     }
-    
   }
 
   pasar_a_registro(plan: number){
