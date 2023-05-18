@@ -395,20 +395,23 @@ export class AppBookdescriptionComponent implements OnInit {
     
   async deleteReview(selectedReview: Review) {
 
-    const copyBook = this.book
+    const copyBook = Object.assign({}, this.book);
     const currentBook = this.newBooks.filter(book => book.isbn === this.book?.isbn)[0];
 
     this.book?.reviews.filter((review) => {
       if (review.uid == selectedReview.uid && review.username == selectedReview.username && review.opinion == selectedReview.opinion) {
         var el = copyBook?.reviews.indexOf(review);
         copyBook!.reviews.splice(el!, 1);
-        copyBook!.imageURL = this.book!.imageURL;
+        copyBook!.imageURL = currentBook!.imageURL;
+        this.book!.reviews = copyBook?.reviews;
         this.firestoreService.updateBook(currentBook.id, copyBook!);
         let newDeletedReview: string = "Se le ha eliminado la review del libro " + this.book?.title + ": " + selectedReview.opinion
         this.firestoreService.getUser(review.uid ).pipe(first()).subscribe( user => {
           user.notifications?.push(newDeletedReview);
           this.firestoreService.updateUser(user!.uid!, user);
         })
+
+        sessionStorage.setItem('temporalBookDescription', JSON.stringify(this.book));
       }
     });
   }
