@@ -137,7 +137,8 @@ export class AuthService {
       followers: [],
       following: [],
       readingHistory: [],
-      rol: 'USER'
+      rol: 'USER',
+      notifications: []
     };
     return userRef.set(userData, {
       merge: true,

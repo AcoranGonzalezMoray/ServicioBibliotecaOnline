@@ -82,6 +82,7 @@ export class AppAdminprofileComponent implements OnInit {
           following: catData.payload.doc.data().following,
           readingHistory: [],
           rol: catData.payload.doc.data().rol,
+          notifications: catData.payload.doc.data().notifications
         });
         sessionStorage.setItem('users', JSON.stringify(this.users))
       })
@@ -130,7 +131,8 @@ export class AppAdminprofileComponent implements OnInit {
       followers: [],
       following: [],
       readingHistory: [],
-      rol: 'USER'
+      rol: 'USER',
+      notifications: []
     }
 
     this.firestoreService.createUser(user);
@@ -218,7 +220,7 @@ export class AppAdminprofileComponent implements OnInit {
     const user: User = {
       uid: this.currentUser.uid, email: fieldValues[0], displayName: fieldValues[1], photoURL: fieldValues[2], emailVerified: this.currentUser.emailVerified,
       plan: fieldValues[3], favoriteBooksList: this.currentUser.favoriteBooksList, followers: this.currentUser.followers, following: this.currentUser.following,
-      readingHistory: this.currentUser.readingHistory, rol: 'USER'
+      readingHistory: this.currentUser.readingHistory, rol: 'USER', notifications: []
     }
     console.log(user)
     this.firestoreService.updateUser(this.currentUser.id, user)

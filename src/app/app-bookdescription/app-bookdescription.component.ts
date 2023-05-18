@@ -6,13 +6,14 @@ import { UserToolsService } from '../services/user-tools.service';
 import { Router } from '@angular/router';
 import { User } from '../services/interfaces/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { elementAt } from 'rxjs';
+import { elementAt, first } from 'rxjs';
 import { FirestoreService } from '../services/firestore/firestore.service';
 import { AuthService } from '../services/auth.service';
 
 interface Review {
   username: string,
-  opinion: string
+  opinion: string,
+  uid: string
 }
 
 @Component({
@@ -49,9 +50,9 @@ export class AppBookdescriptionComponent implements OnInit {
   async ngOnInit() {
 
     this.authService.isAdmin.subscribe(isAdmin => {
-        // Utilizar el valor de isAdmin, por ejemplo:
-        this.isAdmin = isAdmin
-      });
+      // Utilizar el valor de isAdmin, por ejemplo:
+      this.isAdmin = isAdmin
+    });
 
     this.book = this.bookDescriptionService.getLibro();
     if (this.book && this.book.title) {
@@ -232,45 +233,50 @@ export class AppBookdescriptionComponent implements OnInit {
   }
 
   showLoggingMessage() {
-    !this.isLoggedIn?this.route.navigate(['/SIGNIN']):null
-      
-    
+    !this.isLoggedIn ? this.route.navigate(['/SIGNIN']) : null
+
+
   }
 
   onSubmitReview() {
     const review = {
       username: this.userInformation.displayName,
-      opinion: this.userReviewForm.controls['opinion'].value
+      opinion: this.userReviewForm.controls['opinion'].value,
+      uid: this.userInformation.uid
     };
 
     const copyBook = Object.assign({}, this.book);
-    
+
     this.newBooks.filter((book: any) => {
       if (book.isbn === copyBook?.isbn) {
         copyBook?.reviews.push(review);
         copyBook!.imageURL = book.imageURL;
         this.firestoreService.updateBook(book.id, copyBook!);
-        this.book!.reviews!= copyBook?.reviews
+        this.book!.reviews != copyBook?.reviews
         sessionStorage.setItem('temporalBookDescription', JSON.stringify(this.book));
       }
     });
     this.userReviewForm.reset();
   }
 
-  deleteReview(selectedReview: Review) {
-    
+  async deleteReview(selectedReview: Review) {
+
     const copyBook = this.book
     const currentBook = this.newBooks.filter(book => book.isbn === this.book?.isbn)[0];
 
     this.book?.reviews.filter((review) => {
-      if (review.username == selectedReview.username && review.opinion == selectedReview.opinion) {
-        console.log(review);
+      if (review.uid == selectedReview.uid && review.username == selectedReview.username && review.opinion == selectedReview.opinion) {
         var el = copyBook?.reviews.indexOf(review);
         copyBook!.reviews.splice(el!, 1);
         copyBook!.imageURL = this.book!.imageURL;
         this.firestoreService.updateBook(currentBook.id, copyBook!);
+        let newDeletedReview: string = "Se le ha eliminado la review del libro " + this.book?.title + ": " + selectedReview.opinion
+        this.firestoreService.getUser(review.uid ).pipe(first()).subscribe( user => {
+          user.notifications?.push(newDeletedReview);
+          this.firestoreService.updateUser(user!.uid!, user);
+        })
       }
     });
   }
-    
+
 }
