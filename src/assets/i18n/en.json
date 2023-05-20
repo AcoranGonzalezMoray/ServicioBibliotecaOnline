@@ -39,7 +39,8 @@
         "followed": "Followed",
         "followers": "Followers",
         "favourites": "Favourites",
-        "reviews": "Reviews"
+        "reviews": "Reviews",
+        "notifications": "Notifications"
     },
     "signup": {
         "suscribe": "Suscribe with",

@@ -39,7 +39,8 @@
         "followed": "Seguidos",
         "followers": "Seguidores",
         "favourites": "Favoritos",
-        "reviews": "Reseñas"
+        "reviews": "Reseñas",
+        "notifications": "Notificaciones"
     },
     "signup": {
         "suscribe": "Suscríbete con", 

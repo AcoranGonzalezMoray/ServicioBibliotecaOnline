@@ -7,10 +7,10 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import {first, map} from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Auth, updateEmail, updatePassword } from '@angular/fire/auth';
-import {where} from "@angular/fire/firestore";
+import { where } from "@angular/fire/firestore";
 @Injectable({
   providedIn: 'root',
 })
@@ -45,19 +45,8 @@ export class AuthService {
         //this.SetUserData(result.user);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
-            this.afs.collection<User>('USUARIOS')
-              .valueChanges({idField: 'id', where: [['uid', '==', user.uid]]})
-              .pipe(
-                map(users => users[0])
-              ).subscribe(user => {
-                if (user.plan == "sinPlan") {
-                  alert("Debes suscribirte a un plan para poder iniciar sesión")
-                  this.router.navigate(['/PLAN', user.email, user.displayName])
-                } else {
-                  sessionStorage.setItem('user', JSON.stringify(user));
-                  this.router.navigate(['/']);
-                }
-              })
+            sessionStorage.setItem('user', JSON.stringify(user));
+            this.router.navigate(['/']);
           }
         });
       })
@@ -184,7 +173,7 @@ export class AuthService {
     });
   }
 
-  UpdateEmail(email: string){
+  UpdateEmail(email: string) {
     return updateEmail(this.afnewAuth.currentUser!, email)
   }
 
@@ -211,11 +200,11 @@ export class AuthService {
 
   }
 
-  CurrencyUser(){
+  CurrencyUser() {
     return this.afnewAuth.currentUser;
   }
 
-  UpdatePassword(newpassword:string){
+  UpdatePassword(newpassword: string) {
     return updatePassword(this.afnewAuth.currentUser!, newpassword);
   }
 
