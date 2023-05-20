@@ -40,7 +40,10 @@
         "followers": "Seguidores",
         "favourites": "Favoritos",
         "reviews": "Reseñas",
-        "notifications": "Notificaciones"
+        "notifications": "Notificaciones",
+        "personalData": "Datos Personales",
+        "collections": "Colecciones",
+        "deleteNotifications": "Eliminar Notificaciones"
     },
     "signup": {
         "suscribe": "Suscríbete con", 
