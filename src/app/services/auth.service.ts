@@ -42,17 +42,17 @@ export class AuthService {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        //this.SetUserData(result.user);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
             this.afs.collection<User>('USUARIOS')
-              .valueChanges({idField: 'id', where: [['uid', '==', user.uid]]})
+              .doc(user.uid)
+              .valueChanges()
               .pipe(
-                map(users => users[0])
+                map(user => user as User)
               ).subscribe(user => {
                 if (user.plan == "sinPlan") {
                   alert("Debes suscribirte a un plan para poder iniciar sesión")
-                  this.router.navigate(['/PLAN', user.email, user.displayName])
+                  this.router.navigate(['/PLAN', user.email, user.displayName])  
                 } else {
                   sessionStorage.setItem('user', JSON.stringify(user));
                   this.router.navigate(['/']);
