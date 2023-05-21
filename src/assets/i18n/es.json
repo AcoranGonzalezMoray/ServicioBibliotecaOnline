@@ -39,7 +39,11 @@
         "followed": "Seguidos",
         "followers": "Seguidores",
         "favourites": "Favoritos",
-        "reviews": "Reseñas"
+        "reviews": "Reseñas",
+        "notifications": "Notificaciones",
+        "personalData": "Datos Personales",
+        "collections": "Colecciones",
+        "deleteNotifications": "Eliminar Notificaciones"
     },
     "signup": {
         "suscribe": "Suscríbete con", 

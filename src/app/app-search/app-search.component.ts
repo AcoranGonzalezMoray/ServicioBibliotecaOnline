@@ -33,13 +33,11 @@ export class AppSearchComponent {
   years: Option[] = [];
 
   gnr: Option[] = [
+    { value: 'Biografías y Memorias', viewValue: 'Biografías y Memorias' },
+    { value: 'Economía', viewValue: 'Economía' },
     { value: 'Infantil', viewValue: 'Infantil' },
     { value: 'Misterio', viewValue: 'Misterio' },
-    { value: 'DE 12 AÑOS EN ADELANTE', viewValue: 'DE 12 AÑOS EN ADELANTE' },
-    { value: 'Clásicos Universales', viewValue: 'Clásicos Universales' },
-    { value: 'Cuento', viewValue: 'Cuento' },
-    { value: 'Poesía y Teatro', viewValue: 'Poesía y Teatro' },
-    { value: 'Diarios', viewValue: 'Diarios' },
+    { value: 'Novela', viewValue: 'Novela' }
   ];
 
   constructor(

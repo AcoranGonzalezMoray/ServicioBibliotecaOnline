@@ -7,10 +7,10 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import {first, map} from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Auth, updateEmail, updatePassword } from '@angular/fire/auth';
-import {where} from "@angular/fire/firestore";
+import { where } from "@angular/fire/firestore";
 @Injectable({
   providedIn: 'root',
 })
@@ -183,7 +183,7 @@ export class AuthService {
     });
   }
 
-  UpdateEmail(email: string){
+  UpdateEmail(email: string) {
     return updateEmail(this.afnewAuth.currentUser!, email)
   }
 
@@ -210,11 +210,11 @@ export class AuthService {
 
   }
 
-  CurrencyUser(){
+  CurrencyUser() {
     return this.afnewAuth.currentUser;
   }
 
-  UpdatePassword(newpassword:string){
+  UpdatePassword(newpassword: string) {
     return updatePassword(this.afnewAuth.currentUser!, newpassword);
   }
 
