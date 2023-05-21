@@ -41,3 +41,8 @@ body.dark-theme {
   justify-content: space-evenly;
   align-items: center;
 }
+
+.bodyContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}

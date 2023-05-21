@@ -23,74 +23,46 @@
     </mat-form-field>
   </div>
 
-  <h1 class="CT">{{'seccion.MásLeídos' | transloco}}</h1>
-  <swiper 
-  [slidesPerView]="5"
-  [spaceBetween]="3"
-  (swiper)="onSwiper($event)"
-  [centeredSlides]="true"
-  [centeredSlidesBounds]="true"
-  (slideChange)="onSlideChange()"
-  [navigation]="true"
-  [pagination]="{ clickable: true }"
-  >
-    <ng-template *ngFor="let book of categories[0][2];let i = index" swiperSlide>
-      <app-card [book]="book"></app-card>
-    </ng-template>
-    
-  </swiper>
+  <div class="bodyContainer">
+    <h1 class="CT">{{'seccion.MásLeídos' | transloco}}</h1>
+    <swiper class="swiper" [slidesPerView]="5" [spaceBetween]="3" (swiper)="onSwiper($event)" [centeredSlides]="true"
+      [centeredSlidesBounds]="true" (slideChange)="onSlideChange()" [navigation]="true">
+      <ng-template *ngFor="let book of categories[0][2];let i = index" swiperSlide>
+        <app-card [book]="book"></app-card>
+      </ng-template>
+
+    </swiper>
 
 
 
-  <h1 class="CT">{{'seccion.MásVotados' | transloco}}</h1>
-  <swiper 
-  [slidesPerView]="5"
-  [spaceBetween]="30"
-  (swiper)="onSwiper($event)"
-  [centeredSlides]="true"
-  [centeredSlidesBounds]="true"
-  (slideChange)="onSlideChange()"
-  [navigation]="true"
-  [pagination]="{ clickable: true }"
-  >
-    <ng-template *ngFor="let book of categories[1][2];let i = index" swiperSlide>
-      <app-card [book]="book"></app-card>
-    </ng-template>
-  </swiper>
+    <h1 class="CT">{{'seccion.MásVotados' | transloco}}</h1>
+    <swiper class="swiper" [slidesPerView]="5" [spaceBetween]="30" (swiper)="onSwiper($event)" [centeredSlides]="true"
+      [centeredSlidesBounds]="true" (slideChange)="onSlideChange()" [navigation]="true">
+      <ng-template *ngFor="let book of categories[1][2];let i = index" swiperSlide>
+        <app-card [book]="book"></app-card>
+      </ng-template>
+    </swiper>
+  </div>
 
   <app-carousel-open [books]="books"></app-carousel-open>
 
-  <h1 class="CT">{{'seccion.MásComentados'| transloco}}</h1>
-  <swiper  
-  [slidesPerView]="5"
-  [spaceBetween]="30"
-  (swiper)="onSwiper($event)"
-  [centeredSlides]="true"
-  [centeredSlidesBounds]="true"
-  (slideChange)="onSlideChange()"
-  [navigation]="true"
-  [pagination]="{ clickable: true }"
-  >
+  <div class="bodyContainer">
+    <h1 class="CT">{{'seccion.MásComentados'| transloco}}</h1>
+  <swiper class="swiper" [slidesPerView]="5" [spaceBetween]="30" (swiper)="onSwiper($event)" [centeredSlides]="true"
+    [centeredSlidesBounds]="true" (slideChange)="onSlideChange()" [navigation]="true">
     <ng-template *ngFor="let book of categories[2][2];let i = index" swiperSlide>
       <app-card [book]="book"></app-card>
     </ng-template>
   </swiper>
 
   <h1 class="CT">{{'seccion.MásRecientes'| transloco}}</h1>
-  <swiper 
-  [slidesPerView]="5"
-  [spaceBetween]="30"
-  (swiper)="onSwiper($event)"
-  [centeredSlides]="true"
-  [centeredSlidesBounds]="true"
-  (slideChange)="onSlideChange()"
-  [navigation]="true"
-  [pagination]="{ clickable: true }"
-  >
+  <swiper class="swiper" [slidesPerView]="5" [spaceBetween]="30" (swiper)="onSwiper($event)" [centeredSlides]="true"
+    [centeredSlidesBounds]="true" (slideChange)="onSlideChange()" [navigation]="true">
     <ng-template *ngFor="let book of categories[3][2];let i = index" swiperSlide>
       <app-card [book]="book"></app-card>
     </ng-template>
   </swiper>
+  </div>
   <br>
 </section>
 
