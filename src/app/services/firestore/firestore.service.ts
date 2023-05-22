@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { Book } from '../interfaces/book';
+import { Firestore, collection, doc, docData } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
   constructor(
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private fire: Firestore
   ) {}
   //Crea un nuevo libro
   public createBook(book: Book) {
@@ -53,5 +56,10 @@ export class FirestoreService {
   //Obtiene todos los audioLibros
   public getAudioBooks() {
     return this.firestore.collection('AUDIOLIBROS').snapshotChanges();
+  }
+
+  public getUser(uid: string){
+    const documento = doc(this.fire, `USUARIOS/${uid}`)
+    return docData(documento) as Observable<User>
   }
 }

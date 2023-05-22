@@ -6,8 +6,12 @@ export interface User {
     emailVerified?: boolean;
     plan?: string,
     favoriteBooksList?: string[],
+    readingBooksList?: string[],
+    finishedBooksList?: string[],
+    pendingBooksList?: string[],
     followers?: string[],
     following?: string[],
     readingHistory?: [],
-    rol: 'USER'
+    rol: 'USER',
+    notifications?: string[]
 }

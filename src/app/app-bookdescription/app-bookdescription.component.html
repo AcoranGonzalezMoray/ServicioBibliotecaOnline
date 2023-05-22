@@ -17,11 +17,25 @@
                     <path fill-rule="evenodd"
                         d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
                 </svg>
-                <svg style="color:var(--btn-bg-color)" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+
+                <div class="dropdown" style="display: flex;">
+                <svg data-bs-toggle="dropdown" [ngStyle]="{'color': state ? 'blue' : 'var(--btn-bg-color)'}" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                     fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
                     <path
                         d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
                 </svg>
+                <ul class="dropdown-menu">                    
+                    <li (click)="statebook('pendiente')">
+                        <a [ngStyle]="{'color': book_state == 'pendiente' ? 'blue' : ''}" class="dropdown-item" >Pendiente de Leer</a>
+                    </li>
+                    <li (click)="statebook('leyendo')">
+                        <a [ngStyle]="{'color': book_state == 'leyendo' ? 'blue' : ''}" class="dropdown-item" >Leyendo</a>
+                    </li>
+                    <li (click)="statebook('leido')">
+                        <a [ngStyle]="{'color': book_state == 'leido' ? 'blue' : ''}" class="dropdown-item" >Leido</a>
+                    </li>
+                </ul>
+                </div>
 
 
 
@@ -78,6 +92,7 @@
                 <div class="comment">
                     <h4 class="username">{{review.username}}</h4>
                     <p class="review">{{review.opinion}}</p>
+                    <button class="deleteBtn" *ngIf="isAdmin" (click)="deleteReview(review)">Eliminar reseña</button>
                   </div>
             </div>
           </div>

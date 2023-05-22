@@ -7,9 +7,10 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Auth, updateEmail, updatePassword } from '@angular/fire/auth';
+import { where } from "@angular/fire/firestore";
 @Injectable({
   providedIn: 'root',
 })
@@ -23,7 +24,7 @@ export class AuthService {
     public ngZone: NgZone, // NgZone service to remove outside scope warning
     private afnewAuth: Auth
   ) {
-    /* Saving user data in localstorage when 
+    /* Saving user data in localstorage when
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe((user) => {
       if (user) {
@@ -41,11 +42,21 @@ export class AuthService {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        //this.SetUserData(result.user);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
-            sessionStorage.setItem('user', JSON.stringify(user));
-            this.router.navigate(['/']);
+            this.afs.collection<User>('USUARIOS')
+              .doc(user.uid)
+              .valueChanges()
+              .pipe(
+                map(user => user as User)
+              ).subscribe(user => {
+                if (user.plan == "sinPlan") {
+                  this.router.navigate(['/PLAN', user.email, user.displayName])
+                } else {
+                  sessionStorage.setItem('user', JSON.stringify(user));
+                  this.router.navigate(['/']);
+                }
+              })
           }
         });
       })
@@ -58,7 +69,7 @@ export class AuthService {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        /* Call the SendVerificaitonMail() function when new user sign 
+        /* Call the SendVerificaitonMail() function when new user sign
         up and returns promise */
         //this.SendVerificationMail();
         this.DisplayName = displayName;
@@ -134,10 +145,14 @@ export class AuthService {
       emailVerified: user.emailVerified,
       plan: "Loading",
       favoriteBooksList: [],
+      readingBooksList: [],
+      finishedBooksList: [],
+      pendingBooksList: [],
       followers: [],
       following: [],
       readingHistory: [],
-      rol: 'USER'
+      rol: 'USER',
+      notifications: []
     };
     return userRef.set(userData, {
       merge: true,
@@ -168,15 +183,38 @@ export class AuthService {
     });
   }
 
-  UpdateEmail(email: string){
+  UpdateEmail(email: string) {
     return updateEmail(this.afnewAuth.currentUser!, email)
   }
 
-  CurrencyUser(){
+  UpdatePlan(plan: string, email: string) {
+    const query = this.afs.collection('USUARIOS', ref => ref.where('email', '==', email.toLowerCase()));
+
+    query.get().subscribe((querySnapshot) => {
+      if (!querySnapshot.empty) {
+        // Obtener el ID del documento del usuario
+        const userId = querySnapshot.docs[0].id;
+
+        // Actualizar el campo "plan" del usuario
+        this.afs.collection('USUARIOS').doc(userId).update({ plan: plan })
+          .then(() => {
+            console.log('Campo "plan" actualizado correctamente.');
+          })
+          .catch((error) => {
+            console.error('Error al actualizar el campo "plan":', error);
+          });
+      } else {
+        console.log('No se encontró ningún usuario con el correo electrónico especificado.');
+      }
+    });
+
+  }
+
+  CurrencyUser() {
     return this.afnewAuth.currentUser;
   }
 
-  UpdatePassword(newpassword:string){
+  UpdatePassword(newpassword: string) {
     return updatePassword(this.afnewAuth.currentUser!, newpassword);
   }
 

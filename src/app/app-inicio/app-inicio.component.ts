@@ -8,7 +8,7 @@ import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
-interface Genre {
+interface Option {
   value: string;
   viewValue: string;
 }
@@ -24,28 +24,16 @@ interface Genre {
 export class AppInicioComponent implements OnInit{
   public books:any[] = [];
   public categories:any[] = [];
-  
   filter = false
-
-  yrs: Genre[] = [
-    {value: 'steak-0', viewValue: '1990'},
-    {value: 'steak-0', viewValue: '1991'},
-    {value: 'steak-0', viewValue: '1992'},
-    {value: 'steak-0', viewValue: '1993'},
-    {value: 'steak-0', viewValue: '1994'},
-    {value: 'steak-0', viewValue: '1995'},
-    {value: 'steak-0', viewValue: '1996'},
-    {value: 'steak-0', viewValue: '1997'},
-    {value: 'steak-0', viewValue: '1998'},
-    {value: 'steak-0', viewValue: '1999'},
-  ];
-  gnr: Genre[] = [
-    {value: 'steak-0', viewValue: 'Infantil'},
-    {value: 'pizza-1', viewValue: 'DE 12 AÑOS EN ADELANTE'},
-    {value: 'tacos-2', viewValue: 'Clásicos Universales'},
-    {value: 'steak-0', viewValue: 'Cuento'},
-    {value: 'pizza-1', viewValue: 'Poesía y Teatro'},
-    {value: 'tacos-2', viewValue: 'Diarios'},
+  
+  gnr: Option[] = [
+    {value: 'Infantil', viewValue: 'Infantil'},
+    {value: 'Misterio', viewValue: 'Misterio'},
+    {value: 'DE 12 AÑOS EN ADELANTE', viewValue: 'DE 12 AÑOS EN ADELANTE'},
+    {value: 'Clásicos Universales', viewValue: 'Clásicos Universales'},
+    {value: 'Cuento', viewValue: 'Cuento'},
+    {value: 'Poesía y Teatro', viewValue: 'Poesía y Teatro'},
+    {value: 'Diarios', viewValue: 'Diarios'},
   ];
   constructor(
     private firestoreService: FirestoreService,
@@ -93,19 +81,23 @@ export class AppInicioComponent implements OnInit{
         sessionStorage.setItem('books',JSON.stringify(this.books))
       })
       // Mezcla la matriz de libros aleatoriamente una vez
-      this.categories = [["MásLeídos","A", this.shuffleArray(this.shuffleArray(this.books))],
-      ["MásVotados","B",  this.shuffleArray(this.shuffleArray(this.books))],
-      ["MásComentados","C", this.shuffleArray(this.shuffleArray(this.books))],
-      ["MásRecientes","D", this.shuffleArray(this.shuffleArray(this.books))]]
+      var  mostRead = [...this.books];
+      mostRead = mostRead.sort((a,b)=> b.read.length -a.read.length);
+      var mostComment = [...this.books];
+      mostComment =  mostComment.sort((a,b)=> b.reviews.length -a.reviews.length);
+      var mostRecent = [...this.books];
+      mostRecent=   mostRecent.sort((a,b)=> b.uploadDate - a.uploadDate );
+      var mostFav= [...this.books];
+      mostFav=   mostFav.sort((a,b)=> (b.read.length+b.comments.length) - (a.read.length+a.comments.length) );
+
+      this.categories = [["MásLeídos","A",  mostRead],
+      ["MásComentados","B", mostComment],
+      ["MásVotados","C",  mostFav],
+      ["MásRecientes","D", mostRecent]]
 
     });
     window.scrollTo(0, 0);
   }
-
-
-
-
-
 
 
   onSwiper(swiper: any) {

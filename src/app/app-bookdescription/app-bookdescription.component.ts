@@ -6,16 +6,25 @@ import { UserToolsService } from '../services/user-tools.service';
 import { Router } from '@angular/router';
 import { User } from '../services/interfaces/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { elementAt } from 'rxjs';
+import { elementAt, first } from 'rxjs';
 import { FirestoreService } from '../services/firestore/firestore.service';
+import { AuthService } from '../services/auth.service';
+
+interface Review {
+  username: string,
+  opinion: string,
+  uid: string
+}
 
 @Component({
   selector: 'app-app-bookdescription',
   templateUrl: './app-bookdescription.component.html',
   styleUrls: ['./app-bookdescription.component.css']
 })
+
 export class AppBookdescriptionComponent implements OnInit {
 
+  public isAdmin = false
   public book: Book | undefined
   public id: string | undefined
   public urlID: SafeResourceUrl | undefined
@@ -25,11 +34,15 @@ export class AppBookdescriptionComponent implements OnInit {
   userInformation!: User
   datauser = sessionStorage.getItem('user')
   fav = false
+  book_state = "";
+  state = false;
   isLoggedIn: boolean = false;
   userReviewForm!: FormGroup;
   newBooks: any[] = [];
 
-  constructor(private userTool: UserToolsService, private sanitizer: DomSanitizer, private bookDescriptionService: BookDescriptionService, private route: Router, private fb: FormBuilder, private firestoreService: FirestoreService) {
+
+
+  constructor(private userTool: UserToolsService, private sanitizer: DomSanitizer, private bookDescriptionService: BookDescriptionService, private route: Router, private fb: FormBuilder, private firestoreService: FirestoreService, public authService: AuthService) {
 
     this.book = bookDescriptionService.getLibro()
     var backup = sessionStorage.getItem('temporalBookDescription')
@@ -37,6 +50,11 @@ export class AppBookdescriptionComponent implements OnInit {
   }
 
   async ngOnInit() {
+
+    this.authService.isAdmin.subscribe(isAdmin => {
+      // Utilizar el valor de isAdmin, por ejemplo:
+      this.isAdmin = isAdmin
+    });
 
     this.book = this.bookDescriptionService.getLibro();
     if (this.book && this.book.title) {
@@ -75,11 +93,36 @@ export class AppBookdescriptionComponent implements OnInit {
       this.userTool.getUser(user.uid).subscribe(async user => {
         this.userInformation = await user.payload.data() as User;
         let favbooks = this.userInformation.favoriteBooksList;
-        for (let i = 0; i < favbooks!.length; i++) {
-          if (favbooks![i] == this.book!.isbn.toString()) {
-            this.fav = true
-          }
+        let pengbooks = this.userInformation.pendingBooksList
+        let readbooks = this.userInformation.readingBooksList;
+        let finbooks = this.userInformation.finishedBooksList;
+
+      for(let i = 0 ; i < favbooks!.length ; i++){
+        if (favbooks![i] == this.book!.isbn.toString()){
+          this.fav = true
         }
+      }
+
+      for(let i = 0 ; i < pengbooks!.length ; i++){
+        if (pengbooks![i] == this.book!.isbn.toString()){
+          this.state = true
+          this.book_state = "pendiente"
+        }
+      }
+
+      for(let i = 0 ; i < readbooks!.length ; i++){
+        if (readbooks![i] == this.book!.isbn.toString()){
+          this.state = true
+          this.book_state = "leyendo"
+        }
+      }
+
+      for(let i = 0 ; i < finbooks!.length ; i++){
+        if (finbooks![i] == this.book!.isbn.toString()){
+          this.state = true
+          this.book_state = "leido"
+        }
+      }
       })
     }
     else {
@@ -99,6 +142,7 @@ export class AppBookdescriptionComponent implements OnInit {
 
 
   leer() {
+    this.incrementReadsBooks()
     const data = sessionStorage.getItem('user')
     if (data && this.book && this.book.url) {
 
@@ -143,10 +187,10 @@ export class AppBookdescriptionComponent implements OnInit {
   async favobook() {
     if (this.datauser) {
       const user = JSON.parse(this.datauser);
-      if (this.fav == true) {
-        this.userTool.getUser(user.uid).subscribe(async user => {
-          this.userInformation = await user.payload.data() as User;
-        })
+      if (this.fav == true){
+        // this.userTool.getUser(user.uid).subscribe(async user => {
+        //   this.userInformation = await user.payload.data() as User;
+        // })
         let favbooks = await this.userInformation.favoriteBooksList;
         for (let i = 0; i < favbooks!.length; i++) {
           if (favbooks![i] == this.book!.isbn.toString()) {
@@ -155,10 +199,10 @@ export class AppBookdescriptionComponent implements OnInit {
         }
         this.userTool.updateFavoritesBooks(this.userInformation.uid!, favbooks!);
         this.fav = !this.fav
-      } else {
-        this.userTool.getUser(user.uid).subscribe(async user => {
-          this.userInformation = await user.payload.data() as User;
-        })
+      } else{
+        // this.userTool.getUser(user.uid).subscribe(async user => {
+        //   this.userInformation = await user.payload.data() as User;
+        // })
         let favbooks = await this.userInformation.favoriteBooksList!;
         favbooks!.push(this.book!.isbn.toString());
         this.userTool.updateFavoritesBooks(this.userInformation.uid!, favbooks!);
@@ -168,6 +212,87 @@ export class AppBookdescriptionComponent implements OnInit {
       this.route.navigate(['/SIGNIN'])
     }
   }
+
+  statebook(state:string){
+    if (this.datauser){
+      if(state == this.book_state){
+        if (state == "pendiente"){
+          let pengbooks = this.userInformation.pendingBooksList
+          for(let i = 0 ; i < pengbooks!.length ; i++){
+            if (pengbooks![i] == this.book!.isbn.toString()){
+              pengbooks!.splice(i,1);
+            }
+          }
+          this.userTool.updatePendingBooks(this.userInformation.uid!, pengbooks!);
+        } else if (state == "leyendo"){
+          let readbooks = this.userInformation.readingBooksList
+          for(let i = 0 ; i < readbooks!.length ; i++){
+            if (readbooks![i] == this.book!.isbn.toString()){
+              readbooks!.splice(i,1);
+            }
+          }
+          this.userTool.updateReadingBooks(this.userInformation.uid!, readbooks!);
+        } else if (state == "leido"){
+          let finbooks = this.userInformation.finishedBooksList;
+          for(let i = 0 ; i < finbooks!.length ; i++){
+            if (finbooks![i] == this.book!.isbn.toString()){
+              finbooks!.splice(i,1);
+            }
+          }
+          this.userTool.updateFinishedBooks(this.userInformation.uid!, finbooks!);
+        }
+        this.book_state = "";
+        this.state = false;
+      }
+      else{
+        if (this.book_state != ""){
+          if (this.book_state == "pendiente"){
+            let pengbooks = this.userInformation.pendingBooksList
+            for(let i = 0 ; i < pengbooks!.length ; i++){
+              if (pengbooks![i] == this.book!.isbn.toString()){
+                pengbooks!.splice(i,1);
+              }
+            }
+            this.userTool.updatePendingBooks(this.userInformation.uid!, pengbooks!);
+          } else if (this.book_state == "leyendo"){
+            let readbooks = this.userInformation.readingBooksList
+            for(let i = 0 ; i < readbooks!.length ; i++){
+              if (readbooks![i] == this.book!.isbn.toString()){
+                readbooks!.splice(i,1);
+              }
+            }
+            this.userTool.updateReadingBooks(this.userInformation.uid!, readbooks!);
+          } else if (this.book_state == "leido"){
+            let finbooks = this.userInformation.finishedBooksList;
+            for(let i = 0 ; i < finbooks!.length ; i++){
+              if (finbooks![i] == this.book!.isbn.toString()){
+                finbooks!.splice(i,1);
+              }
+            }
+            this.userTool.updateFinishedBooks(this.userInformation.uid!, finbooks!);
+          }
+        } 
+        if (state == "pendiente"){
+          let pengbooks = this.userInformation.pendingBooksList;
+          pengbooks!.push(this.book!.isbn.toString());
+          this.userTool.updatePendingBooks(this.userInformation.uid!, pengbooks!);
+        } else if (state == "leyendo"){
+          let readbooks = this.userInformation.readingBooksList;
+          readbooks!.push(this.book!.isbn.toString());
+          this.userTool.updateReadingBooks(this.userInformation.uid!, readbooks!);
+        } else if (state == "leido"){
+          let finbooks = this.userInformation.finishedBooksList;
+          finbooks!.push(this.book!.isbn.toString());
+          this.userTool.updateFinishedBooks(this.userInformation.uid!, finbooks!);
+        }
+        this.book_state = state;
+        this.state = true;
+      }
+    }
+  }
+
+  
+  
 
 
 
@@ -217,28 +342,80 @@ export class AppBookdescriptionComponent implements OnInit {
   }
 
   showLoggingMessage() {
-    !this.isLoggedIn?this.route.navigate(['/SIGNIN']):null
-      
-    
+    !this.isLoggedIn ? this.route.navigate(['/SIGNIN']) : null
+
+
   }
 
   onSubmitReview() {
     const review = {
       username: this.userInformation.displayName,
-      opinion: this.userReviewForm.controls['opinion'].value
+      opinion: this.userReviewForm.controls['opinion'].value,
+      uid: this.userInformation.uid
     };
+  
+    const copyBook = Object.assign({}, this.book);
+  
+    const foundBook = this.newBooks.find((book: any) => book.isbn === copyBook?.isbn);
+  
+    if (foundBook) {
+      copyBook?.reviews.push(review);
+      copyBook!.imageURL = foundBook.imageURL;
+      this.firestoreService.updateBook(foundBook.id, copyBook!);
+      this.book!.reviews = copyBook?.reviews;
+      sessionStorage.setItem('temporalBookDescription', JSON.stringify(this.book));
+      console.log(foundBook.isbn, foundBook.title);
+    }
+  
+    this.userReviewForm.reset();
+  }
+  
+
+
+  incrementReadsBooks() {
+    const copyBook = Object.assign({}, this.book);
+    const user = sessionStorage.getItem('user');
+    const uuid = user ? JSON.parse(user) : { uid: '' };
+  
+    const foundBook = this.newBooks.find((book: any) => book.isbn === copyBook?.isbn);
+  
+    if (foundBook) {
+      const exist = foundBook.read.includes(uuid.uid);
+  
+      if (!exist) {
+        console.log("no existe");
+        copyBook?.read.push(uuid.uid);
+        foundBook.read.push(uuid.uid);
+        copyBook!.imageURL = foundBook.imageURL;
+        this.firestoreService.updateBook(foundBook.id, copyBook!);
+      }
+    }
+  }
+  
+    
+  async deleteReview(selectedReview: Review) {
 
     const copyBook = Object.assign({}, this.book);
-    
-    this.newBooks.filter((book: any) => {
-      if (book.isbn === copyBook?.isbn) {
-        copyBook?.reviews.push(review);
-        copyBook!.imageURL = book.imageURL;
-        this.firestoreService.updateBook(book.id, copyBook!);
-        this.book!.reviews!= copyBook?.reviews
+    const currentBook = this.newBooks.filter(book => book.isbn === this.book?.isbn)[0];
+
+    this.book?.reviews.filter((review) => {
+      if (review.uid == selectedReview.uid && review.username == selectedReview.username && review.opinion == selectedReview.opinion) {
+        var el = copyBook?.reviews.indexOf(review);
+        copyBook!.reviews.splice(el!, 1);
+        copyBook!.imageURL = currentBook!.imageURL;
+        this.book!.reviews = copyBook?.reviews;
+        this.firestoreService.updateBook(currentBook.id, copyBook!);
+        let newDeletedReview: string = "Se le ha eliminado la review del libro " + this.book?.title + ": " + selectedReview.opinion
+        this.firestoreService.getUser(review.uid ).pipe(first()).subscribe( user => {
+          user.notifications?.push(newDeletedReview);
+          this.firestoreService.updateUser(user!.uid!, user);
+        })
+
         sessionStorage.setItem('temporalBookDescription', JSON.stringify(this.book));
       }
     });
-    this.userReviewForm.reset();
   }
+
+
+
 }

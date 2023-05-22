@@ -39,6 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import { SwiperModule } from 'swiper/angular';
+import { AppSearchComponent } from './app-search/app-search.component';
 
 @NgModule({
   declarations: [	
@@ -61,7 +62,8 @@ import { SwiperModule } from 'swiper/angular';
     CollectionsComponent,
     LoaderComponent,
     AppAudiobookComponent,
-    AudioPlayerComponent
+    AudioPlayerComponent,
+    AppSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +86,9 @@ import { SwiperModule } from 'swiper/angular';
       {path: 'SIGNIN', component: AppSinginComponent},
       {path: 'SIGNUP/:plan/:url', component: AppSingupComponent},
       {path: 'PLAN', component: AppPricingTableComponent },
-      {path: 'PAYMENTCONFIRMATION', component: AppPaymentConfirmationComponent}
+      {path: 'PAYMENTCONFIRMATION', component: AppPaymentConfirmationComponent},
+      {path: 'SEARCH', component: AppSearchComponent},
+      {path: 'PLAN/:email/:displayName', component: AppPricingTableComponent }
     ]),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     AngularFireModule.initializeApp(environment.firebase),

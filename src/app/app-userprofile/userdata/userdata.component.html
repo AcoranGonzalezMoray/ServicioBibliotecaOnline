@@ -62,7 +62,11 @@
             </div>
         <div class="field">
             <label><b>Plan:</b></label>
-            <p class="plan">{{plan}} <button class="btn btn-primary">Cambiar plan</button></p>
+            <p class="plan">{{plan}}</p>
+          <div>
+            <button class="btn btn-primary">Cambiar plan</button>
+            <button class="btn btn-danger" (click)="cancelPlan()">Cancelar plan</button>
+          </div>
         </div>
         <div class="field">
             <label><b>Inicio del Plan:</b></label>

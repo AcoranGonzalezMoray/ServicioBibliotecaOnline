@@ -39,7 +39,11 @@
         "followed": "Followed",
         "followers": "Followers",
         "favourites": "Favourites",
-        "reviews": "Reviews"
+        "reviews": "Reviews",
+        "notifications": "Notifications",
+        "personalData": "Personal Data",
+        "collections": "Collections",
+        "deleteNotifications": "Delete Notifications"
     },
     "signup": {
         "suscribe": "Suscribe with",
