@@ -342,9 +342,7 @@ export class AppBookdescriptionComponent implements OnInit {
   }
 
   showLoggingMessage() {
-    !this.isLoggedIn ? this.route.navigate(['/SIGNIN']) : null
-
-
+    !this.isLoggedIn ? alert('Debes iniciar sesión para dejar una reseña') : null;
   }
 
   onSubmitReview() {
@@ -360,6 +358,7 @@ export class AppBookdescriptionComponent implements OnInit {
   
     if (foundBook) {
       copyBook?.reviews.push(review);
+      alert("Se ha enviado la reseña correctamente");
       copyBook!.imageURL = foundBook.imageURL;
       this.firestoreService.updateBook(foundBook.id, copyBook!);
       this.book!.reviews = copyBook?.reviews;

@@ -9,7 +9,6 @@
   [centeredSlidesBounds]="true"
   (slideChange)="onSlideChange()"
   [navigation]="true"
-  [pagination]="{ clickable: true }"
   >
       <ng-template *ngFor="let book of categories[0][2];let i = index" swiperSlide>
         <app-card [book]="book"></app-card>
@@ -27,7 +26,6 @@
   [centeredSlidesBounds]="true"
   (slideChange)="onSlideChange()"
   [navigation]="true"
-  [pagination]="{ clickable: true }"
   >
     <ng-template *ngFor="let book of categories[1][2];let i = index" swiperSlide>
       <app-card [book]="book"></app-card>
@@ -44,7 +42,6 @@
   [centeredSlidesBounds]="true"
   (slideChange)="onSlideChange()"
   [navigation]="true"
-  [pagination]="{ clickable: true }"
   >
     <ng-template *ngFor="let book of categories[2][2];let i = index" swiperSlide>
       <app-card [book]="book"></app-card>
@@ -59,7 +56,6 @@
   [centeredSlidesBounds]="true"
   (slideChange)="onSlideChange()"
   [navigation]="true"
-  [pagination]="{ clickable: true }"
   >
     <ng-template *ngFor="let book of categories[3][2];let i = index" swiperSlide>
       <app-card [book]="book"></app-card>
