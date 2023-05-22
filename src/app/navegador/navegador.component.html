@@ -1,9 +1,9 @@
 <!--NAVEGADOR-->
 <nav id="navbar" class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <mat-slide-toggle #darkModeSwitch (click)="toggleDarkTheme()">
+    <a id="navbar-brand" class="navbar-brand" href="#"><img class="logo" src="../../assets/LOGO.png" alt="Logo Librarium con libro y degradado"></a>
+    <mat-slide-toggle class="darkmode" #darkModeSwitch (click)="toggleDarkTheme()">
     </mat-slide-toggle>
-    <a id="navbar-brand" class="navbar-brand" href="#">BOOKLIO</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
