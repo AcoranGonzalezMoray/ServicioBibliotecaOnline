@@ -34,7 +34,7 @@
 
 ### Registro/Logueo
 <p align="center">
-    <img height="500" width="600" src="./src/assets/assets-readme/subs.png"/> 
+    <img height="500" width="600" src="./src/assets/assets-readme/Subs.png"/> 
 </p>
 
 ### Lectura libro
@@ -66,7 +66,7 @@
 
   #### Clonar Repositorio
   ```
-  git clone https://github.com/AcoranGonzalezMoray/MyMessage.git
+  git clone https://github.com/AcoranGonzalezMoray/ServicioBibliotecaOnline.git
   ```
 
   #### Instalar dependencias del proyecto
