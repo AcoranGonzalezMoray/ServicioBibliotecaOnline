@@ -10,7 +10,7 @@
 <img src="https://img.shields.io/badge/Backend-Firebase | Stripe-orange"/>
 </p>
 
-<p>LIBRARIUM es un proyecto que utiliza las tecnologías Angular y Firebase para brindar a los usuarios una experiencia completa de lectura online y reproducción de audiolibros a través de una suscripción. Esta plataforma innovadora y accesible permite a los usuarios disfrutar de una amplia selección de libros electrónicos y audiolibros, actuando a su vez como una red social para lectores.</p>
+<p>LIBRARIUM es un proyecto que utiliza las tecnologías Angular y Firebase para brindar a los usuarios una experiencia completa de lectura online y reproducción de audiolibros a través de una suscripción. Esta plataforma innovadora y accesible permite a los usuarios disfrutar de una amplia selección de libros electrónicos y audiolibros, actuando a su vez como una red social para lectores.</p> 
 
 <img src="./src\assets\assets-readme\main2.png">
 
