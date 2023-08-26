@@ -1,7 +1,6 @@
 <h1 align="center"><img height="50" align="center" src="./src\assets\LOGO.png"/></h1>
 
 
-
 <p align="center"> 
 <img src="https://img.shields.io/badge/Plataforma-Web-green"/> <img src="https://img.shields.io/badge/Framework-Angular-red"/> 
 <img src="https://img.shields.io/badge/Angular-^15.2.2-green"/> 
